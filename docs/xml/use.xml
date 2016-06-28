@@ -1,0 +1,671 @@
+<!DOCTYPE article SYSTEM "/home/paul/Documents/data/dtds/sdocbook.dtd"[
+<!ENTITY script-name "rtf2xml"> 
+<!ENTITY script-location "rtf2xml.sourceforge.net"> 
+<!ENTITY execute "&script-name;"> 
+<!ENTITY version "1.3"> 
+
+]
+
+>
+
+
+<article>
+<articleinfo>
+    <author>
+        <firstname>Paul</firstname>
+        <surname>Tremblay</surname>
+        <authorblurb>
+            <para role = "email">
+                <email>phthenry@earthlink.net</email>
+            </para>
+        </authorblurb>
+    </author>
+  <title>&script-name;</title>
+  <abstract>
+        <para>
+            Convert RTF to XML.
+
+        </para>
+    </abstract>
+  <revhistory>
+     <revision>
+        <revnumber>&version;</revnumber>
+        <date>6 October 2003</date>
+        <revremark>First started document</revremark>
+     </revision>
+     <revision>
+        <revnumber>&version;</revnumber>
+        <date>24 October 2003</date>
+        <revremark>Updated for version .4</revremark>
+     </revision>
+     <revision>
+        <revnumber>&version;</revnumber>
+        <date>09 December 2004</date>
+        <revremark>Updated for version .5</revremark>
+     </revision>
+     <revision>
+        <revnumber>&version;</revnumber>
+        <date>22 April 2004</date>
+        <revremark>Updated for version .6</revremark>
+     </revision>
+     <revision>
+        <revnumber>&version;</revnumber>
+        <date>08 May 2004</date>
+        <revremark>Updated for version .62</revremark>
+     </revision>
+     <revision>
+        <revnumber>&version;</revnumber>
+        <date>19 July 2004</date>
+        <revremark>Updated for version .63</revremark>
+     </revision>
+     <revision>
+        <revnumber>&version;</revnumber>
+        <date>2 August 2005</date>
+        <revremark>Updated for version 1.3</revremark>
+     </revision>
+  </revhistory>
+</articleinfo>
+
+
+<section id = "use">
+    <title>Use</title>
+
+
+    <section id = "simple-example">
+    <title>Simple Example</title>
+
+    <para> Since rtf2xml is a command line utility, there is no graphical user
+        interface. There are no windows, no buttons to click, and no
+        user-interaction once the script starts to run.</para>
+
+    <para> Instead, rtf2xml runs from a shell or terminal and outputs to a file</para>
+
+    <para> A simple example illustrates this. If I want to convert the
+        document "hello_world.rtf" to XML, I open a shell and type: </para>
+
+    <para role = "command">
+        <command>rtf2xml hello_world.rtf</command>
+    </para>
+
+    <para>The script converts the RTF file to XML and outputs it to the terminal.
+    </para>
+
+
+
+    </section>
+
+    <section id = "use-config">
+        <title>The Configuration File</title>
+
+        <para>The configuration file allows you to override the default
+            options without having to use an option on the command line.  See
+            the <ulink url =
+                "installation.html#move-.rtf2xml">installation</ulink> for the
+            details on putting the configuation file in the right
+            location.</para>
+
+        <para>If you are unsure of what configuration file the script uses, type:</para>
+
+        <para><command>rtf2xml --config</command></para>
+
+        <para>The script will print the path and quit.</para>
+
+        <para>The actual values of the configuration file will be explained
+            below in each section explaining a specific option.</para>
+
+
+</section>
+
+
+    <section id = "use-help">
+    <title>What are the forms of the Options? (--help)</title>
+
+    <para> The <option>--output</option> option has a shortened version, like
+        many other options. The shortened version takes on "-" instead of
+        "--". Using the above command with the shortened version, we see:
+        </para>
+
+
+    <para role = "command">
+        <command>rtf2xml -o hello_world.xml hello_world.rtf</command>
+    </para>
+
+    <para>
+        If you are ever in doubt about the options, you can either access the man page,
+        or type:
+    </para>
+
+    <para role ="command">
+        <command>rtf2xml --help</command>
+    </para>
+
+    </section>
+
+    <section id = "determine_output_file">
+    <title>Specifying the Output File</title>
+
+
+    <para>If you want to output the XML file to a specific file rather than
+    to the terminal, use the <option>--output</option> option:</para>
+
+    <para role = "command">
+        <command>rtf2xml --output hello_world.xml hello_world.rtf</command>
+    </para>
+
+    <para>When the script finishes, you will have a new file called hello_world.xml.
+    </para>
+
+
+    <para>
+        You might get tired of typing "--output" each time you invoke rtf2xml.
+        In this case, you might want to set the "smart-output" to true in the 
+        configuration file.
+    </para>
+
+
+    <para>
+        Open ".rtf2xml" in a text editor and scroll down until you see: 
+    </para>
+
+    <para role = "computer-output">
+            smart-output value = false
+    </para>
+
+    <para>
+        Change "false" to "true", and save the file.</para>
+
+    <para>
+        Now from the command line, you can simply type:
+    </para>
+
+
+    <para role = "command">
+        <command>rtf2xml  hello_world.xml hello_world.rtf</command>
+    </para>
+
+    <para> The script creates a file called "hello_world.xml" in the current
+        directory. If the file "hello_world.xml" already exists, the script
+        over-writes this file. If the file you want to transform does not
+        have the ".rtf" extension at the end, rtf2xml will not use smart
+        output.  Instead, it will tell you to use the
+        <option>--output</option> options.  </para>
+
+</section>
+
+
+      <section id = "use-caps">
+          <title>Caps</title>
+
+          <para> Microsoft's RTF stores certain characters in strange ways.
+              Let's say I type "title" in Microsoft Word, hi-light
+              this text and choose to display it in all caps. On the screen, I
+              see "TITLE." But the RTF actually stores the word as "title."
+              </para>
+
+        <para> By default, rtf2xml corrects these faults. It changes any
+            lower-case characters that should be capital to upper-case. </para>
+
+        <para> However, in some cases, you might want to have XML that looks
+            exactly like the RTF characters. In this case, use the
+            <option>--no-caps</option></para>
+
+        <para> This option disables the script's ability to convert from
+            regular characters to capitals.</para>
+
+
+        <para>
+            Example:
+        </para>
+
+        <para role = "command">
+            <command>rtf2xml --no-caps hello_world.rtf</command>
+        </para>
+
+
+      </section>
+
+      <section id="use-decorative-fonts">
+          <title>Decorative Fonts</title>
+
+          <para>
+          rtf2xml converts decorative fonts such as Symbol and Zapf Dingbats to their correct unicode
+          representations when possible. It is best not to use these decorative fonts. If you have control
+          over the input RTF file, use unicode fonts.
+          </para>
+
+
+      </section>
+
+      <section id = "configure-font">
+
+        <title>Caps Options in the Configuration File</title>
+
+
+        <para>
+            The default configuration automatically tells the script
+            to convert caps. If you want to have the script
+            never do such conversions, open the configuration file in a 
+            text editor and scroll down until you see:
+        </para>
+
+
+        <para role = "computer-output">
+            convert-caps = true
+        </para>
+
+        <para>
+            Change "true" to false and save the file. 
+        </para>
+
+        <para> Once these values are set to "false", you can still tell
+            rtf2xml to over-ride this options from the command line.  In this
+            case, use the <option>--caps</option>
+            </para>
+
+        <para>
+            These options tell the script to convert caps.
+        </para>
+
+        </section>
+
+      <section id = "use-version">
+          <title>Getting the Version</title>
+
+            <para>
+                If you want to find out what version of rtf2xml you are using, type:
+            </para>
+
+            <para role = "command">
+                <command>rtf2xml --version</command>
+            </para>
+          
+      </section>
+
+      <section id = "indent">
+          <title>Controlling Space in the Final XML</title>
+
+          <para>
+              By default, rtf2xml creates a file with  
+             no newlines. This means that resulting XML will only be one line long.
+             Such output insures that no arbritrary white space creeps into any 
+             further transformations. However, it also means that the XML will
+             be very difficult to read.
+          </para>
+
+          <para>
+              If you want XML that is easier to read, choose the <option>--indent</option>
+               option. The <option>--indent</option> options takes a number. For now, only 
+               two posibilities exsit: either "0", or any other non-zero number.
+          </para>
+
+          <para>
+              Choosing "0" for the <option>--indent</option> option means the XML 
+              will be output on one line. Choosing any other number results in 
+              elements having newlines after the closing tag. To get readable
+              XML, you type:
+          </para>
+
+        <para role = "command">
+            <command>rtf2xml --indent 1 hello_world.rtf</command>
+        </para>
+
+
+        <para>
+            You can also change the default value by chaning the value in 
+            configuration file:
+        </para>
+
+        <para role = "computer-output">
+                 indent = 1
+            
+        </para>
+
+      </section>
+
+
+<section id = "level">
+    <title>Controlling Error Handling</title>
+
+    <para>
+        
+    The <option>--level</option> option controls the way the script handles erros.
+    The lower the level, the more the script ignores errors. Here is a summary of 
+    each level:
+    </para>
+
+    <para><emphasis role = "bold">0:</emphasis> Never quit; never print out error messages </para>
+
+    <para><emphasis role = "bold">1:</emphasis> Never quit. Print out error
+     messages useful to user, but not those that would only be useful for
+     programmer.</para>
+
+    <para><emphasis role = "bold">2:</emphasis> Never quit, but print out all
+    messages.</para>
+
+    <para><emphasis role = "bold">3:</emphasis> Print out all messages. Make a
+    debug directory and output debugging info to that directory.</para>
+
+
+    <para><emphasis role = "bold">4:</emphasis> Print out all messages. Quit with minor error.</para>
+
+    <para><emphasis role = "bold">5:</emphasis> Print out all messages. Quit with any error.</para>
+</section>
+
+      
+<section id = "lists">
+    <title>Converting Lists</title>
+    
+
+    <para>
+        By default, rtf2xml gives structure to lists. This means that the script must 
+        make some guesses based on indentation, since an RTF document in itself gives
+        no structure for lists.
+    </para>
+
+    <para>
+        If your rtf2xml produces lists that you don't like, use the <option>--no-lists</option>option:
+    </para>
+
+
+        <para role = "command">
+            <command>rtf2xml --no-lists hello_world.rtf</command>
+        </para>
+
+        <para>You can set the lists option in configuration file as well. Scroll
+        down to the line that looks like:</para>
+
+
+        <para role = "computer-output">
+                 lists = true
+            
+        </para>
+
+        <para>Set this value appropriately and save configuration file.</para>
+
+    <para>You can tell the script not to form lists, regardless of your 
+    setting in the configuration file file, by using the 
+    <option>--lists</option> option.</para>
+
+</section>
+
+
+<section id = "empty-para">
+    <title>Writing Empty Paragraphs</title>
+    
+
+    <para> By default, rtf2xml writes an empty paragraph element
+        (&lt;para&gt;) for paragraphs with no content.  </para>
+
+    <para>
+        If you do not wish for this emtpy element to be written, use the
+        <option>--empty-para</option> option.
+    </para>
+
+        <para role = "command">
+            <command>rtf2xml --empty-para hello_world.rtf</command>
+        </para>
+
+        <para>
+            Be aware that if you eliminate empty paragraphs, you might also
+            eliminate border elements that surround them. You probably 
+            would not want borders if you are converting an RTF document
+            to docbook, but you probably would if converting the RTF
+            document to XHTML.
+        </para>
+
+        <para>You can set the empty-para option in configuration file as well. Scroll
+        down to the line that looks like:</para>
+
+
+        <para role = "computer-output">
+            write-empty-paragraphs = true
+        </para>
+
+        <para>Set this value appropriately and save configuration file.</para>
+
+    <para>You can tell the script not to write empty paragraphs, regardless of your 
+        setting in the configuartion file, by using the 
+    <option>--no-empty-para</option> option.</para>
+
+</section>
+
+<section id = "group_styles">
+    <title>Grouping Paragraphs with the Same Style Name</title>
+
+    <para>
+        Use the <option>--group-styles</option> option to provide a wrapper 
+        element to paragrahs that have the same style name.
+    </para>
+
+    <para>
+        For example, say you had an RTF file that you converted to XML that looked
+        like this:
+    </para>
+
+    <para role = "literal">
+        
+<![CDATA[
+<paragraph-definition name = "quote" num = "s001" widow-control="false">
+    ....
+    <para/>
+</paragraph-defintion>
+
+<paragraph-definition name = "quote" num = "s002" widow-control="true">
+    ....
+    <para/>
+</paragraph-defintion>]]></para>
+
+  <para>becomes:</para>
+ 
+
+  <para role = "literal"><![CDATA[
+<style-group name = "quote">
+    <paragraph-definition name = "quote" num = "s001" widow-control="false">
+        ....
+        <para/>
+    </paragraph-defintion>
+
+    <paragraph-definition name = "quote" num = "s002" widow-control="true">
+        ....
+        <para/>
+    </paragraph-defintion>
+</style-group>]]> </para>
+
+
+    <para>You can set the <option>group-styles</option> option in
+    configuration file as well. Scroll down to the line that looks like:</para>
+
+
+    <para role = "computer-output">
+             group-styles = false
+        
+    </para>
+
+
+    <para>Set this value appropriately and save configuration file.</para>
+
+    <para>You can tell the script not to group styles, regardless of your 
+        setting in the configuration  file, by using the 
+    <option>--no-group-styles</option> option.</para>
+
+</section>
+
+
+<section id = "group_borders">
+    <title>Choosing to include border information.</title>
+
+    <para>
+        By default, rtf2xml wraps paragraphs with a &lt;border-group&gt; element.
+        If you do not wish for paragraphs to be wrapped in this element, use the
+        <option>--no-group-borders</option> option.
+    </para>
+
+        <para role = "command">
+            <command>rtf2xml --no-group-borders hello_world.rtf</command>
+        </para>
+
+
+    <para>
+        For example, say you had an RTF file that you converted to XML that looked
+        like this:
+    </para>
+
+    <para role = "literal">
+
+<![CDATA[
+<border-group 
+    border-paragraph-bottom-line-width="0.50" 
+    border-paragraph-bottom-padding="1.00" 
+    border-paragraph-bottom-style="hairline" 
+    num="s0001"
+>
+    <paragraph-definition name="Normal" 
+        style-number="s0002" 
+        font-style="Not Defined"
+    >
+      <para>This parpagraph has a border.</para>
+     </paragraph-definition>
+</border-group>
+]]> </para>
+
+    <para>If you used the <option>--no-group-borders</option> option, the above fragment 
+        becomes:</para>
+
+
+    <para role = "literal">
+
+<![CDATA[
+    <paragraph-definition name="Normal" 
+        style-number="s0002" 
+        font-style="Not Defined"
+    >
+      <para>This parpagraph has a border.</para>
+     </paragraph-definition>
+]]> </para>
+
+    <para>You can set the <option>group-borders</option> option in
+    configuration file as well. Scroll down to the line that looks like:</para>
+
+
+    <para role = "computer-output">
+             group-borders = true
+        
+    </para>
+
+
+    <para>Set this value appropriately and save configuration file.</para>
+
+    <para>You can tell the script to still group styles, regardless of your 
+        setting in the configuration  file, by using the 
+    <option>--group-borders</option> option.</para>
+
+</section>
+
+
+
+<section id = "headings_to_sections">
+    <title>Converting Headings to Sections</title>
+    
+
+    <para>
+       You can provide further structure to the resulting XML document by using
+       the <option>--headings-to-sections</option> option. This option creates
+       section elements from the heading styles.
+    </para>
+
+    <para>
+        For example, if you used the style "heading 1" to create a heading in 
+        your RTF document, and you used the <option>--headings-to-sections</option>
+         option when converting the document to XML, all text under heading 1 would 
+         be enclosed in a section like this:
+        
+    </para>
+
+
+  <para role = "literal"><![CDATA[
+<section num="1.1" num-in-level="1" level="1" type="heading 1">
+    ...
+</section>
+]]> </para>
+
+    <para>
+        If you used a style with the name of "heading 2" below "heading 1", rtf2xml
+        nests a section inside the heading made from "heading 1": 
+    </para>
+
+
+  <para role = "literal"><![CDATA[
+<section num="1.1" num-in-level="1" level="1" type="heading 1">
+    ...
+    <section num="1.1.1" num-in-level="1" level="2" type="heading 2">
+        ...
+    </section>
+
+</section>
+]]> </para>
+
+    <para>
+        If you created a "heading 3" (instead of "heading 2") below "heading 1", 
+        rtf2xml nests this section as if it were "heading 2": 
+    </para>
+
+  <para role = "literal"><![CDATA[
+<section num="1.1" num-in-level="1" level="1" type="heading 1">
+    ...
+    <section num="1.1.1" num-in-level="1" level="2" type="heading 3">
+        ...
+    </section>
+
+</section>]]></para>
+
+    <para>
+        The script rtf2xml never creates ill-formed XML, regardless of how you
+        use headings in the RTF document. It knows to nest headings when it finds
+        a heading smaller than the previous one, and it knows to close-out sections
+        when it finds a heading greater than the prveious one.
+    </para>
+
+    <para>
+        In order to set the <option>--headings-to-sections</option> option 
+        in configuration file, scroll down to the line that looks like:
+    </para>
+
+
+    <para role = "computer-output">
+             headings-to-sections = false
+        
+    </para>
+
+
+    <para>Set this value appropriately and save configuration file.</para>
+
+    <para>You can tell the script not to turn headings into sections, regardless of your 
+        setting in the configuration file, by using the 
+    <option>--no-headings-to-sections</option> option.</para>
+
+</section>
+
+
+<section id = "further_transformations">
+    <title>Further Transforming the RTF Document (docbook, TEI.2)</title>
+
+    <para> The script rtf2xml converts RTF to a type of raw XML that
+        represents the structure of the original document. Most likely you
+        will want to convert this raw XML into another format. I have provided
+        an XSL stylesheet that will transform this raw XML into simplified
+        docbook and TEI.2. 
+    </para>
+
+    <para> In order to use the scripts and stylesheets, you must first
+        download them at the same site that you downloaded the rtf2xml script
+        (https://sourceforge.net/projects/rtf2xml/) </para>
+
+
+</section>
+
+
+
+
+
+</section>
+</article>

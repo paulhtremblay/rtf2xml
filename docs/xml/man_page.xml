@@ -1,0 +1,362 @@
+<!DOCTYPE article SYSTEM "/home/paul/Documents/data/dtds/sdocbook.dtd"[
+<!ENTITY script-name "rtf2xml"> 
+<!ENTITY script-location "rtf2xml.sourceforge.net"> 
+<!ENTITY execute "&script-name;"> 
+<!ENTITY version "1.3"> 
+
+]
+
+>
+
+
+<article>
+<articleinfo>
+    <author>
+        <firstname>Paul</firstname>
+        <surname>Tremblay</surname>
+        <authorblurb>
+            <para role = "email">
+                <email>phthenry@earthlink.net</email>
+            </para>
+        </authorblurb>
+    </author>
+  <title>&script-name;</title>
+  <abstract>
+        <para>
+            Convert RTF to XML.
+
+        </para>
+    </abstract>
+  <revhistory>
+     <revision>
+        <revnumber>&version;</revnumber>
+        <date>1 October 2003</date>
+        <revremark>First started document</revremark>
+     </revision>
+     <revision>
+        <revnumber>&version;</revnumber>
+        <date>24 October 2003</date>
+        <revremark>Updated to reflect .4 changes</revremark>
+     </revision>
+     <revision>
+         <revnumber>&version;</revnumber>
+         <date>4 January 2004</date>
+         <revremark>Updated to refelect .5 changes</revremark>
+     </revision>
+  </revhistory>
+</articleinfo>
+
+
+<section id = "man-page">
+    <title>The Man Page</title>
+
+<section id = "command-line">
+    <title>Synopsis</title>
+
+
+    <para role = "command-line-verbose">
+        <emphasis role = "command"> &script-name; </emphasis> 
+        <emphasis role = "long-option-bracket-before-after"> --help </emphasis>
+    </para>
+
+
+    <para role = "command-line-verbose">
+        <emphasis role = "command"> &script-name; </emphasis> 
+        <emphasis role = "long-option-bracket-before-after"> --version </emphasis>
+    </para>
+
+    <para role = "command-line-verbose">
+        <emphasis role = "command"> &script-name; </emphasis> 
+        <emphasis role = "long-option-bracket-before-after"> --config </emphasis>
+    </para>
+
+    <para role = "command-line-verbose">
+        <emphasis role = "command"> &script-name; </emphasis>  
+        <emphasis role = "long-option-bracket-before-after">--no-caps</emphasis> 
+        <emphasis role = "long-option-bracket-before-after">--caps</emphasis> 
+        <emphasis role = "long-option-bracket-before-after">--no-caps</emphasis> 
+        <emphasis role = "long-option-bracket-before-after">--no-lists</emphasis> 
+        <emphasis role = "long-option-bracket-before-after">--lists</emphasis> 
+        <emphasis role = "long-option-bracket-before-after">--empty-para</emphasis> 
+        <emphasis role = "long-option-bracket-before-after">--no-empty-para</emphasis> 
+        <emphasis role = "long-option-bracket-before-after">--headings-to-sections</emphasis> 
+        <emphasis role = "long-option-bracket-before-after">--no-headings-to-sections</emphasis> 
+        <emphasis role = "long-option-bracket-before-after">--group-styles</emphasis> 
+        <emphasis role = "long-option-bracket-before-after">--no-group-styles</emphasis> 
+        <emphasis role = "long-option-bracket-before-after">--group-borders</emphasis> 
+        <emphasis role = "long-option-bracket-before-after">--no-group-borders</emphasis> 
+        <!--
+        <emphasis role = "long-option-bracket-before-after">- -no-namespace</emphasis> 
+        -->
+        <emphasis role = "long-option-bracket-before">--level</emphasis> 
+        <emphasis role = "option-argument-bracket-after">number</emphasis> 
+        <emphasis role = "long-option-bracket-before">--indent</emphasis> 
+        <emphasis role = "option-argument-bracket-after">number</emphasis> 
+        <emphasis role = "short-option-bracket-before">-o,</emphasis> 
+        <emphasis role = "long-option">--output</emphasis> 
+        <emphasis role = "option-argument-bracket-after">out-file</emphasis> 
+        <!--
+        <emphasis role = "long-option-bracket-before">- -dtd</emphasis> 
+        -->
+        <emphasis role = "arguments">path</emphasis> 
+    </para>
+</section>
+
+<section id = "description">
+    <title>Description</title>
+
+    <para > The script rtf2xml converts Microsoft's proprietary rich text
+     format (RTF) to XML. It preserves as much information from the RTF
+     files as possible, giving an XML author the choice of what elements to
+     use for further transformations.  </para>
+
+
+     <para>
+         Unless the &lt;smart-output&gt; is specified in the configuration
+         file, or the <option>--output</option> option is used, rtf2xml
+         outputs to the terminal.
+        If the RTF file contains any graphic
+         information, a directory will be created with this information. The
+         directory will take the same name as the RTF file, appending and
+         "_rtf_pict_dir" at the end. (For example, If the original file
+                 "my_file.rtf" contained graphic information, a directory
+                 named "my_file_rtf_pict_dir" will be created.) If this
+         directory already exists, its contents will be emptied before the
+         script performs the transformation. The directory will reside in the 
+         same directory as the transformed file.</para>
+
+</section>
+
+<section id = "options">
+
+
+<title>Options</title>
+
+<para role = "option">
+    <option>--help</option>
+</para>
+
+    <para>Print a help message and quit.</para>
+
+<para role = "option">
+    <option>--version</option>
+</para>
+
+    <para>Print out the version and quit.</para>
+
+
+<para role = "option">
+    <option>--config</option>
+</para>
+
+    <para>Print out the path to the configuation file and quit.</para>
+
+<para role = "option">
+    
+    <option>-o, --output</option> <emphasis role =
+    "target">file</emphasis>
+    </para>
+    
+    <para> The file to output to. </para>
+
+    <para>
+        Example:
+    </para>
+
+    <para role = "command">
+        <command>rtf2xml --output my_file.xml my_file.rtf </command>
+    </para>
+
+    <para>
+        The file "my_file.xml" will be created.  If the
+        file "my_file.rtf" contains graphic information, a directory called 
+        "my_file_rtf_pict_dir" will be created in the same directory as the file. 
+    </para>
+
+
+    
+
+    <para role = "option">
+    <option>--caps</option> 
+    </para>
+    
+    <para>
+    Change characters tagged as captials to their capital equivlents. Since the script
+    automatically performs this transformation, you don't need to use this option
+    unless you have set the configuration script to not have captials transformed, and
+    you want to override what the configuration file says.
+    </para>
+
+    <para> RTF stores certain characters in an odd way. For example, if you
+        type the word "title" and then choose the format "all caps" from the
+        menu, the word is actually stored as "title", instead of "TITLE."
+        </para>
+
+    <para>
+        The script rtf2xml seeks to correct this mistake by changing all lower-case
+        characters within the element "caps" to upper-case.
+    </para>
+
+    <para>
+
+        Use this option to make sure the script changes lower-case to upper-case.
+    </para>
+
+
+    <para role = "option">
+    <option>--no-caps</option> 
+    </para>
+
+    
+    <para>
+    Don't change characters tagged as captials to their capital equivlents. Setting this
+    option has the opposite effect as using the <option>--caps</option> option.
+    </para>
+
+    <para>
+        
+        If you wish to suppress the scripts ability to change lower-case to upper-case,
+        use this option
+    </para>
+
+         
+
+    <para role = "option">
+        <option>--level</option> <emphasis role = "target">number</emphasis>
+        
+    </para>
+
+    <para>
+        Run the script at level &lt;number&gt;.
+    </para>
+
+    <para>
+        At this point, a user should choose "1" (the default, unless otherwise 
+        specified in the configuration file), or "3". A level 1 indicates a normal
+        run. Level 3 indicates a debug run. A debug directory will be created, and 
+        more error messages will be outputted.
+    </para>
+
+
+    <para role = "option">
+        <option>--indent</option> <emphasis role = "target">number</emphasis>
+    </para>
+
+    <para>
+        At this point, the <option>--indent</option> option only controls whether
+        the final XML get output as one long line, or in the more readable form
+        of blocks. 
+    </para>
+
+    <para>
+        For strict XML, in which you don't want any extraneous white space, use "0"
+        as your number.
+    </para>
+
+    <para>
+        Otherwise, use any number above zero. 
+    </para>
+
+
+    <para role = "option">
+        <option>--no-lists</option> 
+    </para>
+
+    <para>
+        Whether to give structure to lists. 
+    </para>
+
+    <para>
+        An RTF document does not give any structure to lists. Instead, it tags
+        each item with a number.
+    </para>
+
+    <para>
+        By default, rtf2xml gives the RTF numbering scheme a list-structure.
+    </para>
+
+    <para>
+        If you do not wish to have this structure in your document, use the
+        <option>--no-lists</option> option.
+    </para>
+
+    <para role = "option">
+        <option>--lists</option> 
+    </para>
+
+    <para>
+        Form lists from the RTF file.
+    </para>
+
+    <para role = "option">
+        <option>--empty-para</option> 
+    </para>
+
+    <para>
+        Write empty paragraphs.
+    </para>
+
+    <para role = "option">
+        <option>--no-empty-para</option> 
+    </para>
+
+    <para>
+        Do not write empty paragraphs.
+    </para>
+
+
+    <para role = "option">
+        <option>--group-borders</option> 
+    </para>
+
+    <para>
+        Provide a wrapper element &lt;group-borders&gt; for borders.
+    </para>
+
+
+    <para role = "option">
+        <option>--no-group-borders</option> 
+    </para>
+
+    <para>
+        Do not provide a wrapper element &lt;group-borders&gt; for borders.
+    </para>
+
+    <para role = "option">
+        <option>--group-styles</option> 
+    </para>
+
+    <para>
+        Provide a wrapper element &lt;group-styles&gt; for paragraphs with the same
+        name.
+    </para>
+
+    <para role = "option">
+        <option>--no-group-styles</option> 
+    </para>
+
+    <para>
+        Do not provide a wrapper element for paragraphs with the same name.
+    </para>
+
+    <para role = "option">
+        <option>--headings-to-sections</option> 
+    </para>
+
+    <para>
+        Convert styles with heading names (such as "heading 1") to sections.
+    </para>
+
+    <para role = "option">
+        <option>--no-headings-to-sections</option> 
+    </para>
+
+    <para>
+        Do not convert styles with heading names (such as "heading 1") to sections.
+    </para>
+
+</section>
+
+
+</section>
+</article>

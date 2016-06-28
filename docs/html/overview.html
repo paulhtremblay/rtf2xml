@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><link rel="stylesheet" type="text/css" href="styles.css" /><title>Description</title></head><body><div class="root"><p class="home-link"><a href="index.html">HOME</a></p>
+    <h1 class="section">Description</h1>
+
+
+    <p> The script rtf2xml converts Microsoft's
+     proprietary rich text format (RTF) format to XML. It preserves as much
+     information the RTF files as possible, giving an XML author the choice of
+     what elements to use for further transformations. </p>
+
+    <p> The raw XML file that results from an rtf2xml transformation seeks
+        to be identical to the original file--with the exception that the
+        transformation is structured XML.  Ideally, only one could use rtf2xml
+        and XSLT to change a file to and from RTF with not data loss.  </p>
+
+     <p>Use this  script to transform RTF to a more open and usuable
+         such as XHTML or FO. You can find  some stylesheets on the
+         download page for these purposes, though they are far from perfect.
+     </p>
+
+     <div id="caveats"><a name="caveats" id="caveats"></a>
+         <h2 class="sub-section">Caveats</h2>
+            
+              
+            
+        <li>
+
+                  <p> Won't properly convert legacy RTF with multi-byte
+                    representations.  </p>
+
+                <p> The script rtf2xml will convert older RTF that has
+                      8-bit representations, which includes most (all?) of the
+                      languages of Europe. However, rtf2xml cannot convert
+                      older files in the Japanese or Chinese language. It can
+                      convert newer files in these languages, but the older
+                      RTF gives no unicode markings, making conversion
+                      impossible. 
+                </p>
+
+              </li>
+              
+            
+        <li>
+
+                  <p>
+                    Will often misrepresent RTF produced with Open Office. 
+                  </p>
+
+                  <p>
+                      Open Office RTF produces some characters as double question marks 
+                      (??). Other RTF readers can filter out these charcters, but the 
+                      script rtf2xml cannot, and in my opinion, these double question
+                      marks do not follow Microsoft's guidelines. 
+                  </p>
+                  
+              </li>
+
+
+              
+            
+        <li>
+
+                  <p>
+                    Won't convert pictures. 
+
+                      
+                  </p>
+
+                  <p>
+                    See the use section on what rtf2xml does with pictures.
+                      
+                  </p>
+                  
+              </li>
+            
+
+
+
+
+
+
+     </div>
+
+
+
+
+
+<p class="home-link"><a href="index.html">HOME</a></p></div></body></html>

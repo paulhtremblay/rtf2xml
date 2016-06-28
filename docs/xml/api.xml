@@ -1,0 +1,103 @@
+<!DOCTYPE article SYSTEM "/home/paul/Documents/data/dtds/sdocbook.dtd"[
+<!ENTITY script-name "rtf2xml"> 
+<!ENTITY script-location "rtf2xml.sourceforge.net"> 
+<!ENTITY execute "&script-name;"> 
+<!ENTITY version "1.3"> 
+
+]
+
+>
+
+
+<article>
+<articleinfo>
+    <author>
+        <firstname>Paul</firstname>
+        <surname>Tremblay</surname>
+        <authorblurb>
+            <para role = "email">
+                <email>phthenry@earthlink.net</email>
+            </para>
+        </authorblurb>
+    </author>
+  <title>&script-name;</title>
+  <abstract>
+        <para>
+            Convert RTF to XML.
+
+        </para>
+    </abstract>
+  <revhistory>
+     <revision>
+        <revnumber>&version;</revnumber>
+        <date>14 October 2004</date>
+        <revremark>First started document</revremark>
+     </revision>
+  </revhistory>
+</articleinfo>
+
+<section id = "api">
+    <title>The API (Application Program Interface)</title>
+    <subtitle role="sub">(For Python Programers)</subtitle>
+    <para>
+        If you wish to use rtf2xml as part of a larger python program rather than from the command line, first import the rtf2xml.ParseRtf module:
+    </para>
+    <para role="code">
+        import rtf2xml.ParseRtf
+    </para>
+
+    <para>
+     Next, create a parsing object:
+        
+    </para>
+
+    <para role="code">
+        
+    try:
+        parse_obj =rtf2xml.ParseRtf.ParseRtf(   
+                in_file = 'in.rtf', 
+        )
+    except rtf2xml.ParseRtf.RtfInvalidCodeException, msg:
+        pass
+    </para>
+    <para>
+        The exception will catch any paths that don't exist. You will have to use the 
+        same exception when you run the method (below).
+    </para>
+    <para>
+        The in_file variable should point to the path of the RTF file. 
+        I'll cover the optional parameters below.
+    </para>
+    <para>
+        Finally, convert the document by calling the method 'parse_rtf'. 
+    </para>
+    <para role="code">
+        try:
+            parse_obj.parse_rtf()
+        except rtf2xml.ParseRtf.InvalidRtfException, msg:
+            pass
+        except rtf2xml.ParseRtf.RtfInvalidCodeException, msg:
+            pass
+    </para>
+
+    <para> The two exception classes are InvalideRtfException and
+       RtfInvalidCodeException.  If you set the level to something higher than
+       3 the script will raise an excetion for any errors. If the level is 
+       lower than 3, the script will only raise an exception for serious, 
+       non-recoverable errors.</para>
+
+
+    <para>
+        Here is an example of a complete script that uses the rtf2xml 
+        modules. I have made minimial comments on the parameters one
+        can use when call ing the 'parse_rtf' method. For more details,
+        see the options in the full documentation, <ulink url="use.html">use</ulink>.
+    </para>
+
+    <para role="code" id="interface-code"/>
+
+
+</section>
+
+</article>
+

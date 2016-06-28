@@ -1,0 +1,602 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><link rel="stylesheet" type="text/css" href="styles.css" /><title>Use</title></head><body><div class="root"><p class="home-link"><a href="index.html">HOME</a></p>
+    <h1 class="section">Use</h1>
+
+
+    <div id="simple-example"><a name="simple-example" id="simple-example"></a>
+    <h2 class="sub-section">Simple Example</h2>
+
+    <p> Since rtf2xml is a command line utility, there is no graphical user
+        interface. There are no windows, no buttons to click, and no
+        user-interaction once the script starts to run.</p>
+
+    <p> Instead, rtf2xml runs from a shell or terminal and outputs to a file</p>
+
+    <p> A simple example illustrates this. If I want to convert the
+        document "hello_world.rtf" to XML, I open a shell and type: </p>
+
+    <p>
+        <code>rtf2xml hello_world.rtf</code>
+    </p>
+
+    <p>The script converts the RTF file to XML and outputs it to the terminal.
+    </p>
+
+
+
+    </div>
+
+    <div id="use-config"><a name="use-config" id="use-config"></a>
+        <h2 class="sub-section">The Configuration File</h2>
+
+        <p>The configuration file allows you to override the default
+            options without having to use an option on the command line.  See
+            the <a href="installation.html#move-.rtf2xml">installation</a> for the
+            details on putting the configuation file in the right
+            location.</p>
+
+        <p>If you are unsure of what configuration file the script uses, type:</p>
+
+        <p><code>rtf2xml --config</code></p>
+
+        <p>The script will print the path and quit.</p>
+
+        <p>The actual values of the configuration file will be explained
+            below in each section explaining a specific option.</p>
+
+
+</div>
+
+
+    <div id="use-help"><a name="use-help" id="use-help"></a>
+    <h2 class="sub-section">What are the forms of the Options? (--help)</h2>
+
+    <p> The <b class="option">--output</b> option has a shortened version, like
+        many other options. The shortened version takes on "-" instead of
+        "--". Using the above command with the shortened version, we see:
+        </p>
+
+
+    <p>
+        <code>rtf2xml -o hello_world.xml hello_world.rtf</code>
+    </p>
+
+    <p>
+        If you are ever in doubt about the options, you can either access the man page,
+        or type:
+    </p>
+
+    <p>
+        <code>rtf2xml --help</code>
+    </p>
+
+    </div>
+
+    <div id="determine_output_file"><a name="determine_output_file" id="determine_output_file"></a>
+    <h2 class="sub-section">Specifying the Output File</h2>
+
+
+    <p>If you want to output the XML file to a specific file rather than
+    to the terminal, use the <b class="option">--output</b> option:</p>
+
+    <p>
+        <code>rtf2xml --output hello_world.xml hello_world.rtf</code>
+    </p>
+
+    <p>When the script finishes, you will have a new file called hello_world.xml.
+    </p>
+
+
+    <p>
+        You might get tired of typing "--output" each time you invoke rtf2xml.
+        In this case, you might want to set the "smart-output" to true in the 
+        configuration file.
+    </p>
+
+
+    <p>
+        Open ".rtf2xml" in a text editor and scroll down until you see: 
+    </p>
+
+    <p>
+            smart-output value = false
+    </p>
+
+    <p>
+        Change "false" to "true", and save the file.</p>
+
+    <p>
+        Now from the command line, you can simply type:
+    </p>
+
+
+    <p>
+        <code>rtf2xml  hello_world.xml hello_world.rtf</code>
+    </p>
+
+    <p> The script creates a file called "hello_world.xml" in the current
+        directory. If the file "hello_world.xml" already exists, the script
+        over-writes this file. If the file you want to transform does not
+        have the ".rtf" extension at the end, rtf2xml will not use smart
+        output.  Instead, it will tell you to use the
+        <b class="option">--output</b> options.  </p>
+
+</div>
+
+
+      <div id="use-caps"><a name="use-caps" id="use-caps"></a>
+          <h2 class="sub-section">Caps</h2>
+
+          <p> Microsoft's RTF stores certain characters in strange ways.
+              Let's say I type "title" in Microsoft Word, hi-light
+              this text and choose to display it in all caps. On the screen, I
+              see "TITLE." But the RTF actually stores the word as "title."
+              </p>
+
+        <p> By default, rtf2xml corrects these faults. It changes any
+            lower-case characters that should be capital to upper-case. </p>
+
+        <p> However, in some cases, you might want to have XML that looks
+            exactly like the RTF characters. In this case, use the
+            <b class="option">--no-caps</b></p>
+
+        <p> This option disables the script's ability to convert from
+            regular characters to capitals.</p>
+
+
+        <p>
+            Example:
+        </p>
+
+        <p>
+            <code>rtf2xml --no-caps hello_world.rtf</code>
+        </p>
+
+
+      </div>
+
+      <div id="use-decorative-fonts"><a name="use-decorative-fonts" id="use-decorative-fonts"></a>
+          <h2 class="sub-section">Decorative Fonts</h2>
+
+          <p>
+          rtf2xml converts decorative fonts such as Symbol and Zapf Dingbats to their correct unicode
+          representations when possible. It is best not to use these decorative fonts. If you have control
+          over the input RTF file, use unicode fonts.
+          </p>
+
+
+      </div>
+
+      <div id="configure-font"><a name="configure-font" id="configure-font"></a>
+
+        <h2 class="sub-section">Caps Options in the Configuration File</h2>
+
+
+        <p>
+            The default configuration automatically tells the script
+            to convert caps. If you want to have the script
+            never do such conversions, open the configuration file in a 
+            text editor and scroll down until you see:
+        </p>
+
+
+        <p>
+            convert-caps = true
+        </p>
+
+        <p>
+            Change "true" to false and save the file. 
+        </p>
+
+        <p> Once these values are set to "false", you can still tell
+            rtf2xml to over-ride this options from the command line.  In this
+            case, use the <b class="option">--caps</b>
+            </p>
+
+        <p>
+            These options tell the script to convert caps.
+        </p>
+
+        </div>
+
+      <div id="use-version"><a name="use-version" id="use-version"></a>
+          <h2 class="sub-section">Getting the Version</h2>
+
+            <p>
+                If you want to find out what version of rtf2xml you are using, type:
+            </p>
+
+            <p>
+                <code>rtf2xml --version</code>
+            </p>
+          
+      </div>
+
+      <div id="indent"><a name="indent" id="indent"></a>
+          <h2 class="sub-section">Controlling Space in the Final XML</h2>
+
+          <p>
+              By default, rtf2xml creates a file with  
+             no newlines. This means that resulting XML will only be one line long.
+             Such output insures that no arbritrary white space creeps into any 
+             further transformations. However, it also means that the XML will
+             be very difficult to read.
+          </p>
+
+          <p>
+              If you want XML that is easier to read, choose the <b class="option">--indent</b>
+               option. The <b class="option">--indent</b> options takes a number. For now, only 
+               two posibilities exsit: either "0", or any other non-zero number.
+          </p>
+
+          <p>
+              Choosing "0" for the <b class="option">--indent</b> option means the XML 
+              will be output on one line. Choosing any other number results in 
+              elements having newlines after the closing tag. To get readable
+              XML, you type:
+          </p>
+
+        <p>
+            <code>rtf2xml --indent 1 hello_world.rtf</code>
+        </p>
+
+
+        <p>
+            You can also change the default value by chaning the value in 
+            configuration file:
+        </p>
+
+        <p>
+                 indent = 1
+            
+        </p>
+
+      </div>
+
+
+<div id="level"><a name="level" id="level"></a>
+    <h2 class="sub-section">Controlling Error Handling</h2>
+
+    <p>
+        
+    The <b class="option">--level</b> option controls the way the script handles erros.
+    The lower the level, the more the script ignores errors. Here is a summary of 
+    each level:
+    </p>
+
+    <p><b>0:</b> Never quit; never print out error messages </p>
+
+    <p><b>1:</b> Never quit. Print out error
+     messages useful to user, but not those that would only be useful for
+     programmer.</p>
+
+    <p><b>2:</b> Never quit, but print out all
+    messages.</p>
+
+    <p><b>3:</b> Print out all messages. Make a
+    debug directory and output debugging info to that directory.</p>
+
+
+    <p><b>4:</b> Print out all messages. Quit with minor error.</p>
+
+    <p><b>5:</b> Print out all messages. Quit with any error.</p>
+</div>
+
+      
+<div id="lists"><a name="lists" id="lists"></a>
+    <h2 class="sub-section">Converting Lists</h2>
+    
+
+    <p>
+        By default, rtf2xml gives structure to lists. This means that the script must 
+        make some guesses based on indentation, since an RTF document in itself gives
+        no structure for lists.
+    </p>
+
+    <p>
+        If your rtf2xml produces lists that you don't like, use the <b class="option">--no-lists</b>option:
+    </p>
+
+
+        <p>
+            <code>rtf2xml --no-lists hello_world.rtf</code>
+        </p>
+
+        <p>You can set the lists option in configuration file as well. Scroll
+        down to the line that looks like:</p>
+
+
+        <p>
+                 lists = true
+            
+        </p>
+
+        <p>Set this value appropriately and save configuration file.</p>
+
+    <p>You can tell the script not to form lists, regardless of your 
+    setting in the configuration file file, by using the 
+    <b class="option">--lists</b> option.</p>
+
+</div>
+
+
+<div id="empty-para"><a name="empty-para" id="empty-para"></a>
+    <h2 class="sub-section">Writing Empty Paragraphs</h2>
+    
+
+    <p> By default, rtf2xml writes an empty paragraph element
+        (&lt;para&gt;) for paragraphs with no content.  </p>
+
+    <p>
+        If you do not wish for this emtpy element to be written, use the
+        <b class="option">--empty-para</b> option.
+    </p>
+
+        <p>
+            <code>rtf2xml --empty-para hello_world.rtf</code>
+        </p>
+
+        <p>
+            Be aware that if you eliminate empty paragraphs, you might also
+            eliminate border elements that surround them. You probably 
+            would not want borders if you are converting an RTF document
+            to docbook, but you probably would if converting the RTF
+            document to XHTML.
+        </p>
+
+        <p>You can set the empty-para option in configuration file as well. Scroll
+        down to the line that looks like:</p>
+
+
+        <p>
+            write-empty-paragraphs = true
+        </p>
+
+        <p>Set this value appropriately and save configuration file.</p>
+
+    <p>You can tell the script not to write empty paragraphs, regardless of your 
+        setting in the configuartion file, by using the 
+    <b class="option">--no-empty-para</b> option.</p>
+
+</div>
+
+<div id="group_styles"><a name="group_styles" id="group_styles"></a>
+    <h2 class="sub-section">Grouping Paragraphs with the Same Style Name</h2>
+
+    <p>
+        Use the <b class="option">--group-styles</b> option to provide a wrapper 
+        element to paragrahs that have the same style name.
+    </p>
+
+    <p>
+        For example, say you had an RTF file that you converted to XML that looked
+        like this:
+    </p>
+
+    <pre>
+        
+
+&lt;paragraph-definition name = "quote" num = "s001" widow-control="false"&gt;
+    ....
+    &lt;para/&gt;
+&lt;/paragraph-defintion&gt;
+
+&lt;paragraph-definition name = "quote" num = "s002" widow-control="true"&gt;
+    ....
+    &lt;para/&gt;
+&lt;/paragraph-defintion&gt;</pre>
+
+  <p>becomes:</p>
+ 
+
+  <pre>
+&lt;style-group name = "quote"&gt;
+    &lt;paragraph-definition name = "quote" num = "s001" widow-control="false"&gt;
+        ....
+        &lt;para/&gt;
+    &lt;/paragraph-defintion&gt;
+
+    &lt;paragraph-definition name = "quote" num = "s002" widow-control="true"&gt;
+        ....
+        &lt;para/&gt;
+    &lt;/paragraph-defintion&gt;
+&lt;/style-group&gt; </pre>
+
+
+    <p>You can set the <b class="option">group-styles</b> option in
+    configuration file as well. Scroll down to the line that looks like:</p>
+
+
+    <p>
+             group-styles = false
+        
+    </p>
+
+
+    <p>Set this value appropriately and save configuration file.</p>
+
+    <p>You can tell the script not to group styles, regardless of your 
+        setting in the configuration  file, by using the 
+    <b class="option">--no-group-styles</b> option.</p>
+
+</div>
+
+
+<div id="group_borders"><a name="group_borders" id="group_borders"></a>
+    <h2 class="sub-section">Choosing to include border information.</h2>
+
+    <p>
+        By default, rtf2xml wraps paragraphs with a &lt;border-group&gt; element.
+        If you do not wish for paragraphs to be wrapped in this element, use the
+        <b class="option">--no-group-borders</b> option.
+    </p>
+
+        <p>
+            <code>rtf2xml --no-group-borders hello_world.rtf</code>
+        </p>
+
+
+    <p>
+        For example, say you had an RTF file that you converted to XML that looked
+        like this:
+    </p>
+
+    <pre>
+
+
+&lt;border-group 
+    border-paragraph-bottom-line-width="0.50" 
+    border-paragraph-bottom-padding="1.00" 
+    border-paragraph-bottom-style="hairline" 
+    num="s0001"
+&gt;
+    &lt;paragraph-definition name="Normal" 
+        style-number="s0002" 
+        font-style="Not Defined"
+    &gt;
+      &lt;para&gt;This parpagraph has a border.&lt;/para&gt;
+     &lt;/paragraph-definition&gt;
+&lt;/border-group&gt;
+ </pre>
+
+    <p>If you used the <b class="option">--no-group-borders</b> option, the above fragment 
+        becomes:</p>
+
+
+    <pre>
+
+
+    &lt;paragraph-definition name="Normal" 
+        style-number="s0002" 
+        font-style="Not Defined"
+    &gt;
+      &lt;para&gt;This parpagraph has a border.&lt;/para&gt;
+     &lt;/paragraph-definition&gt;
+ </pre>
+
+    <p>You can set the <b class="option">group-borders</b> option in
+    configuration file as well. Scroll down to the line that looks like:</p>
+
+
+    <p>
+             group-borders = true
+        
+    </p>
+
+
+    <p>Set this value appropriately and save configuration file.</p>
+
+    <p>You can tell the script to still group styles, regardless of your 
+        setting in the configuration  file, by using the 
+    <b class="option">--group-borders</b> option.</p>
+
+</div>
+
+
+
+<div id="headings_to_sections"><a name="headings_to_sections" id="headings_to_sections"></a>
+    <h2 class="sub-section">Converting Headings to Sections</h2>
+    
+
+    <p>
+       You can provide further structure to the resulting XML document by using
+       the <b class="option">--headings-to-sections</b> option. This option creates
+       section elements from the heading styles.
+    </p>
+
+    <p>
+        For example, if you used the style "heading 1" to create a heading in 
+        your RTF document, and you used the <b class="option">--headings-to-sections</b>
+         option when converting the document to XML, all text under heading 1 would 
+         be enclosed in a section like this:
+        
+    </p>
+
+
+  <pre>
+&lt;section num="1.1" num-in-level="1" level="1" type="heading 1"&gt;
+    ...
+&lt;/section&gt;
+ </pre>
+
+    <p>
+        If you used a style with the name of "heading 2" below "heading 1", rtf2xml
+        nests a section inside the heading made from "heading 1": 
+    </p>
+
+
+  <pre>
+&lt;section num="1.1" num-in-level="1" level="1" type="heading 1"&gt;
+    ...
+    &lt;section num="1.1.1" num-in-level="1" level="2" type="heading 2"&gt;
+        ...
+    &lt;/section&gt;
+
+&lt;/section&gt;
+ </pre>
+
+    <p>
+        If you created a "heading 3" (instead of "heading 2") below "heading 1", 
+        rtf2xml nests this section as if it were "heading 2": 
+    </p>
+
+  <pre>
+&lt;section num="1.1" num-in-level="1" level="1" type="heading 1"&gt;
+    ...
+    &lt;section num="1.1.1" num-in-level="1" level="2" type="heading 3"&gt;
+        ...
+    &lt;/section&gt;
+
+&lt;/section&gt;</pre>
+
+    <p>
+        The script rtf2xml never creates ill-formed XML, regardless of how you
+        use headings in the RTF document. It knows to nest headings when it finds
+        a heading smaller than the previous one, and it knows to close-out sections
+        when it finds a heading greater than the prveious one.
+    </p>
+
+    <p>
+        In order to set the <b class="option">--headings-to-sections</b> option 
+        in configuration file, scroll down to the line that looks like:
+    </p>
+
+
+    <p>
+             headings-to-sections = false
+        
+    </p>
+
+
+    <p>Set this value appropriately and save configuration file.</p>
+
+    <p>You can tell the script not to turn headings into sections, regardless of your 
+        setting in the configuration file, by using the 
+    <b class="option">--no-headings-to-sections</b> option.</p>
+
+</div>
+
+
+<div id="further_transformations"><a name="further_transformations" id="further_transformations"></a>
+    <h2 class="sub-section">Further Transforming the RTF Document (docbook, TEI.2)</h2>
+
+    <p> The script rtf2xml converts RTF to a type of raw XML that
+        represents the structure of the original document. Most likely you
+        will want to convert this raw XML into another format. I have provided
+        an XSL stylesheet that will transform this raw XML into simplified
+        docbook and TEI.2. 
+    </p>
+
+    <p> In order to use the scripts and stylesheets, you must first
+        download them at the same site that you downloaded the rtf2xml script
+        (https://sourceforge.net/projects/rtf2xml/) </p>
+
+
+</div>
+
+
+
+
+
+<p class="home-link"><a href="index.html">HOME</a></p></div></body></html>

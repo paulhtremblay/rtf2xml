@@ -1,0 +1,2135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  tabs-right			CDATA		#IMPLIED
+  tabs-left			CDATA		#IMPLIED
+  tabs-center			CDATA		#IMPLIED
+  tabs-decimal			CDATA		#IMPLIED
+  tabs-bar			CDATA		#IMPLIED
+-->
+<grammar 
+    xmlns="http://relaxng.org/ns/structure/1.0"
+    ns = "http://rtf2xml.sourceforge.net/"
+    >
+  <define name="list-atts">
+    <attribute name="level">
+      <choice>
+        <value>0</value>
+        <value>1</value>
+        <value>2</value>
+        <value>3</value>
+        <value>4</value>
+        <value>5</value>
+        <value>6</value>
+        <value>7</value>
+        <value>8</value>
+        <value>9</value>
+      </choice>
+    </attribute>
+    <optional>
+      <attribute name="level-template-id"/>
+    </optional>
+    <optional>
+      <attribute name="level1-suffix"/>
+    </optional>
+    <optional>
+      <attribute name="level2-suffix"/>
+    </optional>
+    <optional>
+      <attribute name="level3-suffix"/>
+    </optional>
+    <optional>
+      <attribute name="level4-suffix"/>
+    </optional>
+    <optional>
+      <attribute name="level5-suffix"/>
+    </optional>
+    <optional>
+      <attribute name="level6-suffix"/>
+    </optional>
+    <optional>
+      <attribute name="level7-suffix"/>
+    </optional>
+    <optional>
+      <attribute name="level8-suffix"/>
+    </optional>
+    <optional>
+      <attribute name="level9-suffix"/>
+    </optional>
+    <optional>
+      <attribute name="level0-prefix"/>
+    </optional>
+    <optional>
+      <attribute name="level1-prefix"/>
+    </optional>
+    <optional>
+      <attribute name="level2-prefix"/>
+    </optional>
+    <optional>
+      <attribute name="level3-prefix"/>
+    </optional>
+    <optional>
+      <attribute name="level4-prefix"/>
+    </optional>
+    <optional>
+      <attribute name="level5-prefix"/>
+    </optional>
+    <optional>
+      <attribute name="level6-prefix"/>
+    </optional>
+    <optional>
+      <attribute name="level7-prefix"/>
+    </optional>
+    <optional>
+      <attribute name="level8-prefix"/>
+    </optional>
+    <optional>
+      <attribute name="level9-prefix"/>
+    </optional>
+    <optional>
+      <attribute name="show-level1">
+        <choice>
+          <value>true</value>
+        </choice>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="show-level2">
+        <choice>
+          <value>true</value>
+        </choice>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="show-level3">
+        <choice>
+          <value>true</value>
+        </choice>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="show-level4">
+        <choice>
+          <value>true</value>
+        </choice>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="show-level5">
+        <choice>
+          <value>true</value>
+        </choice>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="show-level6">
+        <choice>
+          <value>true</value>
+        </choice>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="show-level7">
+        <choice>
+          <value>true</value>
+        </choice>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="show-level8">
+        <choice>
+          <value>true</value>
+        </choice>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="show-level9">
+        <choice>
+          <value>true</value>
+        </choice>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="list-space"/>
+    </optional>
+    <optional>
+      <attribute name="list-text-length"/>
+    </optional>
+    <optional>
+      <attribute name="list-number-start"/>
+    </optional>
+    <optional>
+      <attribute name="level-indent"/>
+    </optional>
+    <optional>
+      <attribute name="numbering-type"/>
+    </optional>
+    <optional>
+      <attribute name="bullet-type"/>
+    </optional>
+  </define>
+  <define name="para-styles">
+    <optional>
+      <attribute name="tabs"/>
+    </optional>
+    <optional>
+      <attribute name="adjust-right"/>
+    </optional>
+    <optional>
+      <attribute name="align"/>
+    </optional>
+    <optional>
+      <attribute name="first-line-indent"/>
+    </optional>
+    <optional>
+      <attribute name="gutter"/>
+    </optional>
+    <optional>
+      <attribute name="keep-with-next"/>
+    </optional>
+    <optional>
+      <attribute name="left-indent"/>
+    </optional>
+    <optional>
+      <attribute name="level"/>
+    </optional>
+    <optional>
+      <attribute name="line-spacing"/>
+    </optional>
+    <optional>
+      <attribute name="list-bullet"/>
+    </optional>
+    <optional>
+      <attribute name="list-cardinal-numbering"/>
+    </optional>
+    <optional>
+      <attribute name="list"/>
+    </optional>
+    <optional>
+      <attribute name="list-continue"/>
+    </optional>
+    <optional>
+      <attribute name="list-decimal-numbering"/>
+    </optional>
+    <optional>
+      <attribute name="list-hang"/>
+    </optional>
+    <optional>
+      <attribute name="list-id"/>
+    </optional>
+    <optional>
+      <attribute name="list-level"/>
+    </optional>
+    <optional>
+      <attribute name="list-level-definition"/>
+    </optional>
+    <optional>
+      <attribute name="list-ordinal-numbering"/>
+    </optional>
+    <optional>
+      <attribute name="list-ordinal-text-numbering"/>
+    </optional>
+    <optional>
+      <attribute name="list-simple"/>
+    </optional>
+    <optional>
+      <attribute name="list-start"/>
+    </optional>
+    <optional>
+      <attribute name="list-uppercae-roman-numbering"/>
+    </optional>
+    <optional>
+      <attribute name="list-uppercase-alphabetic-numbering"/>
+    </optional>
+    <attribute name="name"/>
+    <optional>
+      <attribute name="margin-bottom"/>
+    </optional>
+    <optional>
+      <attribute name="margin-left"/>
+    </optional>
+    <optional>
+      <attribute name="margin-right"/>
+    </optional>
+    <optional>
+      <attribute name="margin-top"/>
+    </optional>
+    <optional>
+      <attribute name="nest-level"/>
+    </optional>
+    <optional>
+      <attribute name="next-style"/>
+    </optional>
+    <optional>
+      <attribute name="right-indent"/>
+    </optional>
+    <optional>
+      <attribute name="space-after"/>
+    </optional>
+    <optional>
+      <attribute name="space-before"/>
+    </optional>
+    <optional>
+      <attribute name="widow-control">
+        <choice>
+          <value>true</value>
+          <value>false</value>
+        </choice>
+      </attribute>
+    </optional>
+  </define>
+  <define name="paragraph-border-styles">
+    <optional>
+      <attribute name="border-paragraph-top"/>
+    </optional>
+    <optional>
+      <attribute name="border-paragraph-top-line-width"/>
+    </optional>
+    <optional>
+      <attribute name="border-paragraph-top-padding"/>
+    </optional>
+    <optional>
+      <attribute name="border-paragraph-top-color"/>
+    </optional>
+    <optional>
+      <attribute name="border-paragraph-top-style"/>
+    </optional>
+    <optional>
+      <attribute name="border-paragraph-bottom"/>
+    </optional>
+    <optional>
+      <attribute name="border-paragraph-bottom-line-width"/>
+    </optional>
+    <optional>
+      <attribute name="border-paragraph-bottom-padding"/>
+    </optional>
+    <optional>
+      <attribute name="border-paragraph-bottom-color"/>
+    </optional>
+    <optional>
+      <attribute name="border-paragraph-bottom-style"/>
+    </optional>
+    <optional>
+      <attribute name="border-paragraph-right"/>
+    </optional>
+    <optional>
+      <attribute name="border-paragraph-right-line-width"/>
+    </optional>
+    <optional>
+      <attribute name="border-paragraph-right-padding"/>
+    </optional>
+    <optional>
+      <attribute name="border-paragraph-right-color"/>
+    </optional>
+    <optional>
+      <attribute name="border-paragraph-right-style"/>
+    </optional>
+    <optional>
+      <attribute name="border-paragraph-left"/>
+    </optional>
+    <optional>
+      <attribute name="border-paragraph-left-line-width"/>
+    </optional>
+    <optional>
+      <attribute name="border-paragraph-left-padding"/>
+    </optional>
+    <optional>
+      <attribute name="border-paragraph-left-color"/>
+    </optional>
+    <optional>
+      <attribute name="border-paragraph-left-style"/>
+    </optional>
+    <optional>
+      <attribute name="border-paragraph-box"/>
+    </optional>
+    <optional>
+      <attribute name="border-paragraph-box-line-width"/>
+    </optional>
+    <optional>
+      <attribute name="border-paragraph-box-padding"/>
+    </optional>
+    <optional>
+      <attribute name="border-paragraph-box-color"/>
+    </optional>
+    <optional>
+      <attribute name="border-paragraph-box-style"/>
+    </optional>
+    <optional>
+      <attribute name="border-paragraph-vertical-inside"/>
+    </optional>
+    <optional>
+      <attribute name="border-paragraph-horizontal-inside"/>
+    </optional>
+    <optional>
+      <attribute name="border-paragraph-border-for-every-paragraph"/>
+    </optional>
+    <optional>
+      <attribute name="border-for-every-paragraph-line-width"/>
+    </optional>
+    <optional>
+      <attribute name="border-for-every-paragraph-padding"/>
+    </optional>
+    <optional>
+      <attribute name="border-for-every-paragraph-color"/>
+    </optional>
+    <optional>
+      <attribute name="border-for-every-paragraph-style"/>
+    </optional>
+  </define>
+  <define name="row-attributes">
+    <optional>
+      <attribute name="number-of-cells"/>
+    </optional>
+    <optional>
+      <attribute name="left-row-position"/>
+    </optional>
+    <optional>
+      <attribute name="widths"/>
+    </optional>
+    <optional>
+      <attribute name="header"/>
+    </optional>
+    <optional>
+      <attribute name="border">
+        <choice>
+          <value>none</value>
+        </choice>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="border-table-row-top"/>
+    </optional>
+    <optional>
+      <attribute name="border-table-row-top-line-width"/>
+    </optional>
+    <optional>
+      <attribute name="border-table-row-top-padding"/>
+    </optional>
+    <optional>
+      <attribute name="border-table-row-top-color"/>
+    </optional>
+    <optional>
+      <attribute name="border-table-row-top-style"/>
+    </optional>
+    <optional>
+      <attribute name="border-table-row-bottom"/>
+    </optional>
+    <optional>
+      <attribute name="border-table-row-bottom-line-width"/>
+    </optional>
+    <optional>
+      <attribute name="border-table-row-bottom-padding"/>
+    </optional>
+    <optional>
+      <attribute name="border-table-row-bottom-color"/>
+    </optional>
+    <optional>
+      <attribute name="border-table-row-bottom-style"/>
+    </optional>
+    <optional>
+      <attribute name="border-table-row-right"/>
+    </optional>
+    <optional>
+      <attribute name="border-table-row-right-line-width"/>
+    </optional>
+    <optional>
+      <attribute name="border-table-row-right-padding"/>
+    </optional>
+    <optional>
+      <attribute name="border-table-row-right-color"/>
+    </optional>
+    <optional>
+      <attribute name="border-table-row-right-style"/>
+    </optional>
+    <optional>
+      <attribute name="border-table-row-left"/>
+    </optional>
+    <optional>
+      <attribute name="border-table-row-left-line-width"/>
+    </optional>
+    <optional>
+      <attribute name="border-table-row-left-padding"/>
+    </optional>
+    <optional>
+      <attribute name="border-table-row-left-color"/>
+    </optional>
+    <optional>
+      <attribute name="border-table-row-left-style"/>
+    </optional>
+    <optional>
+      <attribute name="border-table-row-box"/>
+    </optional>
+    <optional>
+      <attribute name="border-table-row-vertical-inside"/>
+    </optional>
+    <optional>
+      <attribute name="border-table-row-vertical-inside-line-width"/>
+    </optional>
+    <optional>
+      <attribute name="border-table-row-vertical-inside-padding"/>
+    </optional>
+    <optional>
+      <attribute name="border-table-row-vertical-inside-color"/>
+    </optional>
+    <optional>
+      <attribute name="border-table-row-vertical-inside-style"/>
+    </optional>
+    <optional>
+      <attribute name="border-table-row-horizontal-inside"/>
+    </optional>
+    <optional>
+      <attribute name="border-table-row-horizontal-inside-line-width"/>
+    </optional>
+    <optional>
+      <attribute name="border-table-row-horizontal-inside-padding"/>
+    </optional>
+    <optional>
+      <attribute name="border-table-row-horizontal-inside-color"/>
+    </optional>
+    <optional>
+      <attribute name="border-table-row-horizontal-inside-style"/>
+    </optional>
+    <optional>
+      <attribute name="border-table-row-border-for-every-paragraph"/>
+    </optional>
+  </define>
+  <define name="cell-attributes">
+    <optional>
+      <attribute name="width"/>
+    </optional>
+    <optional>
+      <attribute name="border">
+        <choice>
+          <value>none</value>
+        </choice>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="border-cell-top"/>
+    </optional>
+    <optional>
+      <attribute name="border-cell-top-line-width"/>
+    </optional>
+    <optional>
+      <attribute name="border-cell-top-padding"/>
+    </optional>
+    <optional>
+      <attribute name="border-cell-top-color"/>
+    </optional>
+    <optional>
+      <attribute name="border-cell-top-style"/>
+    </optional>
+    <optional>
+      <attribute name="border-cell-bottom"/>
+    </optional>
+    <optional>
+      <attribute name="border-cell-bottom-line-width"/>
+    </optional>
+    <optional>
+      <attribute name="border-cell-bottom-padding"/>
+    </optional>
+    <optional>
+      <attribute name="border-cell-bottom-color"/>
+    </optional>
+    <optional>
+      <attribute name="border-cell-bottom-style"/>
+    </optional>
+    <optional>
+      <attribute name="border-cell-right"/>
+    </optional>
+    <optional>
+      <attribute name="border-cell-right-line-width"/>
+    </optional>
+    <optional>
+      <attribute name="border-cell-right-padding"/>
+    </optional>
+    <optional>
+      <attribute name="border-cell-right-color"/>
+    </optional>
+    <optional>
+      <attribute name="border-cell-right-style"/>
+    </optional>
+    <optional>
+      <attribute name="border-cell-left"/>
+    </optional>
+    <optional>
+      <attribute name="border-cell-left-line-width"/>
+    </optional>
+    <optional>
+      <attribute name="border-cell-left-padding"/>
+    </optional>
+    <optional>
+      <attribute name="border-cell-left-color"/>
+    </optional>
+    <optional>
+      <attribute name="border-cell-left-style"/>
+    </optional>
+    <optional>
+      <attribute name="border-cell-box"/>
+    </optional>
+    <optional>
+      <attribute name="border-cell-vertical-inside"/>
+    </optional>
+    <optional>
+      <attribute name="border-cell-horizontal-inside"/>
+    </optional>
+    <optional>
+      <attribute name="border-cell-border-for-every-paragraph"/>
+    </optional>
+  </define>
+  <define name="char-styles">
+    <optional>
+      <attribute name="annotation"/>
+    </optional>
+    <optional>
+      <attribute name="based-on-style"/>
+    </optional>
+    <optional>
+      <attribute name="bold">
+        <choice>
+          <value>true</value>
+          <value>false</value>
+        </choice>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="caps">
+        <choice>
+          <value>true</value>
+          <value>false</value>
+        </choice>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="character-style"/>
+    </optional>
+    <optional>
+      <attribute name="double-strike-through"/>
+    </optional>
+    <optional>
+      <attribute name="emboss"/>
+    </optional>
+    <optional>
+      <attribute name="engrave"/>
+    </optional>
+    <optional>
+      <attribute name="font-color"/>
+    </optional>
+    <optional>
+      <attribute name="font-size"/>
+    </optional>
+    <optional>
+      <attribute name="font-style"/>
+    </optional>
+    <optional>
+      <attribute name="footnote-marker">
+        <choice>
+          <value>true</value>
+        </choice>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="hidden"/>
+    </optional>
+    <optional>
+      <attribute name="italics">
+        <choice>
+          <value>true</value>
+          <value>false</value>
+        </choice>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="language"/>
+    </optional>
+    <optional>
+      <attribute name="next-style"/>
+    </optional>
+    <optional>
+      <attribute name="outline">
+        <choice>
+          <value>true</value>
+          <value>false</value>
+        </choice>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="shadow"/>
+    </optional>
+    <optional>
+      <attribute name="small-caps">
+        <choice>
+          <value>true</value>
+          <value>false</value>
+        </choice>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="strike-through"/>
+    </optional>
+    <optional>
+      <attribute name="subscript"/>
+    </optional>
+    <optional>
+      <attribute name="superscript"/>
+    </optional>
+    <optional>
+      <attribute name="underlined"/>
+    </optional>
+  </define>
+  <define name="field-att">
+    <optional>
+      <attribute name="accented">
+        <choice>
+          <value>true</value>
+        </choice>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="additional-text"/>
+    </optional>
+    <optional>
+      <attribute name="argument"/>
+    </optional>
+    <optional>
+      <attribute name="bold">
+        <choice>
+          <value>true</value>
+        </choice>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="bookmark"/>
+    </optional>
+    <optional>
+      <attribute name="bookmark-end"/>
+    </optional>
+    <optional>
+      <attribute name="bookmark-start"/>
+    </optional>
+    <optional>
+      <attribute name="category"/>
+    </optional>
+    <optional>
+      <attribute name="date-format"/>
+    </optional>
+    <optional>
+      <attribute name="entry-type"/>
+    </optional>
+    <optional>
+      <attribute name="external"/>
+    </optional>
+    <optional>
+      <attribute name="filter"/>
+    </optional>
+    <optional>
+      <attribute name="format"/>
+    </optional>
+    <optional>
+      <attribute name="hyperlink"/>
+    </optional>
+    <optional>
+      <attribute name="include-note-number"/>
+    </optional>
+    <optional>
+      <attribute name="insert-letter"/>
+    </optional>
+    <optional>
+      <attribute name="insert-number">
+        <choice>
+          <value>true</value>
+        </choice>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="insert-number-full">
+        <choice>
+          <value>true</value>
+        </choice>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="insert-number-relative">
+        <choice>
+          <value>true</value>
+        </choice>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="italics">
+        <choice>
+          <value>true</value>
+        </choice>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="label"/>
+    </optional>
+    <optional>
+      <attribute name="limit-to-letters"/>
+    </optional>
+    <optional>
+      <attribute name="link"/>
+    </optional>
+    <optional>
+      <attribute name="long-field"/>
+    </optional>
+    <optional>
+      <attribute name="main-entry"/>
+    </optional>
+    <optional>
+      <attribute name="multi-page-separator"/>
+    </optional>
+    <optional>
+      <attribute name="new-window">
+        <choice>
+          <value>true</value>
+        </choice>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="no-field-update"/>
+    </optional>
+    <optional>
+      <attribute name="number"/>
+    </optional>
+    <optional>
+      <attribute name="number-format"/>
+    </optional>
+    <optional>
+      <attribute name="number-of-columns"/>
+    </optional>
+    <optional>
+      <attribute name="number-type"/>
+    </optional>
+    <optional>
+      <attribute name="page-separator"/>
+    </optional>
+    <optional>
+      <attribute name="paragraph-relative-position"/>
+    </optional>
+    <optional>
+      <attribute name="ref"/>
+    </optional>
+    <optional>
+      <attribute name="sequence-separator"/>
+    </optional>
+    <optional>
+      <attribute name="short-field"/>
+    </optional>
+    <optional>
+      <attribute name="sub-entry"/>
+    </optional>
+    <optional>
+      <attribute name="sub-entry-on-same-line">
+        <choice>
+          <value>true</value>
+        </choice>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="suppress-non-delimeter">
+        <choice>
+          <value>true</value>
+        </choice>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="toc-level"/>
+    </optional>
+    <optional>
+      <attribute name="toc-suppress-number">
+        <choice>
+          <value>true</value>
+        </choice>
+      </attribute>
+    </optional>
+    <attribute name="type"/>
+    <attribute name="update">
+      <choice>
+        <value>static</value>
+        <value>dynamic</value>
+        <value>none</value>
+      </choice>
+    </attribute>
+    <optional>
+      <attribute name="use-bookmark"/>
+    </optional>
+    <optional>
+      <attribute name="use-sequence"/>
+    </optional>
+  </define>
+  <define name="time-fields">
+    <optional>
+      <attribute name="year"/>
+    </optional>
+    <attribute name="month"/>
+    <attribute name="day"/>
+    <optional>
+      <attribute name="minute"/>
+    </optional>
+  </define>
+  <define name="doc">
+    <element name="doc">
+      <ref name="doc-attlist"/>
+      <ref name="preamble"/>
+      <ref name="body"/>
+    </element>
+  </define>
+  <define name="doc-attlist" combine="interleave">
+    <empty/>
+  </define>
+  <!-- Get rid of list-definition below -->
+  <define name="preamble">
+    <element name="preamble">
+      <ref name="preamble-attlist"/>
+      <ref name="rtf-definition"/>
+      <ref name="font-table"/>
+      <ref name="color-table"/>
+      <optional>
+        <ref name="style-table"/>
+      </optional>
+      <optional>
+        <ref name="list-table"/>
+      </optional>
+      <optional>
+        <ref name="override-table"/>
+      </optional>
+      <optional>
+        <ref name="revision-table"/>
+      </optional>
+      <optional>
+        <ref name="doc-information"/>
+      </optional>
+      <ref name="page-definition"/>
+    </element>
+  </define>
+  <define name="preamble-attlist" combine="interleave">
+    <empty/>
+  </define>
+  <define name="rtf-definition">
+    <element name="rtf-definition">
+      <ref name="rtf-definition-attlist"/>
+      <empty/>
+    </element>
+  </define>
+  <define name="rtf-definition-attlist" combine="interleave">
+    <attribute name="default-font"/>
+    <attribute name="code-page"/>
+    <attribute name="platform"/>
+  </define>
+  <define name="font-table">
+    <element name="font-table">
+      <ref name="font-table-attlist"/>
+      <oneOrMore>
+        <ref name="font-in-table"/>
+      </oneOrMore>
+    </element>
+  </define>
+  <define name="font-table-attlist" combine="interleave">
+    <empty/>
+  </define>
+  <define name="font-in-table">
+    <element name="font-in-table">
+      <ref name="font-in-table-attlist"/>
+      <empty/>
+    </element>
+  </define>
+  <define name="font-in-table-attlist" combine="interleave">
+    <attribute name="num"/>
+    <attribute name="name"/>
+  </define>
+  <define name="body">
+    <element name="body">
+      <ref name="body-attlist"/>
+      <oneOrMore>
+        <ref name="section"/>
+      </oneOrMore>
+    </element>
+  </define>
+  <define name="body-attlist" combine="interleave">
+    <empty/>
+  </define>
+  <define name="section">
+    <element name="section">
+      <ref name="section-attlist"/>
+      <zeroOrMore>
+        <choice>
+          <ref name="header-or-footer"/>
+          <ref name="paragraph-definition"/>
+          <ref name="style-group"/>
+          <ref name="border-group"/>
+          <ref name="list"/>
+          <ref name="field-block"/>
+          <ref name="table"/>
+          <ref name="section"/>
+          <ref name="page-break"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="section-attlist" combine="interleave">
+    <attribute name="num"/>
+    <attribute name="type"/>
+    <attribute name="level"/>
+    <attribute name="num-in-level"/>
+    <optional>
+      <attribute name="columns"/>
+    </optional>
+  </define>
+  <define name="page-break">
+    <element name="page-break">
+      <ref name="page-break-attlist"/>
+      <empty/>
+    </element>
+  </define>
+  <define name="page-break-attlist" combine="interleave">
+    <empty/>
+  </define>
+  <define name="color-table">
+    <element name="color-table">
+      <ref name="color-table-attlist"/>
+      <oneOrMore>
+        <ref name="color-in-table"/>
+      </oneOrMore>
+    </element>
+  </define>
+  <define name="color-table-attlist" combine="interleave">
+    <empty/>
+  </define>
+  <define name="color-in-table">
+    <element name="color-in-table">
+      <ref name="color-in-table-attlist"/>
+      <empty/>
+    </element>
+  </define>
+  <define name="color-in-table-attlist" combine="interleave">
+    <attribute name="num"/>
+    <attribute name="value"/>
+  </define>
+  <define name="style-table">
+    <element name="style-table">
+      <ref name="style-table-attlist"/>
+      <ref name="paragraph-styles"/>
+      <ref name="character-styles"/>
+      <ref name="styles-in-body"/>
+    </element>
+  </define>
+  <define name="style-table-attlist" combine="interleave">
+    <empty/>
+  </define>
+  <define name="paragraph-styles">
+    <element name="paragraph-styles">
+      <ref name="paragraph-styles-attlist"/>
+      <zeroOrMore>
+        <ref name="paragraph-style-in-table"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="paragraph-styles-attlist" combine="interleave">
+    <empty/>
+  </define>
+  <define name="paragraph-style-in-table">
+    <element name="paragraph-style-in-table">
+      <ref name="paragraph-style-in-table-attlist"/>
+      <empty/>
+    </element>
+  </define>
+  <define name="list-table">
+    <element name="list-table">
+      <ref name="list-table-attlist"/>
+      <oneOrMore>
+        <ref name="list-in-table"/>
+      </oneOrMore>
+    </element>
+  </define>
+  <define name="list-table-attlist" combine="interleave">
+    <empty/>
+  </define>
+  <define name="list-in-table">
+    <element name="list-in-table">
+      <ref name="list-in-table-attlist"/>
+      <oneOrMore>
+        <ref name="level-in-table"/>
+      </oneOrMore>
+    </element>
+  </define>
+  <define name="list-in-table-attlist" combine="interleave">
+    <optional>
+      <attribute name="list-hybrid">
+        <choice>
+          <value>true</value>
+        </choice>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="list-template-id"/>
+    </optional>
+    <attribute name="list-table-id"/>
+  </define>
+  <define name="level-in-table">
+    <element name="level-in-table">
+      <ref name="level-in-table-attlist"/>
+      <empty/>
+    </element>
+  </define>
+  <define name="level-in-table-attlist" combine="interleave">
+    <ref name="list-atts"/>
+    <optional>
+      <attribute name="level-numbers"/>
+    </optional>
+    <optional>
+      <attribute name="left-indent"/>
+    </optional>
+    <optional>
+      <attribute name="first-line-indent"/>
+    </optional>
+    <optional>
+      <attribute name="right-indent"/>
+    </optional>
+    <optional>
+      <attribute name="bold"/>
+    </optional>
+    <optional>
+      <attribute name="italics"/>
+    </optional>
+    <optional>
+      <attribute name="paragraph-style-name"/>
+    </optional>
+  </define>
+  <define name="override-table">
+    <element name="override-table">
+      <ref name="override-table-attlist"/>
+      <zeroOrMore>
+        <ref name="override-list"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="override-table-attlist" combine="interleave">
+    <empty/>
+  </define>
+  <define name="override-list">
+    <element name="override-list">
+      <ref name="override-list-attlist"/>
+      <empty/>
+    </element>
+  </define>
+  <define name="override-list-attlist" combine="interleave">
+    <attribute name="list-id"/>
+    <attribute name="list-table-id"/>
+  </define>
+  <define name="revision-table">
+    <element name="revision-table">
+      <ref name="revision-table-attlist"/>
+      <text/>
+    </element>
+  </define>
+  <define name="revision-table-attlist" combine="interleave">
+    <empty/>
+  </define>
+  <define name="paragraph-style-in-table-attlist" combine="interleave">
+    <ref name="para-styles"/>
+    <ref name="paragraph-border-styles"/>
+    <optional>
+      <attribute name="annotation"/>
+    </optional>
+    <optional>
+      <attribute name="based-on-style"/>
+    </optional>
+    <optional>
+      <attribute name="bold">
+        <choice>
+          <value>true</value>
+          <value>false</value>
+        </choice>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="caps">
+        <choice>
+          <value>true</value>
+          <value>false</value>
+        </choice>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="character-style"/>
+    </optional>
+    <optional>
+      <attribute name="double-strike-through"/>
+    </optional>
+    <optional>
+      <attribute name="emboss"/>
+    </optional>
+    <optional>
+      <attribute name="engrave"/>
+    </optional>
+    <optional>
+      <attribute name="font-color"/>
+    </optional>
+    <optional>
+      <attribute name="font-size"/>
+    </optional>
+    <optional>
+      <attribute name="font-style"/>
+    </optional>
+    <optional>
+      <attribute name="footnote-marker">
+        <choice>
+          <value>true</value>
+        </choice>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="hidden"/>
+    </optional>
+    <optional>
+      <attribute name="italics">
+        <choice>
+          <value>true</value>
+          <value>false</value>
+        </choice>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="language"/>
+    </optional>
+    <optional>
+      <attribute name="outline">
+        <choice>
+          <value>true</value>
+          <value>false</value>
+        </choice>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="shadow"/>
+    </optional>
+    <optional>
+      <attribute name="small-caps">
+        <choice>
+          <value>true</value>
+          <value>false</value>
+        </choice>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="strike-through"/>
+    </optional>
+    <optional>
+      <attribute name="subscript"/>
+    </optional>
+    <optional>
+      <attribute name="superscript"/>
+    </optional>
+    <optional>
+      <attribute name="underlined"/>
+    </optional>
+    <attribute name="num"/>
+  </define>
+  <define name="character-styles">
+    <element name="character-styles">
+      <ref name="character-styles-attlist"/>
+      <zeroOrMore>
+        <ref name="character-style-in-table"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="character-styles-attlist" combine="interleave">
+    <empty/>
+  </define>
+  <define name="character-style-in-table">
+    <element name="character-style-in-table">
+      <ref name="character-style-in-table-attlist"/>
+      <empty/>
+    </element>
+  </define>
+  <define name="character-style-in-table-attlist" combine="interleave">
+    <ref name="char-styles"/>
+    <attribute name="num"/>
+    <attribute name="name"/>
+  </define>
+  <define name="styles-in-body">
+    <element name="styles-in-body">
+      <ref name="styles-in-body-attlist"/>
+      <oneOrMore>
+        <ref name="paragraph-style-in-body"/>
+      </oneOrMore>
+    </element>
+  </define>
+  <define name="styles-in-body-attlist" combine="interleave">
+    <empty/>
+  </define>
+  <define name="paragraph-style-in-body">
+    <element name="paragraph-style-in-body">
+      <ref name="paragraph-style-in-body-attlist"/>
+      <empty/>
+    </element>
+  </define>
+  <define name="paragraph-style-in-body-attlist" combine="interleave">
+    <ref name="para-styles"/>
+    <ref name="paragraph-border-styles"/>
+    <optional>
+      <attribute name="annotation"/>
+    </optional>
+    <optional>
+      <attribute name="based-on-style"/>
+    </optional>
+    <optional>
+      <attribute name="bold">
+        <choice>
+          <value>true</value>
+          <value>false</value>
+        </choice>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="caps">
+        <choice>
+          <value>true</value>
+          <value>false</value>
+        </choice>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="character-style"/>
+    </optional>
+    <optional>
+      <attribute name="double-strike-through"/>
+    </optional>
+    <optional>
+      <attribute name="emboss"/>
+    </optional>
+    <optional>
+      <attribute name="engrave"/>
+    </optional>
+    <optional>
+      <attribute name="font-color"/>
+    </optional>
+    <optional>
+      <attribute name="font-size"/>
+    </optional>
+    <optional>
+      <attribute name="font-style"/>
+    </optional>
+    <optional>
+      <attribute name="footnote-marker">
+        <choice>
+          <value>true</value>
+        </choice>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="hidden"/>
+    </optional>
+    <optional>
+      <attribute name="italics">
+        <choice>
+          <value>true</value>
+          <value>false</value>
+        </choice>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="language"/>
+    </optional>
+    <optional>
+      <attribute name="outline">
+        <choice>
+          <value>true</value>
+          <value>false</value>
+        </choice>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="shadow"/>
+    </optional>
+    <optional>
+      <attribute name="small-caps">
+        <choice>
+          <value>true</value>
+          <value>false</value>
+        </choice>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="strike-through"/>
+    </optional>
+    <optional>
+      <attribute name="subscript"/>
+    </optional>
+    <optional>
+      <attribute name="superscript"/>
+    </optional>
+    <optional>
+      <attribute name="underlined"/>
+    </optional>
+    <attribute name="style-number"/>
+  </define>
+  <define name="doc-information">
+    <element name="doc-information">
+      <ref name="doc-information-attlist"/>
+      <optional>
+        <ref name="title"/>
+      </optional>
+      <optional>
+        <ref name="subject"/>
+      </optional>
+      <optional>
+        <ref name="author"/>
+      </optional>
+      <optional>
+        <ref name="keywords"/>
+      </optional>
+      <optional>
+        <ref name="doc-notes"/>
+      </optional>
+      <optional>
+        <ref name="operator"/>
+      </optional>
+      <optional>
+        <ref name="creation-time"/>
+      </optional>
+      <optional>
+        <ref name="revision-time"/>
+      </optional>
+      <optional>
+        <ref name="editing-time"/>
+      </optional>
+      <optional>
+        <ref name="number-of-pages"/>
+      </optional>
+      <optional>
+        <ref name="number-of-words"/>
+      </optional>
+      <optional>
+        <ref name="number-of-characters"/>
+      </optional>
+    </element>
+  </define>
+  <define name="doc-information-attlist" combine="interleave">
+    <empty/>
+  </define>
+  <define name="title">
+    <element name="title">
+      <ref name="title-attlist"/>
+      <text/>
+    </element>
+  </define>
+  <define name="title-attlist" combine="interleave">
+    <empty/>
+  </define>
+  <define name="author">
+    <element name="author">
+      <ref name="author-attlist"/>
+      <text/>
+    </element>
+  </define>
+  <define name="author-attlist" combine="interleave">
+    <empty/>
+  </define>
+  <define name="operator">
+    <element name="operator">
+      <ref name="operator-attlist"/>
+      <text/>
+    </element>
+  </define>
+  <define name="operator-attlist" combine="interleave">
+    <empty/>
+  </define>
+  <define name="creation-time">
+    <element name="creation-time">
+      <ref name="creation-time-attlist"/>
+      <empty/>
+    </element>
+  </define>
+  <define name="creation-time-attlist" combine="interleave">
+    <ref name="time-fields"/>
+  </define>
+  <define name="revision-time">
+    <element name="revision-time">
+      <ref name="revision-time-attlist"/>
+      <empty/>
+    </element>
+  </define>
+  <define name="revision-time-attlist" combine="interleave">
+    <ref name="time-fields"/>
+  </define>
+  <define name="editing-time">
+    <element name="editing-time">
+      <ref name="editing-time-attlist"/>
+      <empty/>
+    </element>
+  </define>
+  <define name="editing-time-attlist" combine="interleave">
+    <attribute name="editing-time"/>
+  </define>
+  <define name="number-of-pages">
+    <element name="number-of-pages">
+      <ref name="number-of-pages-attlist"/>
+      <empty/>
+    </element>
+  </define>
+  <define name="number-of-pages-attlist" combine="interleave">
+    <attribute name="number-of-pages"/>
+  </define>
+  <define name="number-of-words">
+    <element name="number-of-words">
+      <ref name="number-of-words-attlist"/>
+      <empty/>
+    </element>
+  </define>
+  <define name="number-of-words-attlist" combine="interleave">
+    <attribute name="number-of-words"/>
+  </define>
+  <define name="number-of-characters">
+    <element name="number-of-characters">
+      <ref name="number-of-characters-attlist"/>
+      <empty/>
+    </element>
+  </define>
+  <define name="number-of-characters-attlist" combine="interleave">
+    <attribute name="number-of-characters"/>
+  </define>
+  <define name="subject">
+    <element name="subject">
+      <ref name="subject-attlist"/>
+      <text/>
+    </element>
+  </define>
+  <define name="subject-attlist" combine="interleave">
+    <empty/>
+  </define>
+  <define name="keywords">
+    <element name="keywords">
+      <ref name="keywords-attlist"/>
+      <text/>
+    </element>
+  </define>
+  <define name="keywords-attlist" combine="interleave">
+    <empty/>
+  </define>
+  <define name="doc-notes">
+    <element name="doc-notes">
+      <ref name="doc-notes-attlist"/>
+      <text/>
+    </element>
+  </define>
+  <define name="doc-notes-attlist" combine="interleave">
+    <optional>
+      <attribute name="xmlsn"/>
+    </optional>
+  </define>
+  <define name="page-definition">
+    <element name="page-definition">
+      <ref name="page-definition-attlist"/>
+      <empty/>
+    </element>
+  </define>
+  <define name="page-definition-attlist" combine="interleave">
+    <attribute name="margin-right"/>
+    <attribute name="margin-left"/>
+    <attribute name="margin-top"/>
+    <attribute name="margin-bottom"/>
+    <attribute name="gutter"/>
+    <optional>
+      <attribute name="paper-height"/>
+    </optional>
+    <optional>
+      <attribute name="paper-width"/>
+    </optional>
+  </define>
+  <define name="section-definition">
+    <element name="section-definition">
+      <ref name="section-definition-attlist"/>
+      <zeroOrMore>
+        <choice>
+          <ref name="header-or-footer"/>
+          <ref name="paragraph-definition"/>
+          <ref name="style-group"/>
+          <ref name="border-group"/>
+          <ref name="field-block"/>
+          <ref name="table"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="section-definition-attlist" combine="interleave">
+    <optional>
+      <attribute name="columns"/>
+    </optional>
+    <optional>
+      <attribute name="column"/>
+    </optional>
+    <optional>
+      <attribute name="margin-right"/>
+    </optional>
+    <optional>
+      <attribute name="margin-left"/>
+    </optional>
+    <optional>
+      <attribute name="margin-top"/>
+    </optional>
+    <optional>
+      <attribute name="margin-bottom"/>
+    </optional>
+  </define>
+  <define name="header-or-footer">
+    <element name="header-or-footer">
+      <ref name="header-or-footer-attlist"/>
+      <zeroOrMore>
+        <choice>
+          <ref name="paragraph-definition"/>
+          <ref name="style-group"/>
+          <ref name="border-group"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="header-or-footer-attlist" combine="interleave">
+    <attribute name="type"/>
+  </define>
+  <define name="footnote">
+    <element name="footnote">
+      <ref name="footnote-attlist"/>
+      <zeroOrMore>
+        <choice>
+          <text/>
+          <ref name="paragraph-definition"/>
+          <ref name="style-group"/>
+          <ref name="group-border"/>
+          <ref name="table"/>
+          <ref name="list"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="footnote-attlist" combine="interleave">
+    <attribute name="num"/>
+    <optional>
+      <attribute name="type"/>
+    </optional>
+  </define>
+  <define name="list-text">
+    <element name="list-text">
+      <ref name="list-text-attlist"/>
+      <zeroOrMore>
+        <choice>
+          <text/>
+          <ref name="inline"/>
+          <ref name="udef_symbol"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="list-text-attlist" combine="interleave">
+    <optional>
+      <attribute name="type">
+        <choice>
+          <value>unknown</value>
+          <value>ordered</value>
+          <value>unordered</value>
+        </choice>
+      </attribute>
+    </optional>
+  </define>
+  <define name="para">
+    <element name="para">
+      <ref name="para-attlist"/>
+      <zeroOrMore>
+        <choice>
+          <text/>
+          <ref name="footnote"/>
+          <ref name="list-text"/>
+          <ref name="field"/>
+          <ref name="udef_symbol"/>
+          <ref name="anchor"/>
+          <ref name="index-entry"/>
+          <ref name="pict"/>
+          <ref name="inline"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="para-attlist" combine="interleave">
+    <empty/>
+  </define>
+  <!-- a field can contain a footnote-this seems awkward -->
+  <define name="field">
+    <element name="field">
+      <ref name="field-attlist"/>
+      <zeroOrMore>
+        <choice>
+          <text/>
+          <ref name="field"/>
+          <ref name="anchor"/>
+          <ref name="inline"/>
+          <ref name="pict"/>
+          <ref name="footnote"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="field-attlist" combine="interleave">
+    <ref name="field-att"/>
+  </define>
+  <define name="udef_symbol">
+    <element name="udef_symbol">
+      <ref name="udef_symbol-attlist"/>
+      <empty/>
+    </element>
+  </define>
+  <define name="udef_symbol-attlist" combine="interleave">
+    <attribute name="num"/>
+    <optional>
+      <attribute name="description"/>
+    </optional>
+  </define>
+  <!--
+    field-result can hold everything para can, minus footnotes and
+    list-test
+  -->
+  <define name="field-result">
+    <element name="field-result">
+      <ref name="field-result-attlist"/>
+      <text/>
+    </element>
+  </define>
+  <define name="field-result-attlist" combine="interleave">
+    <empty/>
+  </define>
+  <define name="index-entry">
+    <element name="index-entry">
+      <ref name="index-entry-attlist"/>
+      <zeroOrMore>
+        <choice>
+          <ref name="main-entry"/>
+          <ref name="sub-entry"/>
+          <ref name="index-entry"/>
+          <ref name="anchor"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="index-entry-attlist" combine="interleave">
+    <optional>
+      <attribute name="id"/>
+    </optional>
+  </define>
+  <define name="anchor">
+    <element name="anchor">
+      <ref name="anchor-attlist"/>
+      <zeroOrMore>
+        <choice>
+          <ref name="main-entry"/>
+          <ref name="sub-entry"/>
+          <ref name="anchor"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="anchor-attlist" combine="interleave">
+    <attribute name="type"/>
+    <optional>
+      <attribute name="number"/>
+    </optional>
+  </define>
+  <define name="main-entry">
+    <element name="main-entry">
+      <ref name="main-entry-attlist"/>
+      <zeroOrMore>
+        <choice>
+          <text/>
+          <ref name="inline"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="main-entry-attlist" combine="interleave">
+    <empty/>
+  </define>
+  <define name="sub-entry">
+    <element name="sub-entry">
+      <ref name="sub-entry-attlist"/>
+      <text/>
+    </element>
+  </define>
+  <define name="sub-entry-attlist" combine="interleave">
+    <empty/>
+  </define>
+  <define name="table-of-contents">
+    <element name="table-of-contents">
+      <ref name="table-of-contents-attlist"/>
+      <zeroOrMore>
+        <choice>
+          <ref name="paragraph-definition"/>
+          <ref name="style-group"/>
+          <ref name="border-group"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="table-of-contents-attlist" combine="interleave">
+    <empty/>
+  </define>
+  <define name="table-of-authorities">
+    <element name="table-of-authorities">
+      <ref name="table-of-authorities-attlist"/>
+      <zeroOrMore>
+        <choice>
+          <ref name="paragraph-definition"/>
+          <ref name="style-group"/>
+          <ref name="border-group"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="table-of-authorities-attlist" combine="interleave">
+    <empty/>
+  </define>
+  <define name="table-of-figures">
+    <element name="table-of-figures">
+      <ref name="table-of-figures-attlist"/>
+      <oneOrMore>
+        <choice>
+          <ref name="paragraph-definition"/>
+          <ref name="style-group"/>
+        </choice>
+      </oneOrMore>
+    </element>
+  </define>
+  <define name="table-of-figures-attlist" combine="interleave">
+    <empty/>
+  </define>
+  <define name="index">
+    <element name="index">
+      <ref name="index-attlist"/>
+      <zeroOrMore>
+        <choice>
+          <ref name="paragraph-definition"/>
+          <ref name="style-group"/>
+          <ref name="border-group"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="index-attlist" combine="interleave">
+    <empty/>
+  </define>
+  <define name="style-group">
+    <element name="style-group">
+      <ref name="style-group-attlist"/>
+      <zeroOrMore>
+        <choice>
+          <ref name="border-group"/>
+          <ref name="paragraph-definition"/>
+          <ref name="page-break"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="style-group-attlist" combine="interleave">
+    <attribute name="name"/>
+  </define>
+  <define name="border-group">
+    <element name="border-group">
+      <ref name="border-group-attlist"/>
+      <oneOrMore>
+        <ref name="paragraph-definition"/>
+      </oneOrMore>
+    </element>
+  </define>
+  <define name="border-group-attlist" combine="interleave">
+    <ref name="paragraph-border-styles"/>
+    <attribute name="num"/>
+  </define>
+  <define name="paragraph-definition">
+    <element name="paragraph-definition">
+      <ref name="paragraph-definition-attlist"/>
+      <zeroOrMore>
+        <choice>
+          <ref name="para"/>
+          <ref name="page-break"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="paragraph-definition-attlist" combine="interleave">
+    <ref name="para-styles"/>
+    <ref name="paragraph-border-styles"/>
+    <optional>
+      <attribute name="annotation"/>
+    </optional>
+    <optional>
+      <attribute name="based-on-style"/>
+    </optional>
+    <optional>
+      <attribute name="bold">
+        <choice>
+          <value>true</value>
+          <value>false</value>
+        </choice>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="caps">
+        <choice>
+          <value>true</value>
+          <value>false</value>
+        </choice>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="character-style"/>
+    </optional>
+    <optional>
+      <attribute name="double-strike-through"/>
+    </optional>
+    <optional>
+      <attribute name="emboss"/>
+    </optional>
+    <optional>
+      <attribute name="engrave"/>
+    </optional>
+    <optional>
+      <attribute name="font-color"/>
+    </optional>
+    <optional>
+      <attribute name="font-size"/>
+    </optional>
+    <optional>
+      <attribute name="font-style"/>
+    </optional>
+    <optional>
+      <attribute name="footnote-marker">
+        <choice>
+          <value>true</value>
+        </choice>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="hidden"/>
+    </optional>
+    <optional>
+      <attribute name="italics">
+        <choice>
+          <value>true</value>
+          <value>false</value>
+        </choice>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="language"/>
+    </optional>
+    <optional>
+      <attribute name="outline">
+        <choice>
+          <value>true</value>
+          <value>false</value>
+        </choice>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="shadow"/>
+    </optional>
+    <optional>
+      <attribute name="small-caps">
+        <choice>
+          <value>true</value>
+          <value>false</value>
+        </choice>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="strike-through"/>
+    </optional>
+    <optional>
+      <attribute name="subscript"/>
+    </optional>
+    <optional>
+      <attribute name="superscript"/>
+    </optional>
+    <optional>
+      <attribute name="underlined"/>
+    </optional>
+    <attribute name="style-number"/>
+  </define>
+  <define name="field-block">
+    <element name="field-block">
+      <ref name="field-block-attlist"/>
+      <zeroOrMore>
+        <choice>
+          <ref name="field-block"/>
+          <ref name="paragraph-definition"/>
+          <ref name="style-group"/>
+          <ref name="border-group"/>
+          <ref name="list"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="field-block-attlist" combine="interleave">
+    <ref name="field-att"/>
+  </define>
+  <define name="table">
+    <element name="table">
+      <ref name="table-attlist"/>
+      <zeroOrMore>
+        <choice>
+          <ref name="row"/>
+          <ref name="page-break"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="table-attlist" combine="interleave">
+    <optional>
+      <attribute name="average-cell-width"/>
+    </optional>
+    <optional>
+      <attribute name="number-of-columns"/>
+    </optional>
+    <optional>
+      <attribute name="average-cells-per-row"/>
+    </optional>
+    <optional>
+      <attribute name="number-of-rows"/>
+    </optional>
+  </define>
+  <define name="row">
+    <element name="row">
+      <ref name="row-attlist"/>
+      <zeroOrMore>
+        <ref name="cell"/>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="row-attlist" combine="interleave">
+    <ref name="row-attributes"/>
+  </define>
+  <define name="cell">
+    <element name="cell">
+      <ref name="cell-attlist"/>
+      <zeroOrMore>
+        <choice>
+          <ref name="paragraph-definition"/>
+          <ref name="style-group"/>
+          <ref name="border-group"/>
+          <ref name="list"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="cell-attlist" combine="interleave">
+    <ref name="cell-attributes"/>
+  </define>
+  <define name="inline">
+    <element name="inline">
+      <ref name="inline-attlist"/>
+      <zeroOrMore>
+        <choice>
+          <text/>
+          <ref name="inline"/>
+          <ref name="footnote"/>
+          <ref name="anchor"/>
+          <ref name="index-entry"/>
+          <ref name="field"/>
+          <ref name="udef_symbol"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="inline-attlist" combine="interleave">
+    <ref name="char-styles"/>
+  </define>
+  <define name="pict">
+    <element name="pict">
+      <ref name="pict-attlist"/>
+      <empty/>
+    </element>
+  </define>
+  <define name="pict-attlist" combine="interleave">
+    <attribute name="num"/>
+  </define>
+  <define name="list">
+    <element name="list">
+      <ref name="list-attlist"/>
+      <zeroOrMore>
+        <choice>
+          <ref name="item"/>
+          <ref name="page-break"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="list-attlist" combine="interleave">
+    <attribute name="list-type">
+      <choice>
+        <value>ordered</value>
+        <value>not-defined</value>
+        <value>unordered</value>
+      </choice>
+    </attribute>
+    <attribute name="list-id"/>
+    <ref name="list-atts"/>
+    <optional>
+      <attribute name="list-hybrid">
+        <choice>
+          <value>true</value>
+        </choice>
+      </attribute>
+    </optional>
+    <optional>
+      <attribute name="list-template-id"/>
+    </optional>
+  </define>
+  <define name="item">
+    <element name="item">
+      <ref name="item-attlist"/>
+      <zeroOrMore>
+        <choice>
+          <ref name="paragraph-definition"/>
+          <ref name="style-group"/>
+          <ref name="border-group"/>
+          <ref name="list"/>
+          <ref name="page-break"/>
+        </choice>
+      </zeroOrMore>
+    </element>
+  </define>
+  <define name="item-attlist" combine="interleave">
+    <empty/>
+  </define>
+  <define name="group-border" combine="choice">
+    <notAllowed/>
+  </define>
+  <start>
+    <choice>
+      <ref name="field-result"/>
+      <ref name="doc"/>
+      <ref name="table-of-authorities"/>
+      <ref name="section-definition"/>
+      <ref name="index"/>
+      <ref name="table-of-contents"/>
+      <ref name="table-of-figures"/>
+    </choice>
+  </start>
+</grammar>
+<!--
+  
+  
+  <creation-time day="8" month="1" minute="9" year="2003"/>
+  <revision-time day="8" month="1" minute="11" year="2003"/>
+  <editing-time editing-time="2"/>
+  <number-of-pages number-of-pages="1"/>
+  <number-of-words number-of-words="0"/>
+  <number-of-characters number-of-characters="0"/>
+  
+  
+  
+  	<paragraph-style-in-table adjust-right="true" language="1033" nest-level="0" next-style="Normal" num="0" font-style="Times" name="Normal" widow-control="true"/>
+  	</paragraph-styles>
+  <character-styles>
+  	<character-style-in-table num="10" name="Default Paragraph Font"/>
+  
+  
+-->

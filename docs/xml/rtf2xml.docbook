@@ -1,0 +1,483 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE article SYSTEM "/home/paul/Documents/data/dtds/docbookx.dtd"[
+<!ENTITY sp  "&lt;sp&gt;">
+<!ENTITY script-name  "rtf2xml">
+<!ENTITY version-number  "1.0">
+
+]>
+
+<article>
+    <articleinfo>
+        <author>
+            <firstname>Paul</firstname>
+            <surname>Tremblay</surname>
+            <email>phthenry@earthlink.net</email>
+        </author>
+        <title>Documentation for rtf2xml, version &version-number;</title>
+        <title role="caps">DOCUMENTATION FOR RTF2XML VERSION &version-number;</title>
+        <titleabbrev role="script-name">&script-name;</titleabbrev>
+        <revhistory>
+            <revision>
+                <revnumber>.3</revnumber>
+                <date>17 February 2003</date>
+                <revdescription><para>First port from perl into Python</para></revdescription>
+                <!--Also could use: <revremark>, though this tag doesn't support para-->
+            </revision>
+        </revhistory>
+    </articleinfo>
+
+
+    <sect1 role="description" id = 'string'>
+        <title>Description</title>
+
+        <para>The script &script-name; converts Microsoft rich text format
+        (RTF) into valid XML file, resulting in a format easy to manipulate
+        and futher convert. The utility &script-name; tries to preserve as
+        much of the original RTF file as possible, leaving it up to the
+        end-user what she will use. This means that RTF can be converted to
+        other forms such as docbook, XHTML, abiword, Open Office, LyX, and
+        many other formats, with a minimal of effort and a minimal of data
+        loss.</para>
+
+
+        <itemizedlist role="features-of-rtf2xml">
+            <title>Brief Description of Features of &script-name;</title>
+
+            <listitem>
+
+                <para>Preserves paragarphs formatting properties such a space
+                    before, space after, and paragraph indent.</para>
+
+            </listitem>
+            <listitem>
+
+                <para>Preserves character formatting properties such as bold
+                and italics.</para>
+
+            </listitem>
+            <listitem>
+
+                <para>Preserves font characteristcs, such as special fonts
+                    used and font size.</para>
+            </listitem>
+            <listitem>
+
+                <para>Converts Symbol Font, Zapf Dingbats font, and Wingdings
+                font to their appropriate unicode representations.  </para>
+
+            </listitem>
+            <listitem>
+
+                <para>Formats tables. Calculates cell size, the average number
+                of cells in each row, and the total rows.</para>
+
+            </listitem>
+            <listitem>
+
+                <para>Translates user-defined character and paragraph
+                styles.</para>
+
+            </listitem>
+
+        </itemizedlist>
+
+        <para>At this time, the script &script-name; makes no effort to
+        convert images to a usable format. Rather, it stores all the image
+        data in one RTF file, which the user can then convert to images using
+        another tool. In the future I hope to to give &script-name; the
+        ability to convert images.</para>
+
+        <sect2 id = "why_rtf2xml">
+            <title>Why rtf2xml?</title>
+
+            <para>
+                Why bother converting Microsoft documents to RTF?
+                
+            </para>
+
+            <para>
+                A few uses come to mind. First, you could use Microsoft
+                Word, or any other RTF editor (such as TED in linux,
+                or TexEdit it OS X) to create documents that could be
+                translated to docbook or TEI.  (When I have time, I plan
+                to write such a parser myself.)  In order to do this,
+                you need to set up a parser using xslt and probably
+                SAX or DOM. such an endeavor shouldn't be difficult,
+                and would leave you with a tagless XML editor. Mind you,
+                using Microsoft's proprietary format to write documents
+                is far from perfect. But since so few other options exist,
+                it might just prove nice.
+
+            </para>
+
+            <para role="normal"> Like it or not, Microsoft Word has become the
+            ubiqitous means to exchange information in the computer world. The
+            open source community offers several excellent utilities to
+            convert RTF documents to postscript, PDF, LaTeX, HTML, and plain
+            text formats.  Unfortunateley, there exists no open source utility
+            that converts RTF to XML, except a java tool called
+            <emphasis>majix.</emphasis><emphasis>Majix</emphasis> has serious
+            flaws; it loses basic formatting like italics and deletes
+            footnotes. For this reason, I wrote the perl script
+            <emphasis>&script-name;.</emphasis> This script seeks to fill in
+            the gap in the lack of tools for converting RTF to XML.  </para>
+
+
+
+        </sect2>
+
+    </sect1>
+
+    
+    <sect1 role="Installation">
+        <title>Installation</title>
+        <sect2 role="Quick Installation">
+            <title>Quick Installation</title>
+
+            <para><emphasis role="bold">Note:</emphasis>&sp;&sp;The quick
+            installation assumes that you will install rtf2xml in the
+            directory '/usr/local'. If you plan to install the script (and
+                    modules) in another place, you should skip this section
+            and read below.  </para>
+
+            <orderedlist>
+                <title>Directions for Quick Installation</title>
+                <listitem>
+
+                    <para>Unpack the tar file:
+                    </para>
+
+                    <para>For example, type 'tar -x -z -f
+                        rtf2xml-.&version-number;.tar.gz'.
+                    </para>
+                </listitem>
+                <listitem>
+
+                   <para>Change to the directory 'rtf2xml':</para>
+
+                   <para>For example, type 'cd rtf2xml'.
+                   </para>
+
+                </listitem>
+                <listitem>
+
+                    <para>Configure the script:</para>
+
+                    <para>For example, type 'python configure.py'.
+                    </para>
+
+                </listitem>
+                <listitem>
+
+                    <para>Install the script with the usual commands:</para>
+
+                    <para>For example, type 'python setup.py install'. </para>
+
+                </listitem>
+            </orderedlist>
+        </sect2>
+        <sect2>
+            <title>Detailed Instructions (Customizing)</title>
+            <sect3 role="custom">
+                <title>Customizing the location of your installation</title>
+
+                    <para> If you want to change the location of your
+                    installation, follow these directions.  </para>
+
+                    <!--
+                    <para><emphasis role="bold">Note:</emphasis> If you use
+                        the "- -install-purelib" option, these instructions
+                        will not work. If you specify a particular library,
+                        rather than a directory that contains a library, the
+                        script will have to be manually configured. See
+                        below.</para>
+                    -->
+
+                    <orderedlist>
+                        <title>Directions for Custom Install</title>
+                        <listitem>
+
+                            <para>Unpack the tar file: </para>
+
+                            <para>Type 'tar -x -z -f
+                                rtf2xml.tar.gz'.</para>
+
+                        </listitem>
+                        <listitem>
+
+                            
+                            <para>Change to the directory 'rtf2xml':</para>
+
+                            <para>Type 'cd rtf2xml'.</para>
+
+                        
+                        </listitem>
+                        <listitem>
+
+                            <para>Configure the script, by choosing the
+                                directory where you wish to install the data
+                                files.  For example, type: </para>
+
+                            <para>'python configure.py
+                            target=/home/paul'.</para>
+
+                        </listitem>
+                        <listitem>
+
+                            <para> Install the script with the usual commands used for
+                            customization.  If you don't know how to do this, either
+                            choose not to do a custom installation, or look at the
+                            Python documentation.</para>
+
+                        <para>For example, type 'python setup.py install --prefix 
+                            /home/paul' </para>
+
+                    </listitem>
+
+                </orderedlist>
+            </sect3>
+            <sect3>
+                <title>Further Examples of Custom Installations</title>
+
+                    <para><emphasis role="bold">You must make sure that your
+                    data gets put in a place where the script &script-name;
+                    can find it.</emphasis></para>
+                    
+                <para>Below are some other examples of configurations that
+                    will work</para>
+                <itemizedlist>
+                    <title>Examples of how to customize installation</title>
+                    <listitem>
+
+                        <para>You want to install the script and its
+                            components in your home directory. Assume that the
+                            name of your home directory is "/home/paul".
+                            Type:</para>
+
+                        <para>python configure.py --target /home/paul</para>
+
+                        <para>python setup.py install --home ~</para>
+                    </listitem>
+
+                    <listitem>
+
+                        <para>You want to install the script and its
+                            components in some directory. Assume this
+                            directory is called "/home/some_directory".
+                            Type:</para>
+
+                        <para>python configure.py --target /home/some_directory</para>
+
+                        <para>python setup.py install --prefix
+                            /home/some_directory</para>
+
+                    </listitem>
+                    <listitem>
+
+                        <para>You want a complete customized installation. You
+                            want to put the script in "/home/my_scripts", the
+                            modules in "/home/my_python_lib", and the data in
+                            "/home/my_data". Type:</para>
+
+                        <para>python configure.py --target /home/my_data</para>
+
+                        <para>python setup.py install --install-purelib
+                            home/my_python_lib --install-data /home/my_data
+                            --install-script /home/my_scripts</para>
+
+                    </listitem>
+                        
+                </itemizedlist>
+                    
+            </sect3>
+
+            <!--
+            <sect3 role="delete">
+
+                <title>Further Customization: How to manually configure the
+                    location of essential files</title>
+
+                <para>Read this section if you have problems running the
+                    script &script-name;. Also read it if you choose the
+                    "- -install-purelib" option on setup.</para>
+
+                <para>The configuration script attempts to write a correct
+                    path in the script of both the location of your dtd and
+                    your char_set.  The script &script-name; needs to read
+                    from the char-set, a file of character data, in order to
+                    convert RTF. Without this data, a perfect translation
+                    cannot be acheived.</para>
+
+                <para>When the configure script is run at setup, it opens up
+                    the script &script-name; and reads in one line at a time
+                    until it finds the line "installation_dir=''." The empty
+                    single quotations are filled in with the correct directory
+                    name, which you provided through the option of
+                    "- -target=some target>". So if you choose "python
+                    configure.py - -target /home/paul", the above line would
+                    become "installation_dir='/home/paul'."</para>
+
+
+                <para>It is possible that for some reason the configuration
+                    might not have worked properly. Or perhaps you want to
+                    install the modules and the script in a way that is not
+                    standard. In either case, you can simply move the char_set
+                    to the directory of your choice, and then fill in the line
+                    in the script &script-name;.</para>
+
+
+                <orderedlist>
+                    <title>Directions for manually configuring script</title>
+                    <listitem>
+
+                        <para>Create a directory called "rtf_dir".</para>
+
+                    </listitem>
+                    <listitem>
+
+                        <para>Copy the dtd file and the char_set file from the originally tar file to the new directory called "rtf_dir".</para>
+
+                    </listitem>
+                    <listitem>
+
+                        <para>Open the script &script-name; in your favorite
+                    text editor. Find the line at the top of the script that
+                    looks like "installation_dir=''." This line should be easy
+                    to find, since it occurrs at the beginning, and since it
+                    is sandwhiched bewtten the lines "#Start configuration"
+                    and "#End configuration."</para> 
+
+                    </listitem>
+                    <listitem>
+                        
+                        <para>Change the from "installation_dir=''" to the
+                            <emphasis role="italics">full path</emphasis> of
+                                    the location of the rtf_dir. For example,
+                                    if the rtf_dir resides in the directory
+                                    "/home/paul", you would type:</para>
+
+                        <para>
+                            installation_dir='/home/paul'
+                        </para>
+
+                    </listitem>
+                </orderedlist>
+
+                <para>Those simple steps should enable the script to find the
+                    important char_set data, as well as the less essential,
+                    but still important dtd.</para>
+
+                <para>You can now install the rest of the modules and script
+                    itself using any of the options provided by "python
+                    setup.py install".</para>
+
+            </sect3>
+            -->
+            <sect3 role="files">
+                <title>What gets put where</title>
+
+                <!--
+                <para>If you don't care to know what files get put where,
+            skip this section.</para>
+                -->
+
+                <para>The script &script-name; creates three sets of files.
+                </para>
+
+                <orderedlist>
+                    <listitem>
+
+                        <para> <emphasis role="bold">Modules:</emphasis> The
+                    script &script-name; uses over a dozen modules to conert
+                    RTF to XML.  </para>
+
+                    </listitem>
+                    <listitem>
+
+                        <para><emphasis role="bold">The script:</emphasis> The actual
+                            script, or set of code, allows you to translate RTF from
+                            the command line.  </para>
+
+                    </listitem>
+                    <listitem>
+
+                        <para><emphasis role="bold">The dtd and
+                            char_set:</emphasis> A dtd has been provided so
+                        that you can check validity of the results of
+                        &script-name;.  In addition, a data file called
+                        "char_set" is installed in oreder that &script-name;
+                        can correctly change RTF character to UTF-8.</para>
+
+                    </listitem>
+                </orderedlist>
+
+                <para>In a standard location, the modules would go in the
+                    directory "/usr/local/lib/python2.x/site-packages/rtf".
+                    The script would go in "/usr/local/bin". The data files
+                    would go in "/usr/local/rtf_dir/".</para>
+
+
+            </sect3>
+        </sect2>
+    </sect1>
+    <sect1 role="use">
+        <title>Using &script-name;</title>
+
+        <para>The script &script-name; is a command line utility with no graphical user inerface. You operate from the shell.</para>
+        <sect2>
+            <title>Summary of Command Line Options and Arguments</title>
+            <para>rtf2xml [ --help|-h ] [ --output|-o ] </para>
+            <para>[ --debug ]</para>
+            <para>&lt;file&gt;</para>
+        </sect2>
+        <sect2>
+            <title>Explanation of Command Line</title>
+            <para>The script &script-name; takes only one argument, a valid Microsoft RTF file.</para>
+
+            <para>You need not specify any options to run &script-name;. If
+                you do specify an illegal option, or one that doesn't
+                exist--for example, '-ziph'--the script will quit before
+                trying to convert the RTF file. In addition, if you do not
+                specify arguments for options that take arguments, the script
+                will also quit. For example, if you type '&script-name;
+                <option>--output</option> my_file.rtf', the script will not run.</para>
+
+            <itemizedlist role="options">
+                <title>Options</title>
+                <listitem>
+
+                    <para><option>-h --help</option>: Print out the help
+                        message and exit the script.</para>
+
+                    <para role="option-example"><emphasis
+                            role="bold">Ex.&sp;&sp;</emphasis>&script-name;
+                        --help</para>
+
+                </listitem>
+                <listitem>
+
+                    <para><option>-o --output</option>: Specify the file where
+                               &script-name; outputs the translated text.
+                           </para>
+
+                    <para role="option-example"><emphasis role="bold">Ex.</emphasis>&sp;&sp;&script-name; --output my_file.xml my_file.rtf</para>
+
+                    <para>The file "my_file.rtf" will be converted to XML and
+           output to the file "myfile.xml". The original file
+           "my_file.rtf" will not be changed.</para>
+
+                </listitem>
+            </itemizedlist>
+
+
+        </sect2>
+
+
+
+
+        
+    </sect1>
+
+
+</article>
+

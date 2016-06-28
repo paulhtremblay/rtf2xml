@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><link rel="stylesheet" type="text/css" href="styles.css" /><title>The API (Application Program Interface)</title></head><body><div class="root"><p class="home-link"><a href="index.html">HOME</a></p>
+    <h1 class="section">The API (Application Program Interface)</h1>
+    <h3>(For Python Programers)</h3>
+    <p>
+        If you wish to use rtf2xml as part of a larger python program rather than from the command line, first import the rtf2xml.ParseRtf module:
+    </p>
+    <pre>
+        import rtf2xml.ParseRtf
+    </pre>
+
+    <p>
+     Next, create a parsing object:
+        
+    </p>
+
+    <pre>
+        
+    try:
+        parse_obj =rtf2xml.ParseRtf.ParseRtf(   
+                in_file = 'in.rtf', 
+        )
+    except rtf2xml.ParseRtf.RtfInvalidCodeException, msg:
+        pass
+    </pre>
+    <p>
+        The exception will catch any paths that don't exist. You will have to use the 
+        same exception when you run the method (below).
+    </p>
+    <p>
+        The in_file variable should point to the path of the RTF file. 
+        I'll cover the optional parameters below.
+    </p>
+    <p>
+        Finally, convert the document by calling the method 'parse_rtf'. 
+    </p>
+    <pre>
+        try:
+            parse_obj.parse_rtf()
+        except rtf2xml.ParseRtf.InvalidRtfException, msg:
+            pass
+        except rtf2xml.ParseRtf.RtfInvalidCodeException, msg:
+            pass
+    </pre>
+
+    <p> The two exception classes are InvalideRtfException and
+       RtfInvalidCodeException.  If you set the level to something higher than
+       3 the script will raise an excetion for any errors. If the level is 
+       lower than 3, the script will only raise an exception for serious, 
+       non-recoverable errors.</p>
+
+
+    <p>
+        Here is an example of a complete script that uses the rtf2xml 
+        modules. I have made minimial comments on the parameters one
+        can use when call ing the 'parse_rtf' method. For more details,
+        see the options in the full documentation, <a href="use.html">use</a>.
+    </p>
+
+    <p><a href="python_example.py">python_example.py</a></p><pre></pre>
+
+
+<p class="home-link"><a href="index.html">HOME</a></p></div></body></html>

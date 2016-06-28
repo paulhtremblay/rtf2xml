@@ -1,0 +1,309 @@
+<?xml version="1.0"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><link rel="stylesheet" type="text/css" href="styles.css" /><title>The Man Page</title></head><body><div class="root"><p class="home-link"><a href="index.html">HOME</a></p>
+    <h1 class="section">The Man Page</h1>
+
+<div id="command-line"><a name="command-line" id="command-line"></a>
+    <h2 class="sub-section">Synopsis</h2>
+
+
+    <p>
+        <i> rtf2xml </i> 
+         [ <b class="option"> --help </b> ] 
+    </p>
+
+
+    <p>
+        <i> rtf2xml </i> 
+         [ <b class="option"> --version </b> ] 
+    </p>
+
+    <p>
+        <i> rtf2xml </i> 
+         [ <b class="option"> --config </b> ] 
+    </p>
+
+    <p>
+        <i> rtf2xml </i>  
+         [ <b class="option">--no-caps</b> ]  
+         [ <b class="option">--caps</b> ]  
+         [ <b class="option">--no-caps</b> ]  
+         [ <b class="option">--no-lists</b> ]  
+         [ <b class="option">--lists</b> ]  
+         [ <b class="option">--empty-para</b> ]  
+         [ <b class="option">--no-empty-para</b> ]  
+         [ <b class="option">--headings-to-sections</b> ]  
+         [ <b class="option">--no-headings-to-sections</b> ]  
+         [ <b class="option">--group-styles</b> ]  
+         [ <b class="option">--no-group-styles</b> ]  
+         [ <b class="option">--group-borders</b> ]  
+         [ <b class="option">--no-group-borders</b> ]  
+        
+         [ <b class="option">--level</b> 
+        <b class="target">number</b> ]  
+         [ <b class="option">--indent</b> 
+        <b class="target">number</b> ]  
+         [ <b class="option">-o,</b> 
+        <b class="option">--output</b> 
+        <b class="target">out-file</b> ]  
+        
+        <i>path</i> 
+    </p>
+</div>
+
+<div id="description"><a name="description" id="description"></a>
+    <h2 class="sub-section">Description</h2>
+
+    <p> The script rtf2xml converts Microsoft's proprietary rich text
+     format (RTF) to XML. It preserves as much information from the RTF
+     files as possible, giving an XML author the choice of what elements to
+     use for further transformations.  </p>
+
+
+     <p>
+         Unless the &lt;smart-output&gt; is specified in the configuration
+         file, or the <b class="option">--output</b> option is used, rtf2xml
+         outputs to the terminal.
+        If the RTF file contains any graphic
+         information, a directory will be created with this information. The
+         directory will take the same name as the RTF file, appending and
+         "_rtf_pict_dir" at the end. (For example, If the original file
+                 "my_file.rtf" contained graphic information, a directory
+                 named "my_file_rtf_pict_dir" will be created.) If this
+         directory already exists, its contents will be emptied before the
+         script performs the transformation. The directory will reside in the 
+         same directory as the transformed file.</p>
+
+</div>
+
+<div id="options"><a name="options" id="options"></a>
+
+
+<h2 class="sub-section">Options</h2>
+
+<p class="option">
+    <b class="option">--help</b>
+</p>
+
+    <p>Print a help message and quit.</p>
+
+<p class="option">
+    <b class="option">--version</b>
+</p>
+
+    <p>Print out the version and quit.</p>
+
+
+<p class="option">
+    <b class="option">--config</b>
+</p>
+
+    <p>Print out the path to the configuation file and quit.</p>
+
+<p class="option">
+    
+    <b class="option">-o, --output</b> <b class="target">file</b>
+    </p>
+    
+    <p> The file to output to. </p>
+
+    <p>
+        Example:
+    </p>
+
+    <p>
+        <code>rtf2xml --output my_file.xml my_file.rtf </code>
+    </p>
+
+    <p>
+        The file "my_file.xml" will be created.  If the
+        file "my_file.rtf" contains graphic information, a directory called 
+        "my_file_rtf_pict_dir" will be created in the same directory as the file. 
+    </p>
+
+
+    
+
+    <p class="option">
+    <b class="option">--caps</b> 
+    </p>
+    
+    <p>
+    Change characters tagged as captials to their capital equivlents. Since the script
+    automatically performs this transformation, you don't need to use this option
+    unless you have set the configuration script to not have captials transformed, and
+    you want to override what the configuration file says.
+    </p>
+
+    <p> RTF stores certain characters in an odd way. For example, if you
+        type the word "title" and then choose the format "all caps" from the
+        menu, the word is actually stored as "title", instead of "TITLE."
+        </p>
+
+    <p>
+        The script rtf2xml seeks to correct this mistake by changing all lower-case
+        characters within the element "caps" to upper-case.
+    </p>
+
+    <p>
+
+        Use this option to make sure the script changes lower-case to upper-case.
+    </p>
+
+
+    <p class="option">
+    <b class="option">--no-caps</b> 
+    </p>
+
+    
+    <p>
+    Don't change characters tagged as captials to their capital equivlents. Setting this
+    option has the opposite effect as using the <b class="option">--caps</b> option.
+    </p>
+
+    <p>
+        
+        If you wish to suppress the scripts ability to change lower-case to upper-case,
+        use this option
+    </p>
+
+         
+
+    <p class="option">
+        <b class="option">--level</b> <b class="target">number</b>
+        
+    </p>
+
+    <p>
+        Run the script at level &lt;number&gt;.
+    </p>
+
+    <p>
+        At this point, a user should choose "1" (the default, unless otherwise 
+        specified in the configuration file), or "3". A level 1 indicates a normal
+        run. Level 3 indicates a debug run. A debug directory will be created, and 
+        more error messages will be outputted.
+    </p>
+
+
+    <p class="option">
+        <b class="option">--indent</b> <b class="target">number</b>
+    </p>
+
+    <p>
+        At this point, the <b class="option">--indent</b> option only controls whether
+        the final XML get output as one long line, or in the more readable form
+        of blocks. 
+    </p>
+
+    <p>
+        For strict XML, in which you don't want any extraneous white space, use "0"
+        as your number.
+    </p>
+
+    <p>
+        Otherwise, use any number above zero. 
+    </p>
+
+
+    <p class="option">
+        <b class="option">--no-lists</b> 
+    </p>
+
+    <p>
+        Whether to give structure to lists. 
+    </p>
+
+    <p>
+        An RTF document does not give any structure to lists. Instead, it tags
+        each item with a number.
+    </p>
+
+    <p>
+        By default, rtf2xml gives the RTF numbering scheme a list-structure.
+    </p>
+
+    <p>
+        If you do not wish to have this structure in your document, use the
+        <b class="option">--no-lists</b> option.
+    </p>
+
+    <p class="option">
+        <b class="option">--lists</b> 
+    </p>
+
+    <p>
+        Form lists from the RTF file.
+    </p>
+
+    <p class="option">
+        <b class="option">--empty-para</b> 
+    </p>
+
+    <p>
+        Write empty paragraphs.
+    </p>
+
+    <p class="option">
+        <b class="option">--no-empty-para</b> 
+    </p>
+
+    <p>
+        Do not write empty paragraphs.
+    </p>
+
+
+    <p class="option">
+        <b class="option">--group-borders</b> 
+    </p>
+
+    <p>
+        Provide a wrapper element &lt;group-borders&gt; for borders.
+    </p>
+
+
+    <p class="option">
+        <b class="option">--no-group-borders</b> 
+    </p>
+
+    <p>
+        Do not provide a wrapper element &lt;group-borders&gt; for borders.
+    </p>
+
+    <p class="option">
+        <b class="option">--group-styles</b> 
+    </p>
+
+    <p>
+        Provide a wrapper element &lt;group-styles&gt; for paragraphs with the same
+        name.
+    </p>
+
+    <p class="option">
+        <b class="option">--no-group-styles</b> 
+    </p>
+
+    <p>
+        Do not provide a wrapper element for paragraphs with the same name.
+    </p>
+
+    <p class="option">
+        <b class="option">--headings-to-sections</b> 
+    </p>
+
+    <p>
+        Convert styles with heading names (such as "heading 1") to sections.
+    </p>
+
+    <p class="option">
+        <b class="option">--no-headings-to-sections</b> 
+    </p>
+
+    <p>
+        Do not convert styles with heading names (such as "heading 1") to sections.
+    </p>
+
+</div>
+
+
+<p class="home-link"><a href="index.html">HOME</a></p></div></body></html>

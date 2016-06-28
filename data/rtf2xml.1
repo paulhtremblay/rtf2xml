@@ -1,0 +1,551 @@
+.\" @(#)rtf2xml .4 2003/10/1
+.\" Copyright (c) 2003 - Paul H Tremblay
+.TH rtf2xml
+.SH NAME rtf2xml
+
+.SP 1i
+Convert RTF to XML.
+
+.SH SYNOPSIS
+
+.sp
+
+
+.B rtf2xml
+[
+.B --help
+]
+
+.sp
+
+
+.B rtf2xml
+[
+.B --version
+]
+
+.sp
+
+
+.B rtf2xml
+[
+.B --config
+]
+
+.sp
+
+
+.B rtf2xml
+[
+.B --no-dtd
+]
+[
+.B --no-caps
+]
+[
+.B --caps
+]
+[
+.B --no-caps
+]
+[
+.B --symbol
+]
+[
+.B --no-symbol
+]
+[
+.B --wingdings
+]
+[
+.B --no-wingdings
+]
+[
+.B --zapf
+]
+[
+.B --no-zapf
+]
+[
+.B --font
+]
+[
+.B --no-font
+]
+[
+.B --no-lists
+]
+[
+.B --lists
+]
+[
+.B --empty-para
+]
+[
+.B --no-empty-para
+]
+[
+.B --headings-to-sections
+]
+[
+.B --no-headings-to-sections
+]
+[
+.B --group-styles
+]
+[
+.B --no-group-styles
+]
+[
+.B --group-borders
+]
+[
+.B --no-group-borders
+]
+[
+.B --level
+.I number
+]
+[
+.B --indent
+.I number
+]
+[
+.B -o,
+.B --output
+.I out-file
+]
+.B
+path
+.sp
+
+
+
+.sp
+.SH DESCRIPTION
+.sp
+The script rtf2xml converts Microsoft's proprietary rich text
+format (RTF) to XML. It preserves as much information from the
+RTF files as possible, giving an XML author the choice of what
+elements to use for further transformations.
+
+.sp
+Unless the <smart-output> is specified in the configuration file,
+or the \fB--output\fR option is used, rtf2xml outputs to the
+terminal. If the RTF file contains any graphic information, a
+directory will be created with this information. The directory
+will take the same name as the RTF file, appending and
+"_rtf_pict_dir" at the end. (For example, If the original file
+"my_file.rtf" contained graphic information, a directory named
+"my_file_rtf_pict_dir" will be created.) If this directory
+already exists, its contents will be emptied before the script
+performs the transformation. The directory will reside in the
+same directory as the transformed file.
+
+.sp
+.SH OPTIONS
+.in 40p
+.sp
+
+\fB--help\fR
+
+.in 70p
+.sp
+Print a help message and quit.
+
+.in 40p
+.sp
+
+\fB--version\fR
+
+.in 70p
+.sp
+Print out the version and quit.
+
+.in 40p
+.sp
+
+\fB--config\fR
+
+.in 70p
+.sp
+Print out the path to the configuation file and quit.
+
+.in 40p
+.sp
+
+\fB-o, --output\fR \fIfile\fR
+
+.in 70p
+.sp
+The file to output to.
+
+.sp
+Example:
+
+.sp
+rtf2xml --output my_file.xml my_file.rtf
+
+.sp
+The file "my_file.xml" will be created. If the file "my_file.rtf"
+contains graphic information, a directory called
+"my_file_rtf_pict_dir" will be created in the same directory as
+the file.
+
+.in 40p
+.sp
+
+\fB--no-dtd\fR \fIfile\fR
+
+.in 70p
+.sp
+Don't use a DTD Declaration
+
+.sp
+Example:
+
+.sp
+rtf2xml --no-dtd my_file.rtf
+
+.in 40p
+.sp
+
+\fB--caps\fR
+
+.in 70p
+.sp
+Change characters tagged as captials to their capital equivlents.
+Since the script automatically performs this transformation, you
+don't need to use this option unless you have set the
+configuration script to not have captials transformed, and you
+want to override what the configuration file says.
+
+.sp
+RTF stores certain characters in an odd way. For example, if you
+type the word "title" and then choose the format "all caps" from
+the menu, the word is actually stored as "title", instead of
+"TITLE."
+
+.sp
+The script rtf2xml seeks to correct this mistake by changing all
+lower-case characters within the element "caps" to upper-case.
+
+.sp
+Use this option to make sure the script changes lower-case to
+upper-case.
+
+.in 40p
+.sp
+
+\fB--no-caps\fR
+
+.in 70p
+.sp
+Don't change characters tagged as captials to their capital
+equivlents. Setting this option has the opposite effect as using
+the \fB--caps\fR option.
+
+.sp
+If you wish to suppress the scripts ability to change lower-case
+to upper-case, use this option
+
+.in 40p
+.sp
+
+\fB --symbol\fR
+
+.in 70p
+.sp
+Change characters tagged in Symbol font to their utf-8
+equivlents. Since the script automatically performs this
+transformation, you don't need to use this option unless you have
+set the configuration script to not have Symbol font
+transformed, and you want to override what the configuration file
+says.
+
+.sp
+RTF stores certain characters in an odd way. If you choose to
+insert the Sigma sign in your RTF document, Word stores it as an
+upper-case S.
+
+.sp
+The script rtf2xml seeks to correct this mistake by changing all
+characters tagged with the Symbol font to the correct Greek
+character entities.
+
+.sp
+Use this option to make sure the script changes Symbol font to
+the Greek equivelent.
+
+.in 40p
+.sp
+
+\fB--no-symbol\fR
+
+.in 70p
+.sp
+Don't change characters tagged as Symbol font to their utf-8
+equivlents. Setting this option has the opposite effect as using
+the \fB--symbol\fR option.
+
+.sp
+If you wish to suppress the scripts ability to change characters
+to their Greek character use this option.
+
+.in 40p
+.sp
+
+\fB --wingdings\fR
+
+.in 70p
+.sp
+Change characters tagged in Wingdings font to their utf-8
+equivlents. Since the script automatically performs this
+transformation, you don't need to use this option unless you have
+set the configuration script to not have Wingdings font
+transformed, and you want to override what the configuration file
+says.
+
+.sp
+RTF stores certain characters in an odd way. If you choose to
+insert a Winding character, Word stores it as a letter.
+
+.sp
+The script rtf2xml seeks to correct this mistake by changing all
+characters tagged with the Wingdings font to the correct UTF-8
+character entities.
+
+.sp
+Use this option to make sure the script changes Wingdigns font to
+the Greek equivelent.
+
+.in 40p
+.sp
+
+\fB--no-wingdings\fR
+
+.in 70p
+.sp
+Don't change characters tagged as Wingdings font to their utf-8
+equivlents. Setting this option has the opposite effect as using
+the \fB--wingdings\fR option.
+
+.sp
+If you wish to suppress the scripts ability to change Wingdings
+characters to their Greek utf-8 equivelents.
+
+.in 40p
+.sp
+
+\fB --zapf\fR
+
+.in 70p
+.sp
+Change characters tagged in Zapf Dingbats font to their utf-8
+equivlents. Since the script automatically performs this
+transformation, you don't need to use this option unless you have
+set the configuration script to not have Zapf Dingbats font
+transformed, and you want to override what the configuration file
+says.
+
+.sp
+RTF stores certain characters in an odd way. If you choose to
+insert a Zapf Dingbat character, Word stores it as a letter.
+
+.sp
+The script rtf2xml seeks to correct this mistake by changing all
+characters tagged with the Zapf Dingbat font to the correct UTF-8
+character entities.
+
+.sp
+Use this option to make sure the script changes Wingdigns font to
+the Greek equivelent.
+
+.sp
+If you wish to suppress the scripts ability to convert Zapf
+Dingbats to UTF-8, character entities, use this option.
+
+.in 40p
+.sp
+
+\fB--no-zapf\fR
+
+.in 70p
+.sp
+Don't change characters tagged as Zapf Dingbats font to their
+utf-8 equivlents. Setting this option has the opposite effect as
+using the \fB--zapf\fR option.
+
+.sp
+Use this option if you wish to suppress the scripts ability to
+change Dingbats to their utf-8 equivelents.
+
+.in 40p
+.sp
+
+\fB--font\fR
+
+.in 70p
+.sp
+Make sure all fonts are transformed to their utf-8 equivelents.
+Using this option has the same effect as using
+\fB--symbol\fR\fB--wingdings\fR \fB--zapf\fR options.
+
+.in 40p
+.sp
+
+\fB --no-font\fR
+
+.in 70p
+.sp
+Do not change any special fonts to their UTF-8 equivalents. Using
+this options is the same as choosing \fB--no-symbol\fR
+\fB--no-wingdings\fR \fB--no-zapf\fR.
+
+.in 40p
+.sp
+
+\fB--level\fR \fInumber\fR
+
+.in 70p
+.sp
+Run the script at level <number>.
+
+.sp
+At this point, a user should choose "1" (the default, unless
+otherwise specified in the configuration file), or "3". A level 1
+indicates a normal run. Level 3 indicates a debug run. A debug
+directory will be created, and more error messages will be
+outputted.
+
+.in 40p
+.sp
+
+\fB--indent\fR \fInumber\fR
+
+.in 70p
+.sp
+At this point, the \fB--indent\fR option only controls whether
+the final XML get output as one long line, or in the more
+readable form of blocks.
+
+.sp
+For strict XML, in which you don't want any extraneous white
+space, use "0" as your number.
+
+.sp
+Otherwise, use any number above zero.
+
+.in 40p
+.sp
+
+\fB--no-lists\fR
+
+.in 70p
+.sp
+Whether to give structure to lists.
+
+.sp
+An RTF document does not give any structure to lists. Instead, it
+tags each item with a number.
+
+.sp
+By default, rtf2xml gives the RTF numbering scheme a
+list-structure.
+
+.sp
+If you do not wish to have this structure in your document, use
+the \fB--no-lists\fR option.
+
+.in 40p
+.sp
+
+\fB--lists\fR
+
+.in 70p
+.sp
+Form lists from the RTF file.
+
+.in 40p
+.sp
+
+\fB--empty-para\fR
+
+.in 70p
+.sp
+Write empty paragraphs.
+
+.in 40p
+.sp
+
+\fB--no-empty-para\fR
+
+.in 70p
+.sp
+Do not write empty paragraphs.
+
+.in 40p
+.sp
+
+\fB--group-borders\fR
+
+.in 70p
+.sp
+Provide a wrapper element <group-borders> for borders.
+
+.in 40p
+.sp
+
+\fB--no-group-borders\fR
+
+.in 70p
+.sp
+Do not provide a wrapper element <group-borders> for borders.
+
+.in 40p
+.sp
+
+\fB--group-styles\fR
+
+.in 70p
+.sp
+Provide a wrapper element <group-styles> for paragraphs with the
+same name.
+
+.in 40p
+.sp
+
+\fB--no-group-styles\fR
+
+.in 70p
+.sp
+Do not provide a wrapper element for paragraphs with the same
+name.
+
+.in 40p
+.sp
+
+\fB--headings-to-sections\fR
+
+.in 70p
+.sp
+Convert styles with heading names (such as "heading 1") to
+sections.
+
+.in 40p
+.sp
+
+\fB--no-headings-to-sections\fR
+
+.in 70p
+.sp
+Do not convert styles with heading names (such as "heading 1") to
+sections.
+
+.sp
+.SH AUTHOR
+Paul Tremblay
+
+.sp
+phthenry@earthlink.net
+

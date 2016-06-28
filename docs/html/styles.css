@@ -1,0 +1,66 @@
+div#root{width:700px}
+div.root{display:block; position:relative; width:90%; left:2%}
+h2{font-size:20px}
+h3{font-size:18px}
+p.pre{white-space:pre}
+b.target{text-decoration:underline}
+div#description p, div#command-line p, div#options p.option{position:relative; left:5%; width:80%}
+div{position:relative; margin-top:20px}
+/*
+div#command-line p {position:relative; left:10%; width:80%}
+div#options p.option {position:relative; left:10%; width:80%}
+*/
+div#options p {position:relative; left:10%; width:70%}
+div#no_ask_option p, div#dtd_path p {position:relative; left:10%; width:70%}
+
+h3.sub-sub-section{position:relative; left:0%; font-size:16px; /*font-weight:normal*/
+
+}
+
+p.toc-level1{position:relative; left:20px}
+p.toc-level2{position:relative; left:40px}
+p.toc-level3{position:relative; left:60px}
+
+/*div.option-term  {position:relative; left:10%; width:80%} */
+/*div.option-term p  {position:relative; left:10%; width:80%}*/
+
+
+
+
+/*
+div.rend-example1-border{position:relative; top:-15px}
+div#toc h2{color:#878ac1}
+a:link{color:blue}
+a:visited{color:red}
+div#middle{background-color:#C7D2E1}
+h1#welcome{background-color:#C7D2E1}
+div#middle{margin-top:75px; margin-bottom:75px; width:500px}
+div#middle{padding:100,100,100,100}
+p.middle{margin-top:30px}
+# h1#welcome{margin-left:5%; margin-right:5%}
+h1#welcome{width:500px}
+span#version{margin-right:61px}
+span#version{font-weight:bold}
+span#author{margin-right:58px}
+span#author{font-weight:bold}
+p#authors{text-indent:-125px}
+p#authors{position:relative; left:125px; width:370px}
+span#download{margin-right:44px}
+span#download{font-weight:bold}
+span#goal{margin-right:81px}
+span#goal{font-weight:bold}
+p#goal{text-indent:-125px}
+p#goal{position:relative; left:125px; width:370px}
+span#documentation{margin-right:10px}
+span#documentation{font-weight:bold}
+
+div#sourceforge-logo{background-color:#FFFFFF}
+
+
+
+
+p.first-line{text-indent:-90px}
+p{color:black;}
+div#xml2txt-logo{display:block}
+div#xml2txt-logo{position: relative; left:35%; top:5% bottom:5%}
+*/
