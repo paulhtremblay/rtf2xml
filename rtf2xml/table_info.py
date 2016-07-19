@@ -1,4 +1,4 @@
-#########################################################################
+﻿#########################################################################
 #                                                                       #
 #                                                                       #
 #   copyright 2016 Paul Henry Tremblay                                  #
@@ -84,7 +84,7 @@ class TableInfo:
                     # this shouldn't happen!
                     if self.__run_level > 3:
                         msg = 'Not enough data for each table\n'
-                        raise self.__bug_handler, msg
+                        raise self.__bug_handler(msg)
                     self.__write_obj.write('mi<tg<open______<table\n')
 
             elif line == 'mi<mk<table-end_\n':

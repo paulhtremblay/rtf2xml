@@ -1,4 +1,4 @@
-#########################################################################
+﻿#########################################################################
 #                                                                       #
 #                                                                       #
 #   copyright 2016 Paul Henry Tremblay                                  #
@@ -68,7 +68,6 @@ class Footnote:
             'mi<mk<footnt-clo\n')
         else:
             self.__write_to_foot_obj.write(line)
-            
 
 
     def __found_footnote(self, line):
@@ -79,15 +78,13 @@ class Footnote:
         self.__footnote_count += 1
         # temporarily set this to zero so I can enter loop
         self.__cb_count = 0
-	self.__footnote_bracket_count = self.__ob_count
+        self.__footnote_bracket_count = self.__ob_count
         self.__write_obj.write(
         'mi<mk<footnt-ind<%04d\n' % self.__footnote_count)
         self.__write_to_foot_obj.write(
         'mi<mk<footnt-ope<%04d\n' % self.__footnote_count)
-        
 
 
-    
     def __default_sep(self, line):
         """Handle all tokens that are not footnote tokens"""
         if self.__token_info == 'cw<nt<footnote__':
@@ -106,12 +103,11 @@ class Footnote:
         self.__bracket_count=0
         self.__ob_count = 0
         self.__cb_count = 0
-	self.__footnote_bracket_count = 0
-	self.__in_footnote = 0
-	self.__first_line = 0 #have not processed the first line of footnote
-	self.__footnote_count = 0
+        self.__footnote_bracket_count = 0
+        self.__in_footnote = 0
+        self.__first_line = 0 #have not processed the first line of footnote
+        self.__footnote_count = 0
 
-    
     def separate_footnotes(self):
         """
         Separate all the footnotes in an RTF file and put them at the bottom,

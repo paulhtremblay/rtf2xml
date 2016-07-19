@@ -1,4 +1,4 @@
-#########################################################################
+﻿#########################################################################
 #                                                                       #
 #                                                                       #
 #   copyright 2016 Paul Henry Tremblay                                  #
@@ -37,7 +37,7 @@ class FixLineEndings:
         """
         # always check since I have to get rid of illegal characters
         macintosh = 1
-	if macintosh:
+        if macintosh:
             line = 1
             read_obj = open(self.__file, 'r')
             write_obj = open(self.__write_to, 'w')

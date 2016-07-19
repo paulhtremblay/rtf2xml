@@ -1,4 +1,4 @@
-#########################################################################
+﻿#########################################################################
 #                                                                       #
 #                                                                       #
 #   copyright 2016 Paul Henry Tremblay                                  #
@@ -17,10 +17,9 @@ import rtf2xml.ParseRtf
 
 
 def Handle_Main():
-    # Handles options and creates a parse object 
-    
-    parse_obj =rtf2xml.ParseRtf.ParseRtf(   
-            in_file = 'in.rtf', 
+    # Handles options and creates a parse object
+    parse_obj =rtf2xml.ParseRtf.ParseRtf(
+            in_file = 'in.rtf',
 
             # All values from here on are optional
 
@@ -57,7 +56,7 @@ def Handle_Main():
 
             # Write or do not write paragraphs. Default is 0.
             empty_paragraphs = 0,
-    ) 
+    )
     try:
         parse_obj.parse_rtf()
     except rtf2xml.ParseRtf.InvalidRtfException, msg:
@@ -103,19 +102,17 @@ import rtf2xml.check_encoding
 import rtf2xml.correct_unicode
 class ParseRtf:
     """
-    
     Main class for controlling the rest of the parsing.
 
 
-    
     """
 
-    def __init__(self, 
-                in_file, 
-                out_file = '',  
+    def __init__(self,
+                in_file,
+                out_file = '', 
                 out_dir = None,
-                dtd = '', 
-                debug = 0, 
+                dtd = '',
+                debug = 0,
                 deb_dir=None,
                 convert_symbol = None,
                 convert_wingdings = None,
@@ -130,13 +127,12 @@ class ParseRtf:
                 group_borders = 1,
                 empty_paragraphs = 1,
                 no_dtd = 0,
-                char_data = '',  
+                char_data = '', 
                 ):
 
 
 
         """
-        
 
         Requires:
 
@@ -144,7 +140,7 @@ class ParseRtf:
 
         'char_data' --file containing character maps
 
-        'dtd' --path to dtd 
+        'dtd' --path to dtd
 
         Possible parameters, but not necessary:
 
@@ -198,13 +194,13 @@ class ParseRtf:
             if type == "file_to_parse":
                 message = "You must provide a file for the script to work"
             msg = message
-            raise RtfInvalidCodeException, msg
+            raise RtfInvalidCodeException(msg)
         elif os.path.exists(the_file):
             pass # do nothing
         else:
             message = "The file '%s' cannot be found" % the_file
             msg = message
-            raise RtfInvalidCodeException, msg
+            raise RtfInvalidCodeException(msg)
 
     def __check_dir(self, the_dir):
         """Check to see if directory exists"""
@@ -215,12 +211,11 @@ class ParseRtf:
         if not dir_exists:
             message = "%s is not a directory" % the_dir
             msg = message
-            raise RtfInvalidCodeException, msg
+            raise RtfInvalidCodeException(msg)
         return 1
 
     def parse_rtf(self):
         """
-        
         Parse the file by calling on other classes.
 
         Requires:
@@ -228,10 +223,8 @@ class ParseRtf:
             Nothing
 
         Returns:
-            
             A parsed file in XML, either to standard output or to a file,
             depending on the value of 'output' when the instance was created.
-        
         """
         self.__temp_file = self.__make_temp_file(self.__file)
         # if the self.__deb_dir is true, then create a copy object,
@@ -269,7 +262,7 @@ class ParseRtf:
         tokenize_obj.tokenize()
 
         process_tokens_obj = rtf2xml.process_tokens.ProcessTokens(
-            in_file = self.__temp_file, 
+            in_file = self.__temp_file,
             bug_handler = RtfInvalidCodeException,
             copy = self.__copy,
             run_level = self.__run_level,
@@ -277,22 +270,19 @@ class ParseRtf:
             )
         try:
             return_value = process_tokens_obj.process_tokens()
-        except InvalidRtfException, msg:
+        except InvalidRtfException as msg:
             try:
                 os.remove(self.__temp_file)
             except OSError:
                 pass
-
-
             check_encoding_obj = rtf2xml.check_encoding.CheckEncoding(
                 bug_handler = RtfInvalidCodeException,
                     )
             check_encoding_obj.check_encoding(self.__file)
             sys.stderr.write('File "%s" does not appear to be RTF.\n' % self.__file)
-            raise InvalidRtfException, msg
-                
+            raise InvalidRtfException(msg)
         delete_info_obj = rtf2xml.delete_info.DeleteInfo(
-            in_file = self.__temp_file, 
+            in_file = self.__temp_file,
             copy = self.__copy,
             bug_handler = RtfInvalidCodeException,
             run_level = self.__run_level,)
@@ -303,10 +293,10 @@ class ParseRtf:
 
         # put picts in a separate file
         pict_obj = rtf2xml.pict.Pict(
-            in_file = self.__temp_file, 
+            in_file = self.__temp_file,
             bug_handler = RtfInvalidCodeException,
-            copy = self.__copy, 
-            orig_file = self.__file, 
+            copy = self.__copy,
+            orig_file = self.__file,
             out_file = self.__out_file,
             run_level = self.__run_level,
            )
@@ -314,9 +304,9 @@ class ParseRtf:
         self.__bracket_match('pict_data_info')
 
         correct_uni_obj = rtf2xml.correct_unicode.CorrectUnicode(
-            in_file = self.__temp_file, 
+            in_file = self.__temp_file,
             bug_handler = RtfInvalidCodeException,
-            copy = self.__copy, 
+            copy = self.__copy,
             run_level = self.__run_level,
             exception_handler = InvalidRtfException,
            )
@@ -326,7 +316,7 @@ class ParseRtf:
 
 
         combine_obj = rtf2xml.combine_borders.CombineBorders(
-            in_file = self.__temp_file, 
+            in_file = self.__temp_file,
             bug_handler = RtfInvalidCodeException,
             copy = self.__copy,
             run_level = self.__run_level,)
@@ -352,7 +342,7 @@ class ParseRtf:
         self.__bracket_match('separate_headers_info')
 
         list_numbers_obj = rtf2xml.list_numbers.ListNumbers(
-            in_file = self.__temp_file, 
+            in_file = self.__temp_file,
             bug_handler = RtfInvalidCodeException,
             copy = self.__copy,
             run_level = self.__run_level,
@@ -361,7 +351,7 @@ class ParseRtf:
         self.__bracket_match('list_number_info')
 
         preamble_div_obj = rtf2xml.preamble_div.PreambleDiv(
-            in_file = self.__temp_file, 
+            in_file = self.__temp_file,
             bug_handler = RtfInvalidCodeException,
             copy = self.__copy,
             run_level = self.__run_level,
@@ -378,21 +368,21 @@ class ParseRtf:
 
         hex2utf_obj = rtf2xml.hex_2_utf8.Hex2Utf8(
                 in_file = self.__temp_file,
-                copy = self.__copy, 
-                area_to_convert = 'preamble', 
-                char_file = self.__char_data, 
+                copy = self.__copy,
+                area_to_convert = 'preamble',
+                char_file = self.__char_data,
                 default_char_map = code_page,
                 run_level = self.__run_level,
                 bug_handler = RtfInvalidCodeException,
                 invalid_rtf_handler = InvalidRtfException,
-                )  
+                )
         hex2utf_obj.convert_hex_2_utf8()
         self.__bracket_match('hex_2_utf_preamble')
 
         fonts_obj = rtf2xml.fonts.Fonts(
             in_file = self.__temp_file,
             bug_handler = RtfInvalidCodeException,
-            copy = self.__copy, 
+            copy = self.__copy,
             default_font_num = default_font_num,
             run_level = self.__run_level,
             )
@@ -445,9 +435,8 @@ class ParseRtf:
         if old_rtf:
             if self.__run_level > 5:
                 msg = 'older RTF\n'
-                msg += 'self.__run_level is "%s"\n' % self.__run_level 
-                raise RtfInvalidCodeException, msg
-                        
+                msg += 'self.__run_level is "%s"\n' % self.__run_level
+                raise RtfInvalidCodeException(msg)
             if self.__run_level > 1:
                 sys.stderr.write('File could be older RTF...\n')
 
@@ -466,7 +455,7 @@ class ParseRtf:
             add_brackets_obj.add_brackets()
 
         fields_small_obj = rtf2xml.fields_small.FieldsSmall(
-            in_file = self.__temp_file, 
+            in_file = self.__temp_file,
             copy = self.__copy,
             bug_handler = RtfInvalidCodeException,
             run_level = self.__run_level,)
@@ -474,8 +463,8 @@ class ParseRtf:
         self.__bracket_match('fix_small_fields_info')
 
         fields_large_obj = rtf2xml.fields_large.FieldsLarge(
-            in_file = self.__temp_file, 
-            copy = self.__copy, 
+            in_file = self.__temp_file,
+            copy = self.__copy,
             bug_handler = RtfInvalidCodeException,
             run_level = self.__run_level)
         fields_large_obj.fix_fields()
@@ -502,15 +491,15 @@ class ParseRtf:
         paragraph_def_obj = rtf2xml.paragraph_def.ParagraphDef(
             in_file = self.__temp_file,
             bug_handler = RtfInvalidCodeException,
-            copy = self.__copy, 
+            copy = self.__copy,
             default_font = default_font,
             run_level = self.__run_level,)
         list_of_styles = paragraph_def_obj.make_paragraph_def()
 
         body_styles_obj = rtf2xml.body_styles.BodyStyles(
-            in_file = self.__temp_file, 
+            in_file = self.__temp_file,
             bug_handler = RtfInvalidCodeException,
-            copy = self.__copy, 
+            copy = self.__copy,
             list_of_styles = list_of_styles,
             run_level = self.__run_level,)
         body_styles_obj.insert_info()
@@ -519,7 +508,7 @@ class ParseRtf:
         self.__bracket_match('paragraph_def_info')
 
         table_obj = rtf2xml.table.Table(
-                in_file = self.__temp_file, 
+                in_file = self.__temp_file,
                 bug_handler = RtfInvalidCodeException,
                 copy = self.__copy,
                 run_level = self.__run_level,)
@@ -527,9 +516,9 @@ class ParseRtf:
         self.__bracket_match('table_info')
 
         table_info_obj = rtf2xml.table_info.TableInfo(
-            in_file = self.__temp_file, 
+            in_file = self.__temp_file,
             bug_handler = RtfInvalidCodeException,
-            copy = self.__copy, 
+            copy = self.__copy,
             table_data = table_data,
             run_level = self.__run_level,)
         table_info_obj.insert_info()
@@ -537,9 +526,9 @@ class ParseRtf:
 
         if self.__form_lists:
             make_list_obj =  rtf2xml.make_lists.MakeLists(
-                in_file = self.__temp_file, 
+                in_file = self.__temp_file,
                 bug_handler = RtfInvalidCodeException,
-                copy = self.__copy, 
+                copy = self.__copy,
                 headings_to_sections = self.__headings_to_sections,
                 run_level = self.__run_level,
                 list_of_lists = list_of_lists,
@@ -550,27 +539,27 @@ class ParseRtf:
 
         if self.__headings_to_sections:
             headings_to_sections_obj =  rtf2xml.headings_to_sections.HeadingsToSections(
-                in_file = self.__temp_file, 
+                in_file = self.__temp_file,
                 bug_handler = RtfInvalidCodeException,
-                copy = self.__copy, 
+                copy = self.__copy,
                 run_level = self.__run_level,)
             headings_to_sections_obj.make_sections()
             self.__bracket_match('headings_to_sections_info')
 
         if self.__group_styles:
             group_styles_obj = rtf2xml.group_styles.GroupStyles(
-                in_file = self.__temp_file, 
+                in_file = self.__temp_file,
                 bug_handler = RtfInvalidCodeException,
-                copy = self.__copy, 
+                copy = self.__copy,
                 wrap = 1,
                 run_level = self.__run_level,)
             group_styles_obj.group_styles()
             self.__bracket_match('group_styles_info')
         if self.__group_borders:
             group_borders_obj = rtf2xml.group_borders.GroupBorders(
-                in_file = self.__temp_file, 
+                in_file = self.__temp_file,
                 bug_handler = RtfInvalidCodeException,
-                copy = self.__copy, 
+                copy = self.__copy,
                 wrap = 1,
                 run_level = self.__run_level,)
             group_borders_obj.group_borders()
@@ -578,7 +567,7 @@ class ParseRtf:
 
 
         inline_obj = rtf2xml.inline.Inline(
-                in_file = self.__temp_file, 
+                in_file = self.__temp_file,
                 bug_handler = RtfInvalidCodeException,
                 copy = self.__copy,
                 run_level = self.__run_level,)
@@ -591,7 +580,7 @@ class ParseRtf:
                             area_to_convert = 'body',
                             copy = self.__copy,
                             char_file = self.__char_data,
-                            convert_caps = self.__convert_caps, 
+                            convert_caps = self.__convert_caps,
                             convert_symbol = self.__convert_symbol,
                             convert_wingdings = self.__convert_wingdings,
                             convert_zapf = self.__convert_zapf,
@@ -607,7 +596,7 @@ class ParseRtf:
 
         tags_obj = rtf2xml.convert_to_tags.ConvertToTags(
                 in_file = self.__temp_file,
-                copy = self.__copy, 
+                copy = self.__copy,
                 dtd_path = self.__dtd_path,
                 indent = self.__indent,
                 run_level = self.__run_level,
@@ -620,14 +609,14 @@ class ParseRtf:
 
 
         output_obj = rtf2xml.output.Output(
-                file = self.__temp_file, 
+                file = self.__temp_file,
                 orig_file = self.__file,
                 output_dir = self.__out_dir,
                 out_file = self.__out_file,
             )
-        output_obj.output()
+        xml_string = output_obj.output()
         os.remove(self.__temp_file)
-        return self.__exit_level
+        return xml_string
 
 
     def __bracket_match(self, file_name):
@@ -637,26 +626,26 @@ class ParseRtf:
                 pass
                # sys.stderr.write( msg + ' in ' + file_name + "\n")
             else:
-               msg += msg +  " in file '" + file_name + "'\n" 
-               raise RtfInvalidCodeException, msg
+               msg += msg +  " in file '" + file_name + "'\n"
+               raise RtfInvalidCodeException(msg)
 
     def __return_code(self, num):
         if num == None:
             return
         if int(num) > self.__exit_level:
             self.__exit_level = num
-        
+
     def __make_temp_file(self,file):
         """Make a temporary file to parse"""
-	write_file="rtf_write_file"
-	read_obj = open(file,'r')
-	write_obj = open(write_file, 'w')
-	line = "dummy"
-	while line:
-		line = read_obj.read(1000)
-		write_obj.write(line )
-	read_obj.close()
-	write_obj.close()
+        write_file="rtf_write_file"
+        read_obj = open(file,'r')
+        write_obj = open(write_file, 'w')
+        line = "dummy"
+        while line:
+                line = read_obj.read(1000)
+                write_obj.write(line )
+        read_obj.close()
+        write_obj.close()
         return write_file
 
     """

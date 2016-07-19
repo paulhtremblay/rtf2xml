@@ -1,4 +1,4 @@
-#########################################################################
+﻿#########################################################################
 #                                                                       #
 #                                                                       #
 #   copyright 2016 Paul Henry Tremblay                                  #
@@ -382,7 +382,7 @@ Instead, ingore all section information in a field-block.
             self.__handle_sec_def(my_string)
         elif self.__run_level > 3:
             msg = 'missed a flag\n'
-            raise self.__bug_handler, msg
+            raise self.__bug_handler(msg)
 
 
     def __handle_sec_def(self, my_string):
@@ -699,7 +699,6 @@ Instead, ingore all section information in a field-block.
             beginning of the body.
 
             If the state is body, send the line to the body method.
-            
 
         """
 
@@ -717,7 +716,6 @@ Instead, ingore all section information in a field-block.
                 sys.stderr.write('no no matching state in module sections.py\n')
                 sys.stderr.write(self.__state + '\n')
             action(line)
-            
         read_obj.close()
         self.__write_obj.close()
         copy_obj = rtf2xml.copy.Copy(bug_handler = self.__bug_handler)

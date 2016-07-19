@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+﻿#!/usr/bin/env python
 
 import os, sys
 
@@ -13,7 +13,7 @@ class CheckEncoding:
             char_position +=1
             try:
                 char.decode(encoding)
-            except UnicodeError, msg:
+            except UnicodeError as  msg:
                 sys.stderr.write('line: %s char: %s\n' %  (line_num, char_position))
                 sys.stderr.write(str(msg) + '\n')
 

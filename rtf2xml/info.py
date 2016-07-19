@@ -1,4 +1,4 @@
-#########################################################################
+﻿#########################################################################
 #                                                                       #
 #                                                                       #
 #   copyright 2016 Paul Henry Tremblay                                  #
@@ -276,7 +276,7 @@ class Info:
             if att_changed == None:
                 if self.__run_level > 3:
                     msg = 'no dictionary match for %s\n' % att
-                    raise self.__bug_handler, msg
+                    raise self.__bug_handler(msg)
             else:
                 self.__text_string += '<%s>%s' % (att_changed, value)
 

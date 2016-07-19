@@ -1,4 +1,4 @@
-#########################################################################
+﻿#########################################################################
 #                                                                       #
 #                                                                       #
 #   copyright 2016 Paul Henry Tremblay                                  #
@@ -246,7 +246,7 @@ class Colors:
         except ValueError:
             if self.__run_level > 3:
                 msg = 'can\'t make integer from string\n'
-                raise self.__bug_handler, msg
+                raise self.__bug_handler(msg)
             else:
                 return 'bdr-color_:no-value'
         hex_num = self.__figure_num(num)
@@ -261,7 +261,7 @@ class Colors:
         if hex_num == None:
             if self.__run_level > 3:
                 msg = 'no value in self.__color_dict for key %s\n' % num
-                raise self.__bug_hanlder, msg
+                raise self.__bug_hanlder(msg)
         if hex_num == None:
             hex_num = '0'
         return hex_num

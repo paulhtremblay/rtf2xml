@@ -1,4 +1,4 @@
-#########################################################################
+﻿#########################################################################
 #                                                                       #
 #                                                                       #
 #   copyright 2016 Paul Henry Tremblay                                  #
@@ -131,7 +131,7 @@ class DeleteInfo:
                 # believe I have a '{\*}
                 if self.__run_level > 3:
                     msg = 'flag problem\n'
-                    raise self.__bug_handler, msg
+                    raise self.__bug_handler(msg)
                 return 1
         elif self.__token_info in self.__allowable :
             if self.__ob:

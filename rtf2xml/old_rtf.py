@@ -1,4 +1,4 @@
-#########################################################################
+﻿#########################################################################
 #                                                                       #
 #                                                                       #
 #   copyright 2016 Paul Henry Tremblay                                  #
@@ -134,6 +134,7 @@ class OldRtf:
             line_num += 1
             self.__token_info = line[:16]
             if self.__token_info == 'mi<mk<body-close':
+                read_obj.close()
                 return 0
                 self.__ob_group = 0
             if self.__token_info == 'ob<nu<open-brack':
@@ -144,17 +145,21 @@ class OldRtf:
                 self.__cb_count = line[-5:-1]
             self.__inline_info = line[6:16]
             if self.__state == 'after_body':
+                read_obj.close()
                 return 0
             action = self.__action_dict.get(self.__state)
             if not action:
                 sys.stderr.write('No action for state!\n')
             result = action(line)
             if result == 'new_rtf':
+                read_obj.close()
                 return 0
             elif result == 'old_rtf':
+                read_obj.close()
                 return 1
             self.__previous_token = line[6:16]
 
+        read_obj.close()
         return 0
 
 

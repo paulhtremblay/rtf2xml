@@ -1,4 +1,4 @@
-import sys, os, rtf2xml.copy, tempfile
+﻿import sys, os, rtf2xml.copy, tempfile
 
 """
 
@@ -434,7 +434,7 @@ class Inline:
             if len(inline_list) <= 0:
                 if self.__run_level > 3:
                     msg = 'self.__inline_list is %s\n' % self.__inline_list
-                    raise self.__bug_handler, msg
+                    raise self.__bug_handler(msg)
                 self.__write_obj.write('error\n')
                 self.__groups_in_waiting[0] = 0
                 return
@@ -598,7 +598,6 @@ class Inline:
                 sys.stderr.write('No matching state in module inline_for_lists.py\n')
                 sys.stderr.write(self.__state + '\n')
             action(line)
-            
         read_obj.close()
         self.__write_obj.close()
         copy_obj = rtf2xml.copy.Copy(bug_handler = self.__bug_handler)

@@ -1,4 +1,4 @@
-#########################################################################
+﻿#########################################################################
 #                                                                       #
 #                                                                       #
 #   copyright 2016 Paul Henry Tremblay                                  #
@@ -64,16 +64,17 @@ class Output:
             output the line to the screen if no output file given. Otherwise, output to
             the file.
 
-        
         """
         # self.__output_xml(self.__file, self.__out_file)
 
+        xml_string = None
         if self.__output_dir:
             self.__output_to_dir_func()
         elif self.__out_file:
             self.__output_xml(self.__file, self.__out_file)
         else:
-            self.__output_to_standard_func()
+            xml_string = self.__output_to_standard_func()
+        return xml_string
 
 
     def __output_to_dir_func(self):
@@ -174,11 +175,14 @@ class Output:
 
         read_obj = open(self.__file, 'r')
         line = 1
+        final = ''
         while line:
             line = read_obj.readline()
-            sys.stdout.write(line)
+            final += line
+            #sys.stdout.write(line)
 
         read_obj.close()
+        return final
 
 
     def __output_xml(self, in_file, out_file):

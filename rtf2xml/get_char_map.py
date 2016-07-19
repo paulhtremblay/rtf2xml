@@ -1,4 +1,4 @@
-#########################################################################
+﻿#########################################################################
 #                                                                       #
 #                                                                       #
 #   copyright 2016 Paul Henry Tremblay                                  #
@@ -37,13 +37,13 @@ class GetCharMap:
         line = 1
         while line:
             line = read_obj.readline()
-	    begin_element = '<%s>' % map;
-	    end_element = '</%s>' % map
+            begin_element = '<%s>' % map;
+            end_element = '</%s>' % map
             if not found_map:
-                if string.find(line, begin_element) >= 0:
+                if line.find(begin_element) >= 0:
                     found_map = 1
             else:
-		if string.find(line, end_element) >= 0:
+                if line.find(end_element) >= 0:
                     break
                 else:
                     line = line[:-1]
@@ -55,6 +55,6 @@ class GetCharMap:
         if not found_map:
             msg = 'no map found\n'
             msg += 'map is "%s"\n'
-            raise self.__bug_handler, msg
+            raise self.__bug_handler(msg)
         return map_dict
 

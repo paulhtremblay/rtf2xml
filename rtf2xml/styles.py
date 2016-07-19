@@ -1,4 +1,4 @@
-#########################################################################
+﻿#########################################################################
 #                                                                       #
 #                                                                       #
 #   copyright 2016 Paul Henry Tremblay                                  #
@@ -356,7 +356,7 @@ class Styles:
                 if info not in self.__ignore_list:
                     if self.__run_level > 3:
                         msg = 'no value for key %s\n' % info
-                        raise self.__bug_handler, msg
+                        raise self.__bug_handler(msg)
             else:
                 value = line[20:-1]
                 self.__enter_dict_entry(att, value)
@@ -413,7 +413,7 @@ class Styles:
         else:
             if self.__run_level > 3:
                 msg = 'no entry for %s\n' % self.__token_info
-                raise self.__bug_handler, msg
+                raise self.__bug_handler(msg)
 
 
     def __tab_leader_func(self, line):
@@ -447,7 +447,7 @@ class Styles:
         else:
             if self.__run_level > 3:
                 msg = 'no entry for %s\n' % self.__token_info
-                raise self.__bug_handler, msg
+                raise self.__bug_handler(msg)
 
 
     def __tab_bar_func(self, line):
@@ -544,7 +544,7 @@ class Styles:
         else:
             if self.__run_level > 3:
                 msg = self.__type_of_style + 'error\n'
-                raise self.__bug_handler, msg
+                raise self.__bug_handler(msg)
         smallest_dict = {}
         smallest_dict[att] = value
         type_dict[self.__styles_num] = smallest_dict
@@ -704,7 +704,7 @@ class Styles:
                                 if self.__run_level > 4:
                                     msg = '%s %s is based on %s\n' % (type, key, value)
                                     msg = 'There is no style with %s\n' % value
-                                    raise self.__bug_handler, msg
+                                    raise self.__bug_handler(msg)
                             del self.__styles_dict[type][key][style]
 
 
@@ -921,7 +921,7 @@ class Styles:
             Read one line in at a time. Determine what action to take based on
             the state. If the state is before the style table, look for the
             beginning of the style table.
-            
+
             If the state is in the style table, create the style dictionary
             and print out the tags.
 
@@ -944,7 +944,6 @@ class Styles:
                 sys.stderr.write('no matching state in module styles.py\n')
                 sys.stderr.write(self.__state + '\n')
             action(line)
-            
         read_obj.close()
         self.__write_obj.close()
         copy_obj = rtf2xml.copy.Copy(bug_handler = self.__bug_handler)

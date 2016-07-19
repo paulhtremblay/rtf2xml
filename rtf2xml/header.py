@@ -1,4 +1,4 @@
-#########################################################################
+﻿#########################################################################
 #                                                                       #
 #                                                                       #
 #   copyright 2016 Paul Henry Tremblay                                  #
@@ -17,10 +17,10 @@ class Header:
 
     """
 
-    def __init__(self, 
-            in_file , 
+    def __init__(self,
+            in_file ,
             bug_handler,
-            copy = None, 
+            copy = None,
             run_level = 1,
             ):
         self.__file = in_file
@@ -28,15 +28,11 @@ class Header:
         self.__copy = copy
         self.__write_to = tempfile.mktemp()
         self.__found_a_header = 0
-        
 
-
-    
     def __in_header_func(self, line):
         """
 
         Handle all tokens that are part of header
-        
         """
 
 
@@ -66,7 +62,7 @@ class Header:
         self.__header_count += 1
         # temporarily set this to zero so I can enter loop
         self.__cb_count = 0
-	self.__header_bracket_count = self.__ob_count
+        self.__header_bracket_count = self.__ob_count
         self.__write_obj.write(
         'mi<mk<header-ind<%04d\n' % self.__header_count)
         self.__write_to_head_obj.write(
@@ -102,9 +98,9 @@ class Header:
         self.__bracket_count=0
         self.__ob_count = 0
         self.__cb_count = 0
-	self.__header_bracket_count = 0
-	self.__in_header = 0
-	self.__header_count = 0
+        self.__header_bracket_count = 0
+        self.__in_header = 0
+        self.__header_count = 0
         self.__head_dict = {
             'head-left_'        :   ('header-left'),
             'head-right'        :   ('header-right'),

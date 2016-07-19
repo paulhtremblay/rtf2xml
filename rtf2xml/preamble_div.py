@@ -1,4 +1,4 @@
-#########################################################################
+﻿#########################################################################
 #                                                                       #
 #                                                                       #
 #   copyright 2016 Paul Henry Tremblay                                  #
@@ -453,7 +453,7 @@ cw<ci<font-style<nu<0
         info = line[6:16]
         changed = self.__margin_dict.get(info)
         if changed == None:
-            print 'woops!'
+            pass
         else:
             self.__page[changed] = line[20:-1]
 
@@ -635,7 +635,7 @@ cw<ci<font-style<nu<0
                 self.__ob_group -= 1
             action = self.__state_dict.get(self.__state)
             if action == None:
-                print self.__state
+                pass
             action(line)
             
         read_obj.close()

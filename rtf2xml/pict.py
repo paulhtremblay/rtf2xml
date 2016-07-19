@@ -1,4 +1,4 @@
-#########################################################################
+﻿#########################################################################
 #                                                                       #
 #                                                                       #
 #   copyright 2016 Paul Henry Tremblay                                  #
@@ -11,12 +11,12 @@ class Pict:
     """Process graphic information"""
 
 
-    def __init__(self, 
-            in_file, 
+    def __init__(self,
+            in_file,
             bug_handler,
             out_file,
             copy = None,
-            orig_file = None, 
+            orig_file = None,
             run_level = 1,
         ):
         self.__file = in_file
@@ -36,7 +36,6 @@ class Pict:
 
         # this is left over
         self.__no_ask = 1
-        
 
     def __initiate_pict_dict(self):
         self.__pict_dict = {
@@ -69,7 +68,7 @@ class Pict:
         if not os.path.isdir(self.__dir_name):
             try:
                 os.mkdir(self.__dir_name)
-            except OSError, msg:
+            except OSError as msg:
                 msg = str(msg)
                 msg += "Couldn't make directory '%s':\n" % (self.__dir_name)
                 raise self.__bug_handler

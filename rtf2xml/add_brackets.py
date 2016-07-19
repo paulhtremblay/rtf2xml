@@ -1,4 +1,4 @@
-#########################################################################
+﻿#########################################################################
 #                                                                       #
 #                                                                       #
 #   copyright 2016 Paul Henry Tremblay                                  #
@@ -67,8 +67,6 @@ class AddBrackets:
 
         }
 
-    
-                
         self.__state = 'before_body'
         self.__inline = {}
         self.__temp_group = []
@@ -103,9 +101,6 @@ class AddBrackets:
         'cw<ci<superscrip',
         'cw<ci<underlined' ,
         'cw<ul<underlined' ,
-        
-        
-        
         ]
 
 
@@ -235,7 +230,6 @@ class AddBrackets:
         line_to_read = 1
         while line_to_read:
             line_to_read = read_obj.readline()
-                
             line = line_to_read
             self.__token_info = line[:16]
             if self.__token_info == 'ob<nu<open-brack':
@@ -249,7 +243,6 @@ class AddBrackets:
             action(line)
         read_obj.close()
         self.__write_obj.close()
-
         bad_brackets = self.__check_brackets(self.__write_to)
         if not bad_brackets:
             copy_obj = rtf2xml.copy.Copy(bug_handler = self.__bug_handler)
@@ -264,15 +257,3 @@ class AddBrackets:
 
         os.remove(self.__write_to)
 
-
-
-
-
-
-
-
-
-        
-
-
-    

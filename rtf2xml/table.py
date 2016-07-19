@@ -1,4 +1,4 @@
-#########################################################################
+﻿#########################################################################
 #                                                                       #
 #                                                                       #
 #   copyright 2016 Paul Henry Tremblay                                  #
@@ -289,13 +289,13 @@ class Table:
 
 
         """
-	self.__rows_in_table = 0;
-	self.__cells_in_table = 0;
-	self.__cells_in_row = 0;
+        self.__rows_in_table = 0;
+        self.__cells_in_table = 0;
+        self.__cells_in_row = 0;
         self.__max_number_cells_in_row = 0
         self.__table_data.append({})
         self.__list_of_cells_in_row = []
-    
+
         self.__write_obj.write('mi<mk<tabl-start\n')
         self.__state.append('in_table')
     

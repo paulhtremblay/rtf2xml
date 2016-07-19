@@ -1,4 +1,4 @@
-#########################################################################
+﻿#########################################################################
 #                                                                       #
 #                                                                       #
 #   copyright 2016 Paul Henry Tremblay                                  #
@@ -126,7 +126,7 @@ class ListTable:
                 self.__ob_group -= 1
             action = self.__state_dict.get(self.__state)
             if action == None:
-                print self.__state
+                pass
             action(line)
         self.__write_final_string()
         # self.__add_to_final_line()

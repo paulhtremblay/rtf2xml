@@ -1,4 +1,4 @@
-#########################################################################
+﻿#########################################################################
 #                                                                       #
 #                                                                       #
 #   copyright 2016 Paul Henry Tremblay                                  #
@@ -28,22 +28,30 @@ Logic
 --------------
 
 
-1. As soon as a field is found, make a new text string by appending an empty text string to the field list. Collect all the lines in this string until the field instructions are found.
+1. As soon as a field is found, make a new text string by appending an empty
+   text string to the field list. Collect all the lines in this string until the
+   field instructions are found.
 
-2. Collect all the tokens and text in the field instructions. When the end of the field instructions is found, process the string of text with the rtf2xml.field_strings module. Append the processed string to the field instructins list.
+2. Collect all the tokens and text in the field instructions. When the end of
+   the field instructions is found, process the string of text with the
+   rtf2xml.field_strings module. Append the processed string to the field
+   instructins list.
 
-3. Continue collecting tokens. Check for paragraphs or sections. If either is found, add to the paragraph or section list.
+3. Continue collecting tokens. Check for paragraphs or sections. If either is
+   found, add to the paragraph or section list.
 
-4. Continue collecting tokens and text either the beginning of a new field is found, or the end of this field is found.
+4. Continue collecting tokens and text either the beginning of a new field is
+   found, or the end of this field is found.
 
-5. If a new field is found, repeat steps 1-3. 
+5. If a new field is found, repeat steps 1-3.
 
-6. If the end of the field is found, process the last text string of the field list. 
+6. If the end of the field is found, process the last text string of the field list.
 
-7. If the field list is empty (after removing the last text string), there are no more fields. Print out the final string. If the list contains other strings, add the processed string to the last string in the field list.
+7. If the field list is empty (after removing the last text string), there are
+   no more fields. Print out the final string. If the list contains other strings,
+  add the processed string to the last string in the field list.
 
 
-    
 
 ============================
 Examples
@@ -85,7 +93,7 @@ Examples
         \widctlpar\aspalpha\aspnum\faauto\adjustright\rin0\lin0\itap0
         \f4\lang1033\cgrid }}\pard\plain
         \widctlpar\aspalpha\aspnum\faauto\adjustright\rin0\lin0\itap0
-        \f4\lang1033\cgrid {\fs28 \u214\'85 \par }{\fs36 {\field{\*\fldinst
+        \f4\lang1033\cgrid {\fs28 \\u214\'85 \par }{\fs36 {\field{\*\fldinst
         SYMBOL 67 \\f "Symbol" \\s 18}{\fldrslt\f3\fs36}}}
 
     Becomes:

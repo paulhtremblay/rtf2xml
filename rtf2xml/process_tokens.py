@@ -1,4 +1,4 @@
-#########################################################################
+﻿#########################################################################
 #                                                                       #
 #                                                                       #
 #   copyright 2016 Paul Henry Tremblay                                  #
@@ -15,22 +15,18 @@ import rtf2xml.check_brackets
 
 class ProcessTokens:
     """
-    
     Process each token on a line and add information that will be useful for
     later processing. Information will be put on one line, delimited by "<"
     for main fields, and ">" for sub fields
-    
     """
 
 
-    
-    def __init__(self, 
+    def __init__(self,
             in_file,
             exception_handler,
             bug_handler,
-            copy = None, 
+            copy = None,
             run_level = 1,
-            
             ):
         self.__file = in_file
         self.__bug_handler = bug_handler
@@ -676,7 +672,7 @@ class ProcessTokens:
             except ValueError:
                 if self.__run_level > 3:
                     msg = 'number "%s" cannot be converted to integer\n' % num
-                    raise self.__bug_handler, msg
+                    raise self.__bug_handler(msg)
 
             type = self.__number_type_dict.get(num)
             if type == None:
@@ -692,7 +688,7 @@ class ProcessTokens:
             lang_name = "not defined"
             if self.__run_level > 3:
                 msg = 'No entry for number "%s"' % num
-                raise self.__bug_handler, msg
+                raise self.__bug_handler(msg)
         return 'cw<%s<%s<nu<%s\n' % (pre, token, lang_name)
 
 
@@ -751,7 +747,7 @@ class ProcessTokens:
            msg = 'boolean should have some value module process tokens\n'
            msg += 'token is ' + token + "\n"
            msg += "'" + num + "'" + "\n"
-           raise self.__bug_handler, msg
+           raise self.__bug_handler(msg)
 
     def __no_sup_sub_func(self, pre, token, num):
         the_string = 'cw<ci<subscript_<nu<false\n'
@@ -762,14 +758,14 @@ class ProcessTokens:
     def divide_num(self, numerator, denominator):
         try:
             numerator = float(numerator)
-        except TypeError, msg:
+        except TypeError(msg):
             if self.__run_level > 3:
                 msg = 'no number to process?\n'
                 msg += 'this indicates that the token '
                 msg += ' \(\\li\) should have a number and does not\n'
                 msg += 'numerator is "%s"\n' % numerator
                 msg += 'denominator is "%s"\n' % denominator
-                raise self.__bug_handler, msg
+                raise self.__bug_handler(msg)
             if 5 > self.__return_code:
                 self.__return_code = 5
             return 0
@@ -792,7 +788,7 @@ class ProcessTokens:
             if not second:
                 if self.__run_level > 3:
                     msg = "token is '%s' \n" % token
-                    raise self.__bug_handler, msg
+                    raise self.__bug_handler(msg)
                 return first, 0
                     
         else:
@@ -876,27 +872,21 @@ class ProcessTokens:
             if not token:
                 continue
             line_count += 1
-            try:
-                token.decode('us-ascii')
-            except UnicodeError, msg:
-                msg = str(msg)
-                msg += 'Invalid RTF: File not ascii encoded.\n'
-                raise self.__exception_handler, msg 
             if not first_token:
                 if token != '\\{':
                     msg = 'Invalid RTF: document doesn\'t start with {\n'
-                    raise self.__exception_handler, msg
+                    raise self.__exception_handler(msg)
                 first_token = 1
             elif first_token and not second_token:
                 if token[0:4] != '\\rtf':
                     msg ='Invalid RTF: document doesn\'t start with \\rtf \n' 
-                    raise self.__exception_handler, msg
+                    raise self.__exception_handler(msg)
                 second_token = 1
             ##token = self.evaluate_token(token)
             the_index = token.find('\\ ')
             if token != None and  the_index > -1:
                 msg ='Invalid RTF: token "\\ " not valid. \n' 
-                raise self.__exception_handler, msg
+                raise self.__exception_handler(msg)
             elif token[0:1] == "\\":
                 line = self.process_cw(token)
                 if line != None:
@@ -911,12 +901,11 @@ class ProcessTokens:
                     else:
                         write_obj.write('tx<nu<__________<%s\n' % field)
 
-        
         read_obj.close()
         write_obj.close()
         if not line_count:
-            msg ='Invalid RTF: file appears to be empty. \n' 
-            raise self.__exception_handler, msg
+            msg ='Invalid RTF: file appears to be empty. \n'
+            raise self.__exception_handler(msg)
         copy_obj = rtf2xml.copy.Copy(bug_handler = self.__bug_handler)
         if self.__copy:
             copy_obj.copy_file(self.__write_to, "processed_tokens.data")
@@ -925,7 +914,7 @@ class ProcessTokens:
         bad_brackets = self.__check_brackets(self.__file)
         if bad_brackets:
             msg = 'Invalid RTF: document does not have matching brackets.\n'
-            raise self.__exception_handler, msg
+            raise self.__exception_handler(msg)
         else:
             return self.__return_code
 
