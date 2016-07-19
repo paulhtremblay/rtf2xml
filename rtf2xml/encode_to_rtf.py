@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+﻿#!/usr/bin/env python
 
     
     
@@ -54,7 +54,7 @@ class Encode:
         rtf_dir = rtf2xml.configuration_dir.get_dir()
         if not os.path.isfile(the_char_map):
             msg = ('Cannot find character set "%s" \n' % the_char_map)
-            raise self.__bug_hander, msg
+            raise self.__bug_hander(msg)
 
         self.__sub_dict = {}
         char_map_obj = rtf2xml.get_char_map.GetCharMap(the_char_map)
@@ -91,7 +91,7 @@ class Encode:
         line = line.replace('\t', '\\tab')
         try:
             line.encode('us-ascii')
-        except UnicodeError, msg:
+        except UnicodeError as msg:
             line = self.__standard_sub(line)
         return line
 
@@ -99,7 +99,7 @@ class Encode:
         line = re.sub(self.__sub_string, self.__replace_func, line) 
         try:
             line.encode('us-ascii')
-        except UnicodeError, msg:
+        except UnicodeError as  msg:
             line = self.__encode_each_char(line)
         return line
     

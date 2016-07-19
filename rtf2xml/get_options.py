@@ -1,4 +1,4 @@
-#########################################################################
+﻿#########################################################################
 #                                                                       #
 #                                                                       #
 #   copyright 2016 Paul Henry Tremblay                                  #
@@ -128,7 +128,7 @@ class GetOptions:
         if the_level:
             try:
                 return_options['level'] = int(the_level)
-            except ValueError, msg:
+            except ValueError as msg:
                 sys.stderr.write('The options "--level" must be a number.\n')
                 return_options['valid'] = 0
                 return return_options

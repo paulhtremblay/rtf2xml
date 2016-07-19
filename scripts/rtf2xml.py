@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env python
+﻿#!/usr/bin/env python3
 
 "Convert a Microsoft RTF file to XML"
 
@@ -64,7 +64,7 @@ if os.path.basename(sys.argv[0]) == 'rtf2xml.py':
 
 
 
-import tempfile 
+import tempfile
 import rtf2xml.ParseRtf
 import rtf2xml.get_options
 
@@ -88,7 +88,7 @@ def make_debug_dir(out_file):
     if not os.path.isdir(debug_dir):
         try:
             os.mkdir(debug_dir)
-        except OSError, msg:
+        except OSError as msg:
             sys.stderr.write('Sorry, but cannot make a debug directory:\n')
             sys.stderr.write(msg)
             sys.stderr.wrtie('Script will now quit.\n')
@@ -149,62 +149,62 @@ def print_config_message(options_dict):
     no_dtd = options_dict.get('no-dtd')
 
     if in_file:
-        print "in file is %s" % in_file
+        print ("in file is %s") % in_file
     else:
-        print "No input file specified"
+        print ("No input file specified")
     if out_file:
-        print "out file is %s" % out_file
+        print ("out file is %s" % out_file)
     else:
-        print "No output file specified"
+        print ("No output file specified")
 
     if convert_symbol:
-        print "script will convert Symbol font"
+        print ("script will convert Symbol font")
     else:
-        print "script will not convert Symol font"
+        print ("script will not convert Symol font")
 
     if convert_zapf:
-        print "script will convert Zapf Dingbat font"
+        print ("script will convert Zapf Dingbat font")
     else:
-        print "script will not convert Zapf Dingbat font"
+        print ("script will not convert Zapf Dingbat font")
 
     if convert_wingdings:
-        print "script will convert Wingdings font"
+        print ("script will convert Wingdings font")
     else:
-        print "script will not convert Wingdings font"
+        print ("script will not convert Wingdings font")
 
-    print "the run level = '%s'" % run_level
+    print ("the run level = '%s'" % run_level)
 
     if indent:
-        print 'script will indent resulting XML'
+        print ('script will indent resulting XML')
     else:
-        print 'script will not indent resulting XML'
+        print ('script will not indent resulting XML')
 
     if form_lists:
-        print 'script will form lists'
+        print ('script will form lists')
     else:
-        print 'script will not form lists'
+        print ('script will not form lists')
 
     if headings_to_sections:
-        print 'script will convert headings to sections'
+        print ('script will convert headings to sections')
     else:
-        print 'script will not convert headings to sections'
+        print ('script will not convert headings to sections')
 
     if group_styles:
-        print 'script will group styles with the same name'
+        print ('script will group styles with the same name')
     else:
-        print 'script will not group styles with the same name'
+        print ('script will not group styles with the same name')
 
     if group_borders:
-        print 'script will group borders'
+        print ('script will group borders')
     else:
-        print 'script will not group borders'
+        print ('script will not group borders')
 
     if empty_paragraphs:
-        print 'script will print out empty paragraphs'
+        print ('script will print out empty paragraphs')
     else:
-        print 'script will ignore empty paragraphs'
+        print ('script will ignore empty paragraphs')
 
-    print 'the script will print out the following dtd: "%s"' % dtd
+    print ('the script will print out the following dtd: "%s"') % dtd
 
 def handle_options():
     get_options_obj = rtf2xml.get_options.GetOptions(
@@ -272,10 +272,6 @@ def print_version():
 rtf2xml %s
 Written by Paul Tremblay.
 
-Copyright (C) 2003 Free Software Foundation, Inc.
-This is free software; see the source for copying conditions.  There is NO
-warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-
 """
 % __version__
             )
@@ -286,12 +282,12 @@ def Handle_Main():
 
     this_run_level = options_dict.get('level')
     if this_run_level > 3:
-        parse_obj =rtf2xml.ParseRtf.ParseRtf(   
-                in_file = options_dict['in-file'], 
+        parse_obj =rtf2xml.ParseRtf.ParseRtf(
+                in_file = options_dict['in-file'],
                 out_file = options_dict['the-out-file'],
                 out_dir = options_dict['out-dir'],
-                dtd = options_dict.get('raw-dtd-path'), 
-                char_data = options_dict.get('char-data'), 
+                dtd = options_dict.get('raw-dtd-path'),
+                char_data = options_dict.get('char-data'),
                 debug = options_dict['debug-dir'],
                 convert_symbol = options_dict['convert-symbol'],
                 convert_zapf = options_dict.get('convert-zapf'),
@@ -305,17 +301,18 @@ def Handle_Main():
                 group_borders = options_dict.get('group-borders'),
                 empty_paragraphs = options_dict.get('empty-paragraphs'),
                 no_dtd = 1,
-        ) 
+        )
 
-        parse_obj.parse_rtf()
+        xml_string = parse_obj.parse_rtf()
+        sys.stdout.write(xml_string)
     else:
         try:
-            parse_obj =rtf2xml.ParseRtf.ParseRtf(   
-                    in_file = options_dict['in-file'], 
+            parse_obj =rtf2xml.ParseRtf.ParseRtf(
+                    in_file = options_dict['in-file'],
                     out_file = options_dict['the-out-file'],
                     out_dir = options_dict['out-dir'],
-                    dtd = options_dict.get('raw-dtd-path'), 
-                    char_data = options_dict.get('char-data'), 
+                    dtd = options_dict.get('raw-dtd-path'),
+                    char_data = options_dict.get('char-data'),
                     debug = options_dict['debug-dir'],
                     convert_symbol = options_dict['convert-symbol'],
                     convert_zapf = options_dict.get('convert-zapf'),
@@ -329,13 +326,14 @@ def Handle_Main():
                     group_borders = options_dict.get('group-borders'),
                     empty_paragraphs = options_dict.get('empty-paragraphs'),
                     no_dtd = 1,
-            ) 
+            )
 
-            parse_obj.parse_rtf()
-        except rtf2xml.ParseRtf.InvalidRtfException, msg:
+            xml_string = parse_obj.parse_rtf()
+            sys.stdout.write(xml_string)
+        except rtf2xml.ParseRtf.InvalidRtfException as msg:
             quit(msg = msg)
 
-        except rtf2xml.ParseRtf.RtfInvalidCodeException, msg:
+        except rtf2xml.ParseRtf.RtfInvalidCodeException as msg:
             quit(msg = msg)
 
 

@@ -1,13 +1,8 @@
-$Revision: 1.18 $
-$Date: 2006/02/05 22:58:12 $
-
-Please see the docs for a complete explanation.
-
 ===========
 VERSION:
 ===========
 
-1.33
+2.0
 
 ========
 OVERVIEW
@@ -24,16 +19,17 @@ strucutre of the original RTF document.
 INSTALLATION
 ============
 
-Please see the full documentation if this README does not help you.
-
-
-
-1. Install python if you do not have it on your system. You can get
-   python from http://python.org.
-
-2. Type:
+1. Type::
     
     python setup.py install
+
+FOR earlier versions::
+
+  pip install rtf2xml 
+
+NOTE: I have not yet uploaded rtf2xml to the Python PyPi. I am waiting to get a
+permissions issue resolved. The installation downloaded with pip will work for
+python 2, but not python 3.
 
 
 

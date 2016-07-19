@@ -1,4 +1,4 @@
-import sys
+﻿import sys
 class ParseOptions:
 
     """
@@ -381,7 +381,7 @@ if __name__ == '__main__':
             )
 
     options, the_args = test_obj.parse_options()
-    print options, the_args
+    print (options, the_args)
 
     """
     this_options = ['--foo', '-o']
