@@ -6,7 +6,7 @@
 #                                                                       #
 #########################################################################
 
-import sys, os, codecs 
+import sys, os, codecs
 class Output:
     """
 
@@ -14,12 +14,12 @@ class Output:
 
     """
 
-    def __init__(self, 
-            file, 
-            orig_file, 
-            output_dir = None, 
-            out_file = None 
-            
+    def __init__(self,
+            file,
+            orig_file,
+            output_dir = None,
+            out_file = None
+
             ):
 
         """
@@ -104,7 +104,7 @@ class Output:
         # change if user wants to output to a specific file
         if self.__out_file:
             output_file = os.path.join(self.__output_dir, self.__out_file)
-            
+
 
         user_response = 'o'
         if os.path.isfile(output_file):
@@ -113,9 +113,9 @@ class Output:
             else:
                 msg = 'Do you want to over-write %s?\n' % output_file
                 msg += 'Type "o" to over-write.\n'
-                msg += 'Type any other key to print to standard output.\n' 
+                msg += 'Type any other key to print to standard output.\n'
                 sys.stderr.write(msg)
-                user_response = raw_input()                
+                user_response = raw_input()
         if user_response == 'o':
             read_obj = open(self.__file, 'r')
             write_obj = open(output_file, 'w')
@@ -191,7 +191,7 @@ class Output:
         output the ill-formed xml file
 
         """
-            
+
         (utf8_encode, utf8_decode, utf8_reader, utf8_writer) = codecs.lookup("utf-8")
         write_obj = utf8_writer(open(out_file, 'w'))
         write_obj = open(out_file, 'w')
@@ -200,9 +200,7 @@ class Output:
         line = 1
         while line:
             line = read_obj.readline()
-            if isinstance(line, type(u"")):
-                line = line.encode("utf-8")
             write_obj.write(line)
-        
+
         read_obj.close()
         write_obj.close()
