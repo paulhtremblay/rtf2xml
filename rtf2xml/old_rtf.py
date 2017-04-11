@@ -63,6 +63,7 @@ class OldRtf:
         'dbl-strike' ,
         'emboss____',
         'engrave___' ,
+        'font-backc',
         'font-color',
         'font-down_' ,
         'font-size_',
@@ -71,6 +72,7 @@ class OldRtf:
         'footnot-mk' ,
         'green_____' ,
         'hidden____',
+        'highlight_',
         'italics___',
         'outline___',
         'red_______',
@@ -140,7 +142,7 @@ class OldRtf:
             if self.__token_info == 'ob<nu<open-brack':
                 self.__ob_group += 1
                 self.__ob_count = line[-5:-1]
-            if self.__token_info == 'cb<nu<clos-brack':
+            if self.__token_info == 'bc<nu<clos-brack':
                 self.__ob_group -= 1
                 self.__cb_count = line[-5:-1]
             self.__inline_info = line[6:16]

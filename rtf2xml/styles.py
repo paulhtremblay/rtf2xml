@@ -178,6 +178,7 @@ class Styles:
 
         # character info => ci
         'hidden____'    :	'hidden',
+        'highlight_'    :	'highlight',
         'italics___'    :	'italics',
         'bold______'    :	'bold',
         'strike-thr'   :	'strike-through',
@@ -191,6 +192,7 @@ class Styles:
         'superscrip'    :	'superscript',
         'plain_____'    :	'plain',
         'font-style'    :	'font-style',
+        'font-backc'    :	'font-background-color',
         'font-color'    :	'font-color',
         'font-size_'    :	'font-size',
         'font-up___'    :	'superscript',

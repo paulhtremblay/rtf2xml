@@ -40,7 +40,7 @@ class Pict:
     def __initiate_pict_dict(self):
         self.__pict_dict = {
         'ob<nu<open-brack'    :   self.__open_br_func,
-        'cb<nu<clos-brack'    :   self.__close_br_func,
+        'bc<nu<clos-brack'    :   self.__close_br_func,
         'tx<nu<__________'    :   self.__text_func,
         }
     
@@ -164,7 +164,7 @@ class Pict:
             self.__token_info = line[:16]
             if self.__token_info == 'ob<nu<open-brack':
                 self.__ob_count = line[-5:-1]
-            if self.__token_info == 'cb<nu<clos-brack':
+            if self.__token_info == 'bc<nu<clos-brack':
                 self.__cb_count = line[-5:-1]
             if not self.__in_pict:
                 to_print = self.__default(line, write_obj)

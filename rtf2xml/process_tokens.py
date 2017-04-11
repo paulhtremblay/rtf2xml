@@ -88,7 +88,7 @@ class ProcessTokens:
         # text
         'backslash'          :	('nu', '\\', self.text_func),
         'ob'                 :	('nu', '{', self.text_func),
-        'cb'                 :	('nu', '}', self.text_func),
+        'bc'                 :	('nu', '}', self.text_func),
 
         # paragraph formatting => pf
         'page'               :  ('pf', 'page-break', self.default_func),
@@ -223,6 +223,7 @@ class ProcessTokens:
         'b'                  :	('ci', 'bold______', self.bool_st_func),
         'blue'               :	('ci', 'blue______', self.color_func),
         'caps'               :  ('ci', 'caps______', self.bool_st_func),
+        'cb'                 :	('ci', 'font-backc', self.default_func),
         'cf'                 :	('ci', 'font-color', self.default_func),
         'chftn'              :	('ci', 'footnot-mk', self.bool_st_func),
         'dn'                 :	('ci', 'font-down_', self.divide_by_2),
@@ -230,6 +231,7 @@ class ProcessTokens:
         'f'                  :	('ci', 'font-style', self.default_func),
         'fs'                 :	('ci', 'font-size_', self.divide_by_2),
         'green'              :	('ci', 'green_____', self.color_func),
+        'highlight'          :	('ci', 'highlight_', self.bool_st_func),
         'i'                  :	('ci', 'italics___', self.bool_st_func),
         'impr'               :	('ci', 'engrave___', self.bool_st_func),
         'outl'               :	('ci', 'outline___', self.bool_st_func),
@@ -720,7 +722,7 @@ class ProcessTokens:
 
     def cb_func(self, pre, token, num=None):
         ##line = 'cb<%04d\n' % self.__bracket_count
-        line = 'cb<nu<clos-brack<%04d\n' % self.__bracket_count
+        line = 'bc<nu<clos-brack<%04d\n' % self.__bracket_count
         self.__bracket_count -= 1
         return line
 

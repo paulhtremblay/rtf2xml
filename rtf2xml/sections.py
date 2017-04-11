@@ -339,8 +339,7 @@ Instead, ingore all section information in a field-block.
         self.__write_section(line)
         self.__write_obj.write('cw<pf<par-def___<nu<true\n')
         self.__write_obj.write('ob<nu<open-brack<0000\n')
-        self.__write_obj.write('cb<nu<clos-brack<0000\n')
-
+        self.__write_obj.write('bc<nu<clos-brack<0000\n')
     
     def __write_section(self, line):
         """

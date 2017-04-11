@@ -48,7 +48,7 @@ class CheckBrackets:
             if self.__token_info == 'ob<nu<open-brack':
                 self.open_brack(line)
 
-            if self.__token_info == 'cb<nu<clos-brack':
+            if self.__token_info == 'bc<nu<clos-brack':
                 right_count = self.close_brack(line)
                 if not right_count:
                     return (0, "closed bracket doesn't match, line %s" % line_count)

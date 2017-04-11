@@ -121,7 +121,7 @@ class ListTable:
             if self.__token_info == 'ob<nu<open-brack':
                 self.__ob_count = line[-4:]
                 self.__ob_group += 1
-            if self.__token_info == 'cb<nu<clos-brack':
+            if self.__token_info == 'bc<nu<clos-brack':
                 self.__cb_count = line[-4:]
                 self.__ob_group -= 1
             action = self.__state_dict.get(self.__state)
@@ -197,7 +197,7 @@ class ListTable:
 
         """
 
-        if self.__token_info == 'cb<nu<clos-brack' and\
+        if self.__token_info == 'bc<nu<clos-brack' and\
             self.__cb_count == self.__list_ob_count:
             self.__state = 'default'
         elif self.__token_info == 'ob<nu<open-brack':
@@ -278,7 +278,7 @@ class ListTable:
 
 
         """
-        if self.__token_info == 'cb<nu<clos-brack' and\
+        if self.__token_info == 'bc<nu<clos-brack' and\
             self.__cb_count == self.__level_ob_count:
             self.__state = 'list'
         elif self.__token_info == 'ob<nu<open-brack':
@@ -315,7 +315,7 @@ class ListTable:
 
 
         """
-        if self.__token_info == 'cb<nu<clos-brack' and\
+        if self.__token_info == 'bc<nu<clos-brack' and\
             self.__cb_count == self.__level_number_ob_count:
             self.__state = 'level'
             self.__all_lists[-1][-1][0]['level-numbers'] = self.__level_numbers_string
@@ -360,7 +360,7 @@ class ListTable:
 
 
         """
-        if self.__token_info == 'cb<nu<clos-brack' and\
+        if self.__token_info == 'bc<nu<clos-brack' and\
             self.__cb_count == self.__level_text_ob_count:
             if self.__prefix_string:
                 if self.__all_lists[-1][-1][0]['numbering-type'] == 'bullet':
@@ -435,7 +435,7 @@ class ListTable:
 
 
         """
-        if self.__token_info == 'cb<nu<clos-brack' and\
+        if self.__token_info == 'bc<nu<clos-brack' and\
             self.__cb_count == self.__list_name_ob_count:
             self.__state = 'list'
 

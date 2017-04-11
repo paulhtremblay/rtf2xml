@@ -84,6 +84,7 @@ class AddBrackets:
         'cw<ci<emboss____'  ,
         'cw<ci<engrave___' ,
         'cw<ci<font-color' ,
+        'cw<ci<font-backc' ,
         'cw<ci<font-down_' ,
         'cw<ci<font-size_' ,
         'cw<ci<font-style' ,
@@ -91,6 +92,7 @@ class AddBrackets:
         'cw<ci<footnot-mk',
         'cw<ci<green_____' ,
         'cw<ci<hidden____',
+        'cw<ci<highlight_',
         'cw<ci<italics___' ,
         'cw<ci<outline___',
         'cw<ci<red_______' ,
@@ -121,9 +123,9 @@ class AddBrackets:
 
 
         """
-        if line == 'cb<nu<clos-brack<0001\n' and self.__open_bracket:
+        if line == 'bc<nu<clos-brack<0001\n' and self.__open_bracket:
             self.__write_obj.write(
-                'cb<nu<clos-brack<0003\n'
+                'bc<nu<clos-brack<0003\n'
                     )
             self.__write_obj.write(line)
         elif self.__token_info == 'ob<nu<open-brack':
@@ -162,7 +164,7 @@ class AddBrackets:
         """
         if self.__open_bracket:
             self.__write_obj.write(
-                'cb<nu<clos-brack<0003\n'
+                'bc<nu<clos-brack<0003\n'
                 )
             self.__open_bracket = 0
         inline_string = ''
@@ -203,7 +205,7 @@ class AddBrackets:
 
         """
         self.__write_obj.write(line)
-        if self.__token_info == 'cb<nu<clos-brack'and\
+        if self.__token_info == 'bc<nu<clos-brack'and\
             self.__cb_count == self.__ignore_count:
             self.__state = 'in_body'
 
@@ -234,7 +236,7 @@ class AddBrackets:
             self.__token_info = line[:16]
             if self.__token_info == 'ob<nu<open-brack':
                 self.__ob_count = line[-5:-1]
-            if self.__token_info == 'cb<nu<clos-brack':
+            if self.__token_info == 'bc<nu<clos-brack':
                 self.__cb_count = line[-5:-1]
             action = self.__state_dict.get(self.__state)
             if action == None:
