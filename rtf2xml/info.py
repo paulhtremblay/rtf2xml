@@ -82,6 +82,7 @@ class Info:
         'year______'        : 'year',
         'month_____'        : 'month',
         'day_______'        : 'day',
+        'hour______'        : 'hour',
         'minute____'        : 'minute',
         'revis-time'        : 'revision-time',
         'num-of-wor'        : 'number-of-words',

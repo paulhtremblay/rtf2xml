@@ -272,6 +272,7 @@ class ProcessTokens:
         'yr'                 :	('di', 'year______', self.default_func),
         'mo'                 :	('di', 'month_____', self.default_func),
         'dy'                 :	('di', 'day_______', self.default_func),
+        'hr'                :	('di', 'hour______', self.default_func),
         'min'                :	('di', 'minute____', self.default_func),
         'revtim'             :	('di', 'revis-time', self.default_func),
         'nofwords'           :	('di', 'num-of-wor', self.default_func),
