@@ -506,7 +506,7 @@ Examples
             self.__token_info = line[:16]
             if self.__token_info == 'ob<nu<open-brack':
                 self.__ob_count = line[-5:-1]
-            if self.__token_info == 'cb<nu<clos-brack':
+            if self.__token_info == 'bc<nu<clos-brack':
                 self.__cb_count = line[-5:-1]
             action = self.__state_dict.get(self.__state)
             if action == None:

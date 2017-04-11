@@ -82,7 +82,7 @@ class Inline:
             'tx<ut<__________'  :       self.__found_text_func,
             'mi<mk<inline-fld'  :       self.__found_text_func,
             'text'              :       self.__found_text_func,
-            'cb<nu<clos-brack'  :       self.__close_bracket_func,
+            'bc<nu<clos-brack'  :       self.__close_bracket_func,
             'mi<mk<par-end___'  :       self.__end_para_func,
             'mi<mk<footnt-ope'  :       self.__end_para_func,
             'mi<mk<footnt-ind'  :       self.__end_para_func,
@@ -91,7 +91,7 @@ class Inline:
 
 
         self.__after_open_bracket_dict = {
-            'cb<nu<clos-brack'  :       self.__close_bracket_func,
+            'bc<nu<clos-brack'  :       self.__close_bracket_func,
             'tx<nu<__________'  :       self.__found_text_func,
             'tx<hx<__________'  :       self.__found_text_func,
             'tx<ut<__________'  :       self.__found_text_func,
@@ -128,6 +128,7 @@ class Inline:
         'emboss____'    :	'emboss',
         'engrave___'    :	'engrave',
         'font-color'    :	'font-color',
+        'font-backc'    :	'font-background-color',
         'font-down_'    :	'subscript',
         'font-size_'    :	'font-size',
         'font-style'    :	'font-style',
@@ -135,6 +136,7 @@ class Inline:
         'footnot-mk'    :       'footnote-marker',
         'green_____'    :	'green',
         'hidden____'    :	'hidden',
+        'highlight_'    :	'highlight',
         'italics___'    :	'italics',
         'outline___'   :	'outline',
         'red_______'    :	'red',

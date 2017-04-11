@@ -88,10 +88,10 @@ file.
         'cw<an<index-mark'      : (self.__found_toc_index_func, 'index'),
         }
         ob = 'ob<nu<open-brack.....'
-        cb = 'cb<nu<clos-brack'
+        bc = 'bc<nu<clos-brack'
         bk_st = 'cw<an<book-mk-st<nu<true'
         tx = 'tx<nu<__________<(.*?)'
-        reg_st = ob + bk_st + tx + cb
+        reg_st = ob + bk_st + tx + bc
         self.__book_start = re.compile(r'%s' % reg_st)
 
 
@@ -276,10 +276,10 @@ file.
             token_info = line[:16]
             if token_info == 'ob<nu<open-brack':
                 bracket_count += 1
-            if token_info == 'cb<nu<clos-brack':
+            if token_info == 'bc<nu<clos-brack':
                 bracket_count -= 1
             if in_see:
-                if bracket_count == end_bracket_count and token_info == 'cb<nu<clos-brack':
+                if bracket_count == end_bracket_count and token_info == 'bc<nu<clos-brack':
                     in_see = 0
                 else:
                     if token_info == 'tx<nu<__________':
@@ -320,10 +320,10 @@ file.
             token_info = line[:16]
             if token_info == 'ob<nu<open-brack':
                 bracket_count += 1
-            if token_info == 'cb<nu<clos-brack':
+            if token_info == 'bc<nu<clos-brack':
                 bracket_count -= 1
             if in_bookmark:
-                if bracket_count == end_bracket_count and token_info == 'cb<nu<clos-brack':
+                if bracket_count == end_bracket_count and token_info == 'bc<nu<clos-brack':
                     in_bookmark = 0
                     index_string += '%s\n' % line
                 else:
@@ -427,10 +427,10 @@ file.
             token_info = line[:16]
             if token_info == 'ob<nu<open-brack':
                 bracket_count += 1
-            if token_info == 'cb<nu<clos-brack':
+            if token_info == 'bc<nu<clos-brack':
                 bracket_count -= 1
             if in_bookmark:
-                if bracket_count == end_bracket_count and token_info == 'cb<nu<clos-brack':
+                if bracket_count == end_bracket_count and token_info == 'bc<nu<clos-brack':
                     in_bookmark = 0
                     toc_string += '%s\n' % line
                 else:
@@ -570,7 +570,7 @@ file.
             self.__token_info = line[:16]
             if self.__token_info == 'ob<nu<open-brack':
                 self.__ob_count = line[-5:-1]
-            if self.__token_info == 'cb<nu<clos-brack':
+            if self.__token_info == 'bc<nu<clos-brack':
                 self.__cb_count = line[-5:-1]
             action = self.__state_dict.get(self.__state)
             if action == None:

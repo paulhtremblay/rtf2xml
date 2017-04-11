@@ -207,6 +207,13 @@ class Colors:
                 self.__write_obj.write(
                 'cw<ci<font-color<nu<%s\n' % hex_num
                 )
+        elif self.__token_info == 'cw<ci<font-backc':
+            hex_num = int(line[20:-1])
+            hex_num = self.__figure_num(hex_num)
+            if hex_num:
+                self.__write_obj.write(
+                'cw<ci<font-backc<nu<%s\n' % hex_num
+                )
         elif line[0:5] == 'cw<bd':
             the_index = line.find('bdr-color_')
             if the_index > -1:

@@ -73,7 +73,7 @@ class OverrideTable:
 
 
         """
-        if self.__token_info == 'cb<nu<clos-brack' and\
+        if self.__token_info == 'bc<nu<clos-brack' and\
             self.__cb_count == self.__override_ob_count:
             self.__state = 'default'
             self.__parse_override_dict()
@@ -158,7 +158,7 @@ class OverrideTable:
             if self.__token_info == 'ob<nu<open-brack':
                 self.__ob_count = line[-4:]
                 self.__ob_group += 1
-            if self.__token_info == 'cb<nu<clos-brack':
+            if self.__token_info == 'bc<nu<clos-brack':
                 self.__cb_count = line[-4:]
                 self.__ob_group -= 1
             action = self.__state_dict.get(self.__state)

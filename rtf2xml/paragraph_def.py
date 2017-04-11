@@ -200,6 +200,7 @@ if another paragraph_def is found, the state changes to collect_tokens.
 
         # character info => ci
         'hidden____'    :	'hidden',
+        'highlight_'    :	'highlight',
         'italics___'    :	'italics',
         'bold______'    :	'bold',
         'strike-thr'   :	'strike-through',
@@ -213,6 +214,7 @@ if another paragraph_def is found, the state changes to collect_tokens.
         'subscript_'    :	'subscript',
         'superscrip'    :	'superscipt',
         'font-style'    :	'font-style',
+        'font-backc'    :	'font-background-color',
         'font-color'    :	'font-color',
         'font-size_'    :	'font-size',
         'font-up___'    :	'superscript',

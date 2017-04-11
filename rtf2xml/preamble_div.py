@@ -265,7 +265,7 @@ cw<ci<font-style<nu<0
                 self.__previous_state = 'font_table'
                 self.__state = 'ignore'
                 self.__ignore_num = self.__ob_count
-        elif self.__token_info == 'cb<nu<clos-brack':
+        elif self.__token_info == 'bc<nu<clos-brack':
             if int(self.__cb_count) == int(self.__close_group_count) + 1:
                 self.__individual_font = 0
                 self.__font_table_final +=  \
@@ -351,7 +351,7 @@ cw<ci<font-style<nu<0
             if int(self.__ob_count) == int(self.__close_group_count) + 1:
                 self.__style_sheet_final +=  \
                 'mi<mk<stylei-beg\n'
-        elif self.__token_info == 'cb<nu<clos-brack':
+        elif self.__token_info == 'bc<nu<clos-brack':
             if int(self.__cb_count) == int(self.__close_group_count) + 1:
                 self.__style_sheet_final +=  \
                 'mi<mk<stylei-end\n' 
@@ -434,7 +434,7 @@ cw<ci<font-style<nu<0
             if int(self.__ob_count) == int(self.__close_group_count) + 1:
                 self.__doc_info_table_final +=  \
                 'mi<mk<docinf-beg\n'
-        elif self.__token_info == 'cb<nu<clos-brack':
+        elif self.__token_info == 'bc<nu<clos-brack':
             if int(self.__cb_count) == int(self.__close_group_count) + 1:
                 self.__doc_info_table_final +=  \
                 'mi<mk<docinf-end\n' 
@@ -597,7 +597,7 @@ cw<ci<font-style<nu<0
         self.__print_page_info()
         self.__write_obj.write('ob<nu<open-brack<0001\n')
         self.__write_obj.write('ob<nu<open-brack<0002\n')
-        self.__write_obj.write('cb<nu<clos-brack<0002\n')
+        self.__write_obj.write('bc<nu<clos-brack<0002\n')
         self.__write_obj.write('mi<tg<close_____<preamble\n')
         self.__write_obj.write('mi<tg<open______<body\n')
         # self.__write_obj.write('mi<tg<open-att__<section<num>1\n')
@@ -630,7 +630,7 @@ cw<ci<font-style<nu<0
             if self.__token_info == 'ob<nu<open-brack':
                 self.__ob_count = line[-5:-1]
                 self.__ob_group += 1
-            if self.__token_info == 'cb<nu<clos-brack':
+            if self.__token_info == 'bc<nu<clos-brack':
                 self.__cb_count = line[-5:-1]
                 self.__ob_group -= 1
             action = self.__state_dict.get(self.__state)

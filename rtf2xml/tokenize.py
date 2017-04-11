@@ -56,7 +56,7 @@ class Tokenize:
         line = line.replace("\\{", "\\ob ")   
         # turn into a generic token to eliminate special
         # cases and make processing easier
-        line = line.replace("\\}", "\\cb ") 
+        line = line.replace("\\}", "\\bc ") 
         # put a backslash in front of to eliminate special cases and 
         # make processing easier
         line = line.replace("{", "\\{")     

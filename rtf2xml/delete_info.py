@@ -120,7 +120,7 @@ class DeleteInfo:
         # delete state
         self.__after_asterisk = 0 # only enter this function once
         self.__found_delete = 1
-        if self.__token_info == 'cb<nu<clos-brack':
+        if self.__token_info == 'bc<nu<clos-brack':
             if self.__delete_count == self.__cb_count:
                 self.__state = 'default'
                 self.__ob = 0
@@ -186,7 +186,7 @@ class DeleteInfo:
 
         """
         if self.__delete_count == self.__cb_count and self.__token_info ==\
-            'cb<nu<clos-brack':
+            'bc<nu<clos-brack':
             self.__state = 'default'
             if self.__write_cb:
                 self.__write_cb = 0
@@ -215,7 +215,7 @@ class DeleteInfo:
             self.__token_info = line[:16]
             if self.__token_info == 'ob<nu<open-brack':
                 self.__ob_count = line[-5:-1]
-            if self.__token_info == 'cb<nu<clos-brack':
+            if self.__token_info == 'bc<nu<clos-brack':
                 self.__cb_count = line[-5:-1]
             action = self.__state_dict.get(self.__state)
             if not action:

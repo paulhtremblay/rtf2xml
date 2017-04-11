@@ -134,7 +134,7 @@ class Header:
             # keep track of opening and closing brackets
             if self.__token_info == 'ob<nu<open-brack':
                 self.__ob_count = line[-5:-1]
-            if self.__token_info == 'cb<nu<clos-brack':
+            if self.__token_info == 'bc<nu<clos-brack':
                 self.__cb_count = line[-5:-1]
             # In the middle of footnote text
             if self.__in_header:
