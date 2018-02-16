@@ -11,7 +11,7 @@ OVERVIEW
 The script rtf2xml converts Microsoft RTF to XML. 
 
 By default, the script outputs to a raw XML, which faitfully represents the
-strucutre of the original RTF document.
+structure of the original RTF document.
 
 
 
@@ -37,9 +37,9 @@ python 2, but not python 3.
 QUICK USE
 =========
 
-To convert an RTF document to raw XML type:
+To convert an RTF document to raw XML type::
 
-rtf2xml  my_file.rtf
+  rtf2xml  my_file.rtf
 
 ====================
 Bugs, limitations
